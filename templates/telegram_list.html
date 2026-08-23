@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Telegram · Bots & Contactos</title>
+  <title data-i18n="telegram.listTitle">Telegram · Bots & Contactos</title>
   <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" type="image/svg+xml">
 
   <!-- Tailwind CSS -->
@@ -36,6 +36,10 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+  <!-- Traducciones externas de Telegram (deben cargarse antes de i18n.js) -->
+  <script src="{{ url_for('static', filename='js/i18n.extra.telegram.js') }}?v=1"></script>
+  <script src="{{ url_for('static', filename='js/i18n.js') }}?v=2"></script>
+
   <style>
     /* Scrollbar personalizada */
     ::-webkit-scrollbar { width: 5px; }
@@ -55,22 +59,22 @@
   <!-- Controles Superiores Flotantes (Desktop) -->
   <div class="fixed top-3 right-3 z-50 flex items-center gap-2 bg-slate-950/80 backdrop-blur-md px-3 py-1.5 rounded-full border border-slate-700/60 shadow-xl text-xs">
     <!-- Switcher de Tema Claro/Oscuro -->
-    <button onclick="toggleTema()" title="Cambiar Tema Telegram" class="text-slate-300 hover:text-sky-400 p-1 transition">
+    <button onclick="toggleTema()" title="Cambiar Tema Telegram" data-i18n-title="telegram.changeThemeTitle" class="text-slate-300 hover:text-sky-400 p-1 transition">
       <i id="theme-icon" class="fa-solid fa-moon"></i>
     </button>
     <div class="h-3 w-px bg-slate-700"></div>
     <!-- Cambiar a WhatsApp Lista -->
-    <a href="/admin/whatsaap" title="Abrir lista en estilo WhatsApp" class="flex items-center gap-1 text-emerald-400 hover:text-emerald-300 font-semibold transition px-1">
+    <a href="/admin/whatsaap" title="Abrir lista en estilo WhatsApp" data-i18n-title="telegram.openWhatsAppList" class="flex items-center gap-1 text-emerald-400 hover:text-emerald-300 font-semibold transition px-1">
       <i class="fa-brands fa-whatsapp"></i> <span class="hidden sm:inline">WhatsApp</span>
     </a>
     <div class="h-3 w-px bg-slate-700"></div>
     <!-- Volver al Dashboard -->
-    <a href="/dashboard" title="Ir al Dashboard de Administración" class="text-slate-300 hover:text-white transition px-1 flex items-center gap-1">
-      <i class="fa-solid fa-gauge-high"></i> <span class="hidden sm:inline">Dashboard</span>
+    <a href="/dashboard" title="Ir al Dashboard de Administración" data-i18n-title="telegram.openDashboardTitle" class="text-slate-300 hover:text-white transition px-1 flex items-center gap-1">
+      <i class="fa-solid fa-gauge-high"></i> <span class="hidden sm:inline" data-i18n="common.dashboard">Dashboard</span>
     </a>
     <div class="h-3 w-px bg-slate-700"></div>
     <!-- Toggle Marco Móvil -->
-    <button onclick="toggleMarco()" title="Alternar Marco Móvil / Pantalla Completa" class="text-slate-300 hover:text-sky-400 p-1 transition">
+    <button onclick="toggleMarco()" title="Alternar Marco Móvil / Pantalla Completa" data-i18n-title="telegram.toggleFrameTitle" class="text-slate-300 hover:text-sky-400 p-1 transition">
       <i id="frame-icon" class="fa-solid fa-mobile-screen"></i>
     </button>
   </div>
@@ -99,28 +103,28 @@
       <div class="flex items-center justify-between">
         <!-- Menú Hamburguesa -->
         <div class="flex items-center gap-3.5">
-          <button onclick="toggleDrawer()" title="Abrir Menú" class="p-1 text-white/90 hover:text-white transition active:scale-95">
+          <button onclick="toggleDrawer()" title="Abrir Menú" data-i18n-title="telegram.openMenu" class="p-1 text-white/90 hover:text-white transition active:scale-95">
             <i class="fa-solid fa-bars text-lg"></i>
           </button>
           <h1 class="text-lg font-bold tracking-wide">Telegram</h1>
         </div>
 
         <!-- Botón de Búsqueda -->
-        <button onclick="activarBuscador()" title="Buscar bots" class="p-1 text-white/90 hover:text-white transition">
-          <i class="fa-solid fa-magnifying-glass text-base"></i>
-        </button>
+          <button onclick="activarBuscador()" title="Buscar bots" data-i18n-title="telegram.searchBots" class="p-1 text-white/90 hover:text-white transition">
+            <i class="fa-solid fa-magnifying-glass text-base"></i>
+          </button>
       </div>
 
       <!-- Barra de Filtros / Carpetas Telegram -->
       <div class="flex items-center gap-4 mt-3 overflow-x-auto pb-0.5 text-xs select-none border-t border-white/10 pt-2">
         <button onclick="filtrarCategoria('todos')" id="tg-filter-todos" class="tg-tab text-white font-bold pb-1 border-b-2 border-white transition flex items-center gap-1">
-          <span>Todos</span>
+          <span data-i18n="telegram.filterAll">Todos</span>
           <span class="bg-white/20 text-[10px] px-1.5 py-0.2 rounded-full">{{ agentes|length }}</span>
         </button>
-        <button onclick="filtrarCategoria('bots')" id="tg-filter-bots" class="tg-tab text-white/70 hover:text-white pb-1 transition">
+        <button onclick="filtrarCategoria('bots')" id="tg-filter-bots" class="tg-tab text-white/70 hover:text-white pb-1 transition" data-i18n="telegram.filterBots">
           Bots IA
         </button>
-        <button onclick="filtrarCategoria('canales')" id="tg-filter-canales" class="tg-tab text-white/70 hover:text-white pb-1 transition">
+        <button onclick="filtrarCategoria('canales')" id="tg-filter-canales" class="tg-tab text-white/70 hover:text-white pb-1 transition" data-i18n="telegram.filterChannels">
           Canales
         </button>
       </div>
@@ -130,7 +134,7 @@
     <div id="tg-search-bar" class="hidden p-2.5 bg-slate-100 dark:bg-tg-bgDark border-b border-black/5 dark:border-white/5 shrink-0 anim-fade">
       <div class="relative flex items-center">
         <i class="fa-solid fa-magnifying-glass absolute left-3 text-slate-400 text-xs"></i>
-        <input id="tg-search-input" type="text" placeholder="Buscar bot o mensaje…"
+        <input id="tg-search-input" type="text" placeholder="Buscar bot o mensaje…" data-i18n-placeholder="telegram.searchPlaceholder"
                oninput="buscarBots(this.value)"
                class="w-full bg-white dark:bg-tg-headerDark text-slate-900 dark:text-slate-100 placeholder-slate-400 text-xs pl-8 pr-8 py-2 rounded-xl outline-none focus:ring-1 focus:ring-sky-500 shadow-sm transition">
         <button onclick="desactivarBuscador()" class="absolute right-3 text-slate-400 hover:text-slate-200">
@@ -208,12 +212,12 @@
       <!-- Mensaje cuando no hay resultados de búsqueda -->
       <div id="no-bots-msg" class="hidden p-8 text-center text-slate-400 text-xs">
         <i class="fa-solid fa-robot text-2xl mb-2 text-slate-500"></i>
-        <p>No se encontraron bots o agentes con ese criterio.</p>
+        <p data-i18n="telegram.noResults">No se encontraron bots o agentes con ese criterio.</p>
       </div>
     </main>
 
     <!-- Botón Flotante de Nuevo Mensaje (FAB) -->
-    <a href="/agente/albert_einstein/telegram" title="Nuevo chat con bot"
+    <a href="/agente/albert_einstein/telegram" title="Nuevo chat con bot" data-i18n-title="telegram.newChatBot"
        class="absolute bottom-6 right-4 w-12 h-12 rounded-full bg-tg-blue hover:bg-sky-600 text-white flex items-center justify-center shadow-2xl active:scale-95 transition z-30">
       <i class="fa-solid fa-pencil text-base"></i>
     </a>
@@ -243,28 +247,28 @@
         <div class="flex-1 py-3 overflow-y-auto divide-y divide-black/5 dark:divide-white/5">
           <div class="py-1">
             <a href="/admin/whatsapp" class="px-4 py-2.5 hover:bg-black/5 dark:hover:bg-white/5 flex items-center gap-3 text-emerald-600 dark:text-emerald-400 font-semibold">
-              <i class="fa-brands fa-whatsapp text-base w-5 text-emerald-500"></i> Ver en WhatsApp
+              <i class="fa-brands fa-whatsapp text-base w-5 text-emerald-500"></i> <span data-i18n="telegram.viewWhatsApp">Ver en WhatsApp</span>
             </a>
             <a href="/dashboard" class="px-4 py-2.5 hover:bg-black/5 dark:hover:bg-white/5 flex items-center gap-3 text-slate-700 dark:text-slate-200">
-              <i class="fa-solid fa-gauge-high text-base w-5 text-sky-500"></i> Dashboard Completo
+              <i class="fa-solid fa-gauge-high text-base w-5 text-sky-500"></i> <span data-i18n="telegram.fullDashboard">Dashboard Completo</span>
             </a>
             <a href="/" class="px-4 py-2.5 hover:bg-black/5 dark:hover:bg-white/5 flex items-center gap-3 text-slate-700 dark:text-slate-200">
-              <i class="fa-solid fa-house text-base w-5 text-amber-500"></i> Inicio Web
+              <i class="fa-solid fa-house text-base w-5 text-amber-500"></i> <span data-i18n="telegram.webHome">Inicio Web</span>
             </a>
           </div>
 
           <div class="py-1">
-            <button onclick="toggleTema()" class="w-full text-left px-4 py-2.5 hover:bg-black/5 dark:hover:bg-white/5 flex items-center justify-between text-slate-700 dark:text-slate-200">
-              <span class="flex items-center gap-3">
-                <i class="fa-solid fa-moon text-base w-5 text-indigo-400"></i> Modo Noche
-              </span>
-              <i class="fa-solid fa-toggle-on text-sky-500 text-base"></i>
-            </button>
+              <button onclick="toggleTema()" class="w-full text-left px-4 py-2.5 hover:bg-black/5 dark:hover:bg-white/5 flex items-center justify-between text-slate-700 dark:text-slate-200">
+                <span class="flex items-center gap-3">
+                  <i class="fa-solid fa-moon text-base w-5 text-indigo-400"></i> <span data-i18n="telegram.nightMode">Modo Noche</span>
+                </span>
+                <i class="fa-solid fa-toggle-on text-sky-500 text-base"></i>
+              </button>
           </div>
         </div>
 
         <!-- Pie del Drawer -->
-        <div class="p-3 border-t border-black/5 dark:border-white/5 text-center text-[10px] text-slate-400">
+        <div class="p-3 border-t border-black/5 dark:border-white/5 text-center text-[10px] text-slate-400" data-i18n="telegram.simulatorFooter">
           THEYTHINK AI · Telegram Mobile Simulator
         </div>
       </div>

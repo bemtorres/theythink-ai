@@ -136,6 +136,10 @@
     .dot-2 { animation: pulseTyping 1.2s infinite 0.2s; }
     .dot-3 { animation: pulseTyping 1.2s infinite 0.4s; }
   </style>
+
+  <!-- Traducciones externas y motor i18n (deben ir antes del contenido) -->
+  <script src="{{ url_for('static', filename='js/i18n.extra.whatsapp.js') }}?v=2"></script>
+  <script src="{{ url_for('static', filename='js/i18n.js') }}?v=2"></script>
 </head>
 
 <body class="bg-slate-900 text-slate-100 flex items-center justify-center min-h-screen p-0 sm:p-4 overflow-x-hidden font-sans"
@@ -145,28 +149,28 @@
   <!-- Notificación Toast de Copiado -->
   <div id="wa-toast" class="hidden fixed top-6 z-[99] bg-emerald-600 text-white font-semibold px-4 py-2 rounded-full shadow-2xl flex items-center gap-2 text-xs transition-all duration-300 transform -translate-y-2 opacity-0">
     <i class="fa-solid fa-check-circle text-sm"></i>
-    <span id="wa-toast-text">¡Mensaje copiado al portapapeles!</span>
+    <span id="wa-toast-text" data-i18n="whatsapp.copiedToast">¡Mensaje copiado al portapapeles!</span>
   </div>
 
   <!-- Botones Superiores Flotantes de Navegación & Control de Modo -->
   <div class="fixed top-3 right-3 z-50 flex items-center gap-2 bg-slate-950/80 backdrop-blur-md px-3 py-1.5 rounded-full border border-slate-700/60 shadow-xl text-xs select-none">
     <!-- Switcher de Tema Claro/Oscuro -->
-    <button onclick="toggleTema()" title="Cambiar Tema WhatsApp" class="text-slate-300 hover:text-emerald-400 p-1 transition">
+    <button onclick="toggleTema()" title="Cambiar Tema WhatsApp" data-i18n-title="whatsapp.changeTheme" class="text-slate-300 hover:text-emerald-400 p-1 transition">
       <i id="theme-icon" class="fa-solid fa-moon"></i>
     </button>
     <div class="h-3 w-px bg-slate-700"></div>
     <!-- Cambiar a Telegram -->
-    <a href="/agente/{{ agente.nombre }}/telegram" title="Abrir en estilo Telegram" class="flex items-center gap-1 text-sky-400 hover:text-sky-300 font-semibold transition px-1">
-      <i class="fa-brands fa-telegram"></i> <span class="hidden sm:inline">Telegram</span>
+    <a href="/agente/{{ agente.nombre }}/telegram" title="Abrir en estilo Telegram" data-i18n-title="whatsapp.openTelegramStyle" class="flex items-center gap-1 text-sky-400 hover:text-sky-300 font-semibold transition px-1">
+      <i class="fa-brands fa-telegram"></i> <span class="hidden sm:inline" data-i18n="whatsapp.telegram">Telegram</span>
     </a>
     <div class="h-3 w-px bg-slate-700"></div>
     <!-- Cambiar a Vista Web Standard -->
-    <a href="/agente/{{ agente.nombre }}" title="Abrir vista web normal" class="text-slate-300 hover:text-white transition px-1">
-      <i class="fa-solid fa-desktop"></i> <span class="hidden sm:inline">Web</span>
+    <a href="/agente/{{ agente.nombre }}" title="Abrir vista web normal" data-i18n-title="whatsapp.openWeb" class="text-slate-300 hover:text-white transition px-1">
+      <i class="fa-solid fa-desktop"></i> <span class="hidden sm:inline" data-i18n="whatsapp.web">Web</span>
     </a>
     <div class="h-3 w-px bg-slate-700"></div>
     <!-- Toggle Marco Móvil / Pantalla Completa en Desktop -->
-    <button onclick="toggleMarco()" title="Alternar Marco Móvil / Pantalla Completa" class="text-slate-300 hover:text-emerald-400 p-1 transition">
+    <button onclick="toggleMarco()" title="Alternar Marco Móvil / Pantalla Completa" data-i18n-title="whatsapp.toggleFrame" class="text-slate-300 hover:text-emerald-400 p-1 transition">
       <i id="frame-icon" class="fa-solid fa-mobile-screen"></i>
     </button>
   </div>
@@ -194,7 +198,7 @@
     <header class="bg-wa-teal dark:bg-wa-darkHeader text-white px-3 py-2 flex items-center justify-between shadow-md shrink-0 z-30 transition-colors select-none">
       <div class="flex items-center gap-2 min-w-0 flex-1">
         <!-- Botón Atrás -->
-        <a href="{{ volver_url or '/admin/whatsaap' }}" title="Regresar a contactos" class="p-1 text-white/90 hover:text-white active:scale-95 transition">
+        <a href="{{ volver_url or '/admin/whatsaap' }}" title="Regresar a contactos" data-i18n-title="whatsapp.backToContacts" class="p-1 text-white/90 hover:text-white active:scale-95 transition">
           <i class="fa-solid fa-arrow-left text-base"></i>
         </a>
 
@@ -214,24 +218,24 @@
         <div onclick="abrirPerfilModal()" class="min-w-0 flex-1 cursor-pointer">
           <h1 class="text-sm font-semibold truncate leading-tight text-white flex items-center gap-1.5">
             {{ agente.persona }}
-            <i class="fa-solid fa-circle-check text-emerald-300 text-[10px]" title="Verificado"></i>
+            <i class="fa-solid fa-circle-check text-emerald-300 text-[10px]" title="Verificado" data-i18n-title="whatsapp.verified"></i>
           </h1>
-          <p id="wa-status-text" class="text-[11px] text-emerald-100/90 dark:text-emerald-400 truncate leading-tight">en línea</p>
+          <p id="wa-status-text" class="text-[11px] text-emerald-100/90 dark:text-emerald-400 truncate leading-tight" data-i18n="whatsapp.online">en línea</p>
         </div>
       </div>
 
       <!-- Iconos de Acción del Header -->
       <div class="flex items-center gap-4 text-white/90 pr-1">
-        <button onclick="copiarTodoElChat()" title="Copiar conversación completa" class="hover:text-white active:scale-90 transition">
+        <button onclick="copiarTodoElChat()" title="Copiar conversación completa" data-i18n-title="whatsapp.copyFullChat" class="hover:text-white active:scale-90 transition">
           <i class="fa-regular fa-copy text-sm"></i>
         </button>
-        <button onclick="simularLlamada('video')" title="Videollamada" class="hover:text-white active:scale-90 transition">
+        <button onclick="simularLlamada('video')" title="Videollamada" data-i18n-title="whatsapp.videoCall" class="hover:text-white active:scale-90 transition">
           <i class="fa-solid fa-video text-sm"></i>
         </button>
-        <button onclick="simularLlamada('audio')" title="Llamada de voz" class="hover:text-white active:scale-90 transition">
+        <button onclick="simularLlamada('audio')" title="Llamada de voz" data-i18n-title="whatsapp.voiceCall" class="hover:text-white active:scale-90 transition">
           <i class="fa-solid fa-phone text-sm"></i>
         </button>
-        <button onclick="toggleMenuHeader()" title="Más opciones" class="hover:text-white active:scale-90 transition relative">
+        <button onclick="toggleMenuHeader()" title="Más opciones" data-i18n-title="whatsapp.moreOptions" class="hover:text-white active:scale-90 transition relative">
           <i class="fa-solid fa-ellipsis-vertical text-sm"></i>
         </button>
       </div>
@@ -240,23 +244,23 @@
     <!-- Menú Desplegable de 3 Puntos -->
     <div id="wa-dropdown-menu" class="hidden absolute top-14 right-4 bg-white dark:bg-wa-darkHeader text-slate-800 dark:text-slate-100 rounded-xl shadow-2xl py-2 w-52 border border-black/10 dark:border-white/10 z-50 text-xs anim-msg select-none">
       <button onclick="copiarTodoElChat(); toggleMenuHeader();" class="w-full text-left px-4 py-2 hover:bg-black/5 dark:hover:bg-white/5 flex items-center gap-2 text-wa-teal dark:text-emerald-400 font-semibold">
-        <i class="fa-regular fa-copy w-4"></i> Copiar chat completo
+        <i class="fa-regular fa-copy w-4"></i> <span data-i18n="whatsapp.copyChatComplete">Copiar chat completo</span>
       </button>
       <button onclick="abrirPerfilModal(); toggleMenuHeader();" class="w-full text-left px-4 py-2 hover:bg-black/5 dark:hover:bg-white/5 flex items-center gap-2">
-        <i class="fa-regular fa-user w-4 text-slate-400"></i> Info. del contacto
+        <i class="fa-regular fa-user w-4 text-slate-400"></i> <span data-i18n="whatsapp.contactInfo">Info. del contacto</span>
       </button>
       <button onclick="limpiarChatVisual(); toggleMenuHeader();" class="w-full text-left px-4 py-2 hover:bg-black/5 dark:hover:bg-white/5 flex items-center gap-2">
-        <i class="fa-regular fa-trash-can text-red-500 w-4"></i> Vaciar mensajes
+        <i class="fa-regular fa-trash-can text-red-500 w-4"></i> <span data-i18n="whatsapp.clearMessages">Vaciar mensajes</span>
       </button>
       <div class="h-px bg-black/10 dark:bg-white/10 my-1"></div>
       <a href="/admin/whatsaap" class="w-full text-left px-4 py-2 hover:bg-black/5 dark:hover:bg-white/5 flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-semibold">
-        <i class="fa-solid fa-address-book w-4"></i> Todos los Contactos
+        <i class="fa-solid fa-address-book w-4"></i> <span data-i18n="whatsapp.allContacts">Todos los Contactos</span>
       </a>
       <a href="/agente/{{ agente.nombre }}/telegram" class="w-full text-left px-4 py-2 hover:bg-black/5 dark:hover:bg-white/5 flex items-center gap-2 text-sky-500 font-semibold">
-        <i class="fa-brands fa-telegram w-4"></i> Abrir en Telegram
+        <i class="fa-brands fa-telegram w-4"></i> <span data-i18n="whatsapp.openInTelegram">Abrir en Telegram</span>
       </a>
       <a href="/agente/{{ agente.nombre }}" class="w-full text-left px-4 py-2 hover:bg-black/5 dark:hover:bg-white/5 flex items-center gap-2 text-wa-teal dark:text-emerald-400 font-semibold">
-        <i class="fa-solid fa-arrow-up-right-from-square w-4"></i> Versión Web Chat
+        <i class="fa-solid fa-arrow-up-right-from-square w-4"></i> <span data-i18n="whatsapp.webVersionChat">Versión Web Chat</span>
       </a>
     </div>
 
@@ -268,14 +272,14 @@
       <!-- Pastilla de Cifrado WhatsApp -->
       <div class="flex justify-center my-1 select-none">
         <div class="bg-amber-100/90 dark:bg-[#182229] border border-amber-300/60 dark:border-amber-500/20 text-amber-900 dark:text-amber-200/90 text-[10.5px] px-3 py-1.5 rounded-lg max-w-[90%] text-center shadow-sm leading-tight flex items-center gap-1.5">
-          <i class="fa-solid fa-lock text-amber-600 dark:text-amber-400 text-[10px]"></i>
-          <span>Los mensajes en este chat están protegidos con cifrado simulado y potenciados por <strong>DeepSeek AI</strong>.</span>
+           <i class="fa-solid fa-lock text-amber-600 dark:text-amber-400 text-[10px]"></i>
+           <span><span data-i18n="whatsapp.encryptionNote">Los mensajes en este chat están protegidos con cifrado simulado y potenciados por</span> <strong data-i18n="whatsapp.deepseekAi">DeepSeek AI</strong>.</span>
         </div>
       </div>
 
       <!-- Pastilla de Fecha -->
       <div class="flex justify-center my-2 select-none">
-        <span class="bg-white/90 dark:bg-wa-darkHeader text-slate-600 dark:text-slate-300 text-[10.5px] font-semibold px-2.5 py-0.5 rounded-md shadow-sm uppercase tracking-wider">
+        <span class="bg-white/90 dark:bg-wa-darkHeader text-slate-600 dark:text-slate-300 text-[10.5px] font-semibold px-2.5 py-0.5 rounded-md shadow-sm uppercase tracking-wider" data-i18n="whatsapp.today">
           HOY
         </span>
       </div>
@@ -290,7 +294,7 @@
               <div class="relative max-w-[85%] bg-wa-lightBubbleOut dark:bg-wa-darkBubbleOut text-slate-900 dark:text-slate-100 rounded-lg rounded-tr-none px-3 py-1.5 shadow-sm bubble-out-tail">
                 
                 <!-- Botón Flotante de Copiar Mensaje -->
-                <button onclick="copiarTextoMensaje(this)" title="Copiar texto" class="opacity-0 group-hover:opacity-100 focus:opacity-100 transition absolute -left-7 top-1 text-slate-400 hover:text-emerald-500 p-1 text-xs">
+                <button onclick="copiarTextoMensaje(this)" title="Copiar texto" data-i18n-title="whatsapp.copyText" class="opacity-0 group-hover:opacity-100 focus:opacity-100 transition absolute -left-7 top-1 text-slate-400 hover:text-emerald-500 p-1 text-xs">
                   <i class="fa-regular fa-copy"></i>
                 </button>
 
@@ -307,7 +311,7 @@
               <div class="relative max-w-[85%] bg-wa-lightBubbleIn dark:bg-wa-darkBubbleIn text-slate-900 dark:text-slate-100 rounded-lg rounded-tl-none px-3 py-1.5 shadow-sm bubble-in-tail">
                 
                 <!-- Botón Flotante de Copiar Mensaje -->
-                <button onclick="copiarTextoMensaje(this)" title="Copiar texto" class="opacity-0 group-hover:opacity-100 focus:opacity-100 transition absolute -right-7 top-1 text-slate-400 hover:text-emerald-500 p-1 text-xs">
+                <button onclick="copiarTextoMensaje(this)" title="Copiar texto" data-i18n-title="whatsapp.copyText" class="opacity-0 group-hover:opacity-100 focus:opacity-100 transition absolute -right-7 top-1 text-slate-400 hover:text-emerald-500 p-1 text-xs">
                   <i class="fa-regular fa-copy"></i>
                 </button>
 
@@ -324,13 +328,13 @@
           <div class="flex justify-start anim-msg group">
             <div class="relative max-w-[85%] bg-wa-lightBubbleIn dark:bg-wa-darkBubbleIn text-slate-900 dark:text-slate-100 rounded-lg rounded-tl-none px-3 py-1.5 shadow-sm bubble-in-tail">
               
-              <button onclick="copiarTextoMensaje(this)" title="Copiar texto" class="opacity-0 group-hover:opacity-100 focus:opacity-100 transition absolute -right-7 top-1 text-slate-400 hover:text-emerald-500 p-1 text-xs">
+              <button onclick="copiarTextoMensaje(this)" title="Copiar texto" data-i18n-title="whatsapp.copyText" class="opacity-0 group-hover:opacity-100 focus:opacity-100 transition absolute -right-7 top-1 text-slate-400 hover:text-emerald-500 p-1 text-xs">
                 <i class="fa-regular fa-copy"></i>
               </button>
 
               <div class="text-[13px] leading-relaxed break-words prose-wa selectable-text">
-                👋 ¡Hola! Soy <strong>{{ agente.persona }}</strong>. ¿En qué puedo colaborarte hoy?
-              </div>
+                 <span data-i18n="whatsapp.welcomePrefix">👋 ¡Hola! Soy </span><strong>{{ agente.persona }}</strong><span data-i18n="whatsapp.welcomeSuffix">. ¿En qué puedo colaborarte hoy?</span>
+               </div>
               <div class="flex items-center justify-end gap-1 text-[10px] text-slate-400 mt-0.5 select-none">
                 <span>10:45</span>
               </div>
@@ -345,7 +349,7 @@
           <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 dot-1"></span>
           <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 dot-2"></span>
           <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 dot-3"></span>
-          <span class="text-[11px] text-slate-500 dark:text-slate-400 font-medium ml-1">escribiendo...</span>
+           <span class="text-[11px] text-slate-500 dark:text-slate-400 font-medium ml-1" data-i18n="whatsapp.typing">escribiendo...</span>
         </div>
       </div>
     </main>
@@ -356,25 +360,25 @@
         <div class="w-10 h-10 rounded-full bg-indigo-500 text-white flex items-center justify-center shadow">
           <i class="fa-solid fa-book"></i>
         </div>
-        <span class="text-[10px] text-slate-700 dark:text-slate-300 font-medium">Bases</span>
+        <span class="text-[10px] text-slate-700 dark:text-slate-300 font-medium" data-i18n="whatsapp.bases">Bases</span>
       </button>
       <button onclick="enviarSugerencia('Resume tus principales ideas y conocimientos.')" class="flex flex-col items-center gap-1 p-2 rounded-xl hover:bg-black/5 dark:hover:bg-white/5 active:scale-95 transition">
         <div class="w-10 h-10 rounded-full bg-emerald-500 text-white flex items-center justify-center shadow">
           <i class="fa-solid fa-file-lines"></i>
         </div>
-        <span class="text-[10px] text-slate-700 dark:text-slate-300 font-medium">Resumen</span>
+        <span class="text-[10px] text-slate-700 dark:text-slate-300 font-medium" data-i18n="whatsapp.summary">Resumen</span>
       </button>
       <button onclick="enviarSugerencia('¿Qué recuerdas sobre nuestras conversaciones anteriores?')" class="flex flex-col items-center gap-1 p-2 rounded-xl hover:bg-black/5 dark:hover:bg-white/5 active:scale-95 transition">
         <div class="w-10 h-10 rounded-full bg-amber-500 text-white flex items-center justify-center shadow">
           <i class="fa-solid fa-brain"></i>
         </div>
-        <span class="text-[10px] text-slate-700 dark:text-slate-300 font-medium">Memoria</span>
+        <span class="text-[10px] text-slate-700 dark:text-slate-300 font-medium" data-i18n="whatsapp.memory">Memoria</span>
       </button>
       <button onclick="simularNotaVoz()" class="flex flex-col items-center gap-1 p-2 rounded-xl hover:bg-black/5 dark:hover:bg-white/5 active:scale-95 transition">
         <div class="w-10 h-10 rounded-full bg-rose-500 text-white flex items-center justify-center shadow">
           <i class="fa-solid fa-microphone-lines"></i>
         </div>
-        <span class="text-[10px] text-slate-700 dark:text-slate-300 font-medium">Audio</span>
+        <span class="text-[10px] text-slate-700 dark:text-slate-300 font-medium" data-i18n="whatsapp.audio">Audio</span>
       </button>
     </div>
 
@@ -384,24 +388,24 @@
     <footer class="bg-wa-lightHeader dark:bg-wa-darkHeader p-2 flex items-center gap-1.5 shrink-0 z-30 border-t border-black/5 dark:border-white/5 select-none">
       
       <!-- Botón Emoji -->
-      <button onclick="insertarEmoji('😊')" title="Insertar Emoji" class="p-2 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 active:scale-90 transition">
+      <button onclick="insertarEmoji('😊')" title="Insertar Emoji" data-i18n-title="whatsapp.insertEmoji" class="p-2 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 active:scale-90 transition">
         <i class="fa-regular fa-face-smile text-lg"></i>
       </button>
 
       <!-- Botón Adjuntar (Clip) -->
-      <button onclick="toggleAttachMenu()" title="Acciones y prompts rápidos" class="p-2 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 active:scale-90 transition">
+      <button onclick="toggleAttachMenu()" title="Acciones y prompts rápidos" data-i18n-title="whatsapp.quickActions" class="p-2 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 active:scale-90 transition">
         <i class="fa-solid fa-paperclip text-lg"></i>
       </button>
 
       <!-- Campo de Entrada de Mensaje -->
       <form id="wa-form" onsubmit="enviarMensaje(event)" class="flex-1 flex items-center">
-        <input id="wa-input" type="text" placeholder="Mensaje" autocomplete="off"
+        <input id="wa-input" type="text" placeholder="Mensaje" data-i18n-placeholder="whatsapp.messagePlaceholder" autocomplete="off"
                oninput="onInputChange(this.value)"
                class="w-full bg-white dark:bg-wa-darkInput text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-400 text-[13.5px] px-3.5 py-2 rounded-2xl outline-none focus:ring-1 focus:ring-wa-teal dark:focus:ring-emerald-500/50 shadow-inner">
       </form>
 
       <!-- Botón Dinámico: Micrófono / Enviar Verde -->
-      <button id="wa-btn-send" onclick="enviarMensajeClick()" title="Enviar mensaje"
+      <button id="wa-btn-send" onclick="enviarMensajeClick()" title="Enviar mensaje" data-i18n-title="whatsapp.sendMessage"
               class="w-10 h-10 rounded-full bg-wa-teal dark:bg-emerald-600 text-white flex items-center justify-center shadow-md active:scale-90 transition">
         <i id="wa-btn-icon" class="fa-solid fa-microphone text-sm"></i>
       </button>
@@ -432,30 +436,30 @@
         </div>
         {% endif %}
         <h2 class="text-base font-bold mt-3">{{ agente.persona }}</h2>
-        <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">+56 9 8765 4321 · DeepSeek Agent</p>
+        <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">+56 9 8765 4321 · <span data-i18n="whatsapp.deepseekAgent">DeepSeek Agent</span></p>
       </div>
 
       <div class="py-3 border-b border-black/10 dark:border-white/10 space-y-2">
-        <h3 class="text-xs font-bold text-wa-teal dark:text-emerald-400 uppercase tracking-wider select-none">Perfil & Info</h3>
+        <h3 class="text-xs font-bold text-wa-teal dark:text-emerald-400 uppercase tracking-wider select-none" data-i18n="whatsapp.profileInfo">Perfil & Info</h3>
         <p class="text-xs text-slate-700 dark:text-slate-300 leading-relaxed whitespace-pre-line selectable-text">{{ agente.perfil }}</p>
       </div>
 
       <div class="py-3 border-b border-black/10 dark:border-white/10 space-y-2">
-        <h3 class="text-xs font-bold text-wa-teal dark:text-emerald-400 uppercase tracking-wider select-none">Rol / Identidad</h3>
+        <h3 class="text-xs font-bold text-wa-teal dark:text-emerald-400 uppercase tracking-wider select-none" data-i18n="whatsapp.roleIdentity">Rol / Identidad</h3>
         <span class="inline-block bg-wa-teal/10 dark:bg-emerald-500/20 text-wa-teal dark:text-emerald-300 text-xs px-2.5 py-1 rounded-md font-semibold">
           {{ agente.identidad.nombre }}
         </span>
       </div>
 
       <div class="pt-3 space-y-2">
-        <h3 class="text-xs font-bold text-wa-teal dark:text-emerald-400 uppercase tracking-wider select-none">Bases de Conocimiento</h3>
+        <h3 class="text-xs font-bold text-wa-teal dark:text-emerald-400 uppercase tracking-wider select-none" data-i18n="whatsapp.knowledgeBases">Bases de Conocimiento</h3>
         <div class="flex flex-wrap gap-1.5">
           {% for f in agente.fuentes %}
           <span class="text-[11px] bg-slate-100 dark:bg-white/10 text-slate-700 dark:text-slate-300 px-2 py-0.5 rounded-full">
             📁 {{ f.nombre }}
           </span>
           {% else %}
-          <span class="text-xs text-slate-400 italic">Sin bases vinculadas.</span>
+          <span class="text-xs text-slate-400 italic" data-i18n="whatsapp.noBases">Sin bases vinculadas.</span>
           {% endfor %}
         </div>
       </div>
@@ -475,7 +479,7 @@
         {% endif %}
       </div>
       <h2 class="text-xl font-bold">{{ agente.persona }}</h2>
-      <p id="wa-call-status" class="text-xs text-emerald-400 animate-pulse">Llamando...</p>
+      <p id="wa-call-status" class="text-xs text-emerald-400 animate-pulse" data-i18n="whatsapp.calling">Llamando...</p>
     </div>
 
     <div class="flex items-center gap-6 pb-10">
@@ -528,7 +532,7 @@
     function showToast(text) {
       const toast = document.getElementById("wa-toast");
       const toastText = document.getElementById("wa-toast-text");
-      toastText.textContent = text || "¡Mensaje copiado al portapapeles!";
+      toastText.textContent = text || (window.i18n ? window.i18n.t("whatsapp.copiedToast") : "¡Mensaje copiado al portapapeles!");
       toast.classList.remove("hidden");
       setTimeout(() => {
         toast.classList.remove("opacity-0", "-translate-y-2");
@@ -557,7 +561,7 @@
         icon.className = "fa-solid fa-check text-emerald-400";
         setTimeout(() => { icon.className = "fa-regular fa-copy"; }, 2000);
       }
-      showToast("¡Mensaje copiado al portapapeles!");
+      showToast(window.i18n ? window.i18n.t("whatsapp.copiedToast") : "¡Mensaje copiado al portapapeles!");
     };
 
     // Copiar todo el historial del chat
@@ -573,13 +577,13 @@
       });
 
       if (messages.length === 0) {
-        showToast("No hay mensajes para copiar.");
+        showToast(window.i18n ? window.i18n.t("whatsapp.noMessagesToCopy") : "No hay mensajes para copiar.");
         return;
       }
 
       const fullTranscript = messages.join("\n\n");
       copiarAlPortapapeles(fullTranscript);
-      showToast("¡Conversación completa copiada!");
+      showToast(window.i18n ? window.i18n.t("whatsapp.fullConversationCopied") : "¡Conversación completa copiada!");
     };
 
     function copiarAlPortapapeles(texto) {
@@ -657,10 +661,10 @@
     function simularLlamada(tipo) {
       const modal = document.getElementById("wa-modal-llamada");
       const st = document.getElementById("wa-call-status");
-      st.textContent = tipo === "video" ? "Videollamada saliente..." : "Llamando...";
+      st.textContent = tipo === "video" ? (window.i18n ? window.i18n.t("whatsapp.videoCallOut") : "Videollamada saliente...") : (window.i18n ? window.i18n.t("whatsapp.calling") : "Llamando...");
       modal.classList.remove("hidden");
       setTimeout(() => {
-        st.textContent = "Conectado · DeepSeek Voice";
+        st.textContent = window.i18n ? window.i18n.t("whatsapp.callConnected") : "Conectado · DeepSeek Voice";
       }, 2500);
     }
     function cerrarLlamada() {
@@ -680,14 +684,14 @@
     }
 
     function limpiarChatVisual() {
-      if (confirm("¿Deseas vaciar los mensajes visibles de este chat?")) {
+      if (confirm(window.i18n ? window.i18n.t("whatsapp.confirmClear") : "¿Deseas vaciar los mensajes visibles de este chat?")) {
         messagesList.innerHTML = "";
       }
     }
 
     function simularNotaVoz() {
       toggleAttachMenu();
-      waInput.value = "🎙️ [Nota de voz enviada: 'Hola, cuéntame sobre tus descubrimientos']";
+      waInput.value = window.i18n ? window.i18n.t("whatsapp.voiceNote") : "🎙️ [Nota de voz enviada: 'Hola, cuéntame sobre tus descubrimientos']";
       enviarMensajeClick();
     }
 
@@ -695,8 +699,8 @@
     function enviarMensajeClick() {
       const text = waInput.value.trim();
       if (!text) {
-        waInput.value = "Hola!";
-        onInputChange("Hola!");
+        waInput.value = window.i18n ? window.i18n.t("whatsapp.hi") : "Hola!";
+        onInputChange(waInput.value);
         return;
       }
 
@@ -709,7 +713,7 @@
       userBubble.innerHTML = `
         <div class="relative max-w-[85%] bg-wa-lightBubbleOut dark:bg-wa-darkBubbleOut text-slate-900 dark:text-slate-100 rounded-lg rounded-tr-none px-3 py-1.5 shadow-sm bubble-out-tail">
           
-          <button onclick="copiarTextoMensaje(this)" title="Copiar texto" class="opacity-0 group-hover:opacity-100 focus:opacity-100 transition absolute -left-7 top-1 text-slate-400 hover:text-emerald-500 p-1 text-xs">
+          <button onclick="copiarTextoMensaje(this)" title="Copiar texto" data-i18n-title="whatsapp.copyText" class="opacity-0 group-hover:opacity-100 focus:opacity-100 transition absolute -left-7 top-1 text-slate-400 hover:text-emerald-500 p-1 text-xs">
             <i class="fa-regular fa-copy"></i>
           </button>
 
@@ -727,7 +731,7 @@
 
       // 2. Activar indicador "escribiendo..."
       typingBubble.classList.remove("hidden");
-      statusText.textContent = "escribiendo...";
+      statusText.textContent = window.i18n ? window.i18n.t("whatsapp.typing") : "escribiendo...";
       scrollToBottom();
 
       // 3. Petición al servidor Flask
@@ -742,7 +746,7 @@
       })
       .then(data => {
         typingBubble.classList.add("hidden");
-        statusText.textContent = "en línea";
+        statusText.textContent = window.i18n ? window.i18n.t("whatsapp.online") : "en línea";
 
         // Marcar doble check azul en último mensaje
         const lastCheck = userBubble.querySelector("i.fa-check");
@@ -750,7 +754,7 @@
           lastCheck.className = "fa-solid fa-check-double text-wa-checkBlue text-[11px]";
         }
 
-        const agentText = data.respuesta || "No se pudo generar respuesta.";
+        const agentText = data.respuesta || (window.i18n ? window.i18n.t("whatsapp.noResponse") : "No se pudo generar respuesta.");
         const renderedHtml = window.marked && window.DOMPurify
           ? DOMPurify.sanitize(marked.parse(agentText, { breaks: true, gfm: true }))
           : escapeHTML(agentText).replace(/\n/g, "<br>");
@@ -760,7 +764,7 @@
         agentBubble.innerHTML = `
           <div class="relative max-w-[85%] bg-wa-lightBubbleIn dark:bg-wa-darkBubbleIn text-slate-900 dark:text-slate-100 rounded-lg rounded-tl-none px-3 py-1.5 shadow-sm bubble-in-tail">
             
-            <button onclick="copiarTextoMensaje(this)" title="Copiar texto" class="opacity-0 group-hover:opacity-100 focus:opacity-100 transition absolute -right-7 top-1 text-slate-400 hover:text-emerald-500 p-1 text-xs">
+            <button onclick="copiarTextoMensaje(this)" title="Copiar texto" data-i18n-title="whatsapp.copyText" class="opacity-0 group-hover:opacity-100 focus:opacity-100 transition absolute -right-7 top-1 text-slate-400 hover:text-emerald-500 p-1 text-xs">
               <i class="fa-regular fa-copy"></i>
             </button>
 
@@ -775,12 +779,12 @@
       })
       .catch(err => {
         typingBubble.classList.add("hidden");
-        statusText.textContent = "en línea";
+        statusText.textContent = window.i18n ? window.i18n.t("whatsapp.online") : "en línea";
         const errBubble = document.createElement("div");
         errBubble.className = "flex justify-start anim-msg";
         errBubble.innerHTML = `
           <div class="relative max-w-[85%] bg-red-100 dark:bg-red-950/80 border border-red-300 dark:border-red-800 text-red-700 dark:text-red-300 rounded-lg px-3 py-1.5 shadow-sm text-xs">
-            ⚠️ Ocurrió un problema al conectar con DeepSeek API. Verifica tu clave en .env.
+            ⚠️ ${window.i18n ? window.i18n.t("whatsapp.apiError") : "Ocurrió un problema al conectar con DeepSeek API. Verifica tu clave en .env."}
           </div>
         `;
         messagesList.appendChild(errBubble);

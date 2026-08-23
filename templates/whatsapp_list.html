@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>WhatsApp · Contactos & Chats</title>
+  <title data-i18n="whatsapp.listPageTitle">WhatsApp · Contactos & Chats</title>
   <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" type="image/svg+xml">
 
   <!-- Tailwind CSS -->
@@ -39,6 +39,10 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+  <!-- Traducciones externas y motor i18n (deben ir antes del contenido) -->
+  <script src="{{ url_for('static', filename='js/i18n.extra.whatsapp.js') }}?v=2"></script>
+  <script src="{{ url_for('static', filename='js/i18n.js') }}?v=2"></script>
+
   <style>
     /* Scrollbar personalizada estilo WhatsApp */
     ::-webkit-scrollbar { width: 5px; }
@@ -60,22 +64,22 @@
   <!-- Controles Superiores Flotantes (Desktop) -->
   <div class="fixed top-3 right-3 z-50 flex items-center gap-2 bg-slate-950/80 backdrop-blur-md px-3 py-1.5 rounded-full border border-slate-700/60 shadow-xl text-xs">
     <!-- Switcher de Tema Claro/Oscuro -->
-    <button onclick="toggleTema()" title="Cambiar Tema WhatsApp" class="text-slate-300 hover:text-emerald-400 p-1 transition">
+    <button onclick="toggleTema()" title="Cambiar Tema WhatsApp" data-i18n-title="whatsapp.changeTheme" class="text-slate-300 hover:text-emerald-400 p-1 transition">
       <i id="theme-icon" class="fa-solid fa-moon"></i>
     </button>
     <div class="h-3 w-px bg-slate-700"></div>
     <!-- Cambiar a Telegram Lista -->
-    <a href="/admin/telegram" title="Abrir lista en estilo Telegram" class="flex items-center gap-1 text-sky-400 hover:text-sky-300 font-semibold transition px-1">
-      <i class="fa-brands fa-telegram"></i> <span class="hidden sm:inline">Telegram</span>
+    <a href="/admin/telegram" title="Abrir lista en estilo Telegram" data-i18n-title="whatsapp.openTelegramList" class="flex items-center gap-1 text-sky-400 hover:text-sky-300 font-semibold transition px-1">
+      <i class="fa-brands fa-telegram"></i> <span class="hidden sm:inline" data-i18n="whatsapp.telegram">Telegram</span>
     </a>
     <div class="h-3 w-px bg-slate-700"></div>
     <!-- Volver al Dashboard -->
-    <a href="/dashboard" title="Ir al Dashboard de Administración" class="text-slate-300 hover:text-white transition px-1 flex items-center gap-1">
-      <i class="fa-solid fa-gauge-high"></i> <span class="hidden sm:inline">Dashboard</span>
+    <a href="/dashboard" title="Ir al Dashboard de Administración" data-i18n-title="whatsapp.goDashboard" class="text-slate-300 hover:text-white transition px-1 flex items-center gap-1">
+      <i class="fa-solid fa-gauge-high"></i> <span class="hidden sm:inline" data-i18n="common.dashboard">Dashboard</span>
     </a>
     <div class="h-3 w-px bg-slate-700"></div>
     <!-- Toggle Marco Móvil -->
-    <button onclick="toggleMarco()" title="Alternar Marco Móvil / Pantalla Completa" class="text-slate-300 hover:text-emerald-400 p-1 transition">
+    <button onclick="toggleMarco()" title="Alternar Marco Móvil / Pantalla Completa" data-i18n-title="whatsapp.toggleFrame" class="text-slate-300 hover:text-emerald-400 p-1 transition">
       <i id="frame-icon" class="fa-solid fa-mobile-screen"></i>
     </button>
   </div>
@@ -102,12 +106,12 @@
          ============================================================ -->
     <header class="bg-wa-teal dark:bg-wa-darkHeader text-white px-4 py-3 shrink-0 z-30 shadow-md transition-colors">
       <div class="flex items-center justify-between">
-        <h1 class="text-xl font-bold tracking-wide">WhatsApp</h1>
+        <h1 class="text-xl font-bold tracking-wide" data-i18n="whatsapp.whatsappName">WhatsApp</h1>
         <div class="flex items-center gap-4 text-white/90">
-          <button onclick="document.getElementById('wa-search-input').focus()" title="Buscar contacto" class="hover:text-white transition">
+          <button onclick="document.getElementById('wa-search-input').focus()" title="Buscar contacto" data-i18n-title="whatsapp.searchContact" class="hover:text-white transition">
             <i class="fa-solid fa-magnifying-glass text-base"></i>
           </button>
-          <button onclick="toggleMenuHeader()" title="Más opciones" class="hover:text-white transition relative">
+          <button onclick="toggleMenuHeader()" title="Más opciones" data-i18n-title="whatsapp.moreOptions" class="hover:text-white transition relative">
             <i class="fa-solid fa-ellipsis-vertical text-base"></i>
           </button>
         </div>
@@ -116,13 +120,13 @@
       <!-- Barra de Filtros Rápida -->
       <div class="flex items-center gap-2 mt-3 overflow-x-auto pb-0.5 text-xs select-none">
         <button onclick="filtrarCategoria('todos')" id="filter-todos" class="filter-chip bg-white/20 dark:bg-white/15 text-white font-semibold px-3 py-1 rounded-full text-[11px] transition">
-          Todos ({{ agentes|length }})
+          <span data-i18n="whatsapp.filterAll">Todos</span> ({{ agentes|length }})
         </button>
         <button onclick="filtrarCategoria('ia')" id="filter-ia" class="filter-chip bg-black/10 dark:bg-white/5 text-white/80 hover:text-white px-3 py-1 rounded-full text-[11px] transition">
-          Agentes IA
+          <span data-i18n="whatsapp.filterAgents">Agentes IA</span>
         </button>
         <button onclick="filtrarCategoria('favoritos')" id="filter-favoritos" class="filter-chip bg-black/10 dark:bg-white/5 text-white/80 hover:text-white px-3 py-1 rounded-full text-[11px] transition">
-          Favoritos
+          <span data-i18n="whatsapp.filterFavorites">Favoritos</span>
         </button>
       </div>
     </header>
@@ -130,14 +134,14 @@
     <!-- Menú Desplegable 3 Puntos WhatsApp -->
     <div id="wa-dropdown-menu" class="hidden absolute top-14 right-4 bg-white dark:bg-wa-darkHeader text-slate-800 dark:text-slate-100 rounded-2xl shadow-2xl py-2 w-52 border border-black/10 dark:border-white/10 z-50 text-xs anim-fade">
       <a href="/admin/telegram" class="w-full text-left px-4 py-2 hover:bg-black/5 dark:hover:bg-white/5 flex items-center gap-2 text-sky-500 font-semibold">
-        <i class="fa-brands fa-telegram w-4"></i> Ver en Telegram
+        <i class="fa-brands fa-telegram w-4"></i> <span data-i18n="whatsapp.viewInTelegram">Ver en Telegram</span>
       </a>
       <a href="/dashboard" class="w-full text-left px-4 py-2 hover:bg-black/5 dark:hover:bg-white/5 flex items-center gap-2 text-wa-teal dark:text-emerald-400 font-semibold">
-        <i class="fa-solid fa-gauge-high w-4"></i> Dashboard Admin
+        <i class="fa-solid fa-gauge-high w-4"></i> <span data-i18n="whatsapp.dashboardAdmin">Dashboard Admin</span>
       </a>
       <div class="h-px bg-black/10 dark:bg-white/10 my-1"></div>
       <button onclick="toggleTema(); toggleMenuHeader();" class="w-full text-left px-4 py-2 hover:bg-black/5 dark:hover:bg-white/5 flex items-center gap-2">
-        <i class="fa-regular fa-moon w-4"></i> Cambiar modo de color
+        <i class="fa-regular fa-moon w-4"></i> <span data-i18n="whatsapp.changeColorMode">Cambiar modo de color</span>
       </button>
     </div>
 
@@ -145,7 +149,7 @@
     <div class="p-2.5 bg-slate-50 dark:bg-wa-darkBg border-b border-black/5 dark:border-white/5 shrink-0">
       <div class="relative flex items-center">
         <i class="fa-solid fa-magnifying-glass absolute left-3.5 text-slate-400 text-xs"></i>
-        <input id="wa-search-input" type="text" placeholder="Buscar un agente o contacto…"
+        <input id="wa-search-input" type="text" placeholder="Buscar un agente o contacto…" data-i18n-placeholder="whatsapp.searchPlaceholder"
                oninput="buscarContactos(this.value)"
                class="w-full bg-slate-200/80 dark:bg-wa-darkHeader text-slate-900 dark:text-slate-100 placeholder-slate-400 text-xs pl-9 pr-8 py-2 rounded-xl outline-none focus:ring-1 focus:ring-wa-teal transition">
         <button id="wa-clear-search" onclick="limpiarBusqueda()" class="hidden absolute right-3 text-slate-400 hover:text-slate-200">
@@ -165,7 +169,7 @@
             </div>
             <span class="absolute bottom-0 right-0 w-4 h-4 bg-emerald-500 rounded-full text-white flex items-center justify-center text-[9px] font-bold border-2 border-white dark:border-wa-darkBg">+</span>
           </div>
-          <span class="text-[10px] text-slate-500 dark:text-slate-400 truncate max-w-[50px]">Mi estado</span>
+          <span class="text-[10px] text-slate-500 dark:text-slate-400 truncate max-w-[50px]" data-i18n="whatsapp.miEstado">Mi estado</span>
         </div>
 
         <!-- Estados de los Agentes -->
@@ -214,7 +218,7 @@
           <div class="flex items-center justify-between">
             <h2 class="text-sm font-semibold truncate text-slate-900 dark:text-white flex items-center gap-1.5">
               {{ ag.persona }}
-              <i class="fa-solid fa-circle-check text-emerald-500 text-[10px]" title="Verificado"></i>
+               <i class="fa-solid fa-circle-check text-emerald-500 text-[10px]" title="Verificado" data-i18n-title="whatsapp.verified"></i>
             </h2>
             <span class="text-[11px] text-slate-400 dark:text-emerald-400 font-medium shrink-0">{{ ag.ultima_hora }}</span>
           </div>
@@ -237,12 +241,12 @@
       <!-- Mensaje cuando la búsqueda no coincide -->
       <div id="no-results-msg" class="hidden p-8 text-center text-slate-400 text-xs">
         <i class="fa-solid fa-user-slash text-2xl mb-2 text-slate-500"></i>
-        <p>No se encontraron agentes con ese nombre o perfil.</p>
+        <p data-i18n="whatsapp.noResults">No se encontraron agentes con ese nombre o perfil.</p>
       </div>
     </main>
 
     <!-- Botón Flotante de Nuevo Chat (FAB) -->
-    <a href="/agente/albert_einstein/whatsaap" title="Iniciar nuevo chat"
+    <a href="/agente/albert_einstein/whatsaap" title="Iniciar nuevo chat" data-i18n-title="whatsapp.newChat"
        class="absolute bottom-16 right-4 w-12 h-12 rounded-2xl bg-wa-teal dark:bg-emerald-500 hover:bg-emerald-600 text-white flex items-center justify-center shadow-2xl active:scale-95 transition z-30">
       <i class="fa-solid fa-message text-base"></i>
     </a>
@@ -256,22 +260,22 @@
           <i class="fa-solid fa-message text-base"></i>
           <span class="absolute -top-1 -right-2 bg-emerald-500 text-white text-[8px] font-extrabold px-1 rounded-full">{{ agentes|length }}</span>
         </div>
-        <span>Chats</span>
+        <span data-i18n="whatsapp.chats">Chats</span>
       </button>
 
-      <button onclick="alert('Sección Estados / Novedades activa con todos tus agentes.')" class="flex flex-col items-center gap-0.5 hover:text-slate-800 dark:hover:text-white transition">
+      <button onclick="alert(window.i18n ? window.i18n.t('whatsapp.alertStatus') : 'Sección Estados / Novedades activa con todos tus agentes.')" class="flex flex-col items-center gap-0.5 hover:text-slate-800 dark:hover:text-white transition">
         <i class="fa-regular fa-circle-dot text-base"></i>
-        <span>Novedades</span>
+        <span data-i18n="whatsapp.news">Novedades</span>
       </button>
 
-      <button onclick="alert('Comunidades inteligentes integradas con DeepSeek.')" class="flex flex-col items-center gap-0.5 hover:text-slate-800 dark:hover:text-white transition">
+      <button onclick="alert(window.i18n ? window.i18n.t('whatsapp.alertCommunities') : 'Comunidades inteligentes integradas con DeepSeek.')" class="flex flex-col items-center gap-0.5 hover:text-slate-800 dark:hover:text-white transition">
         <i class="fa-solid fa-users text-base"></i>
-        <span>Comunidades</span>
+        <span data-i18n="whatsapp.communities">Comunidades</span>
       </button>
 
-      <button onclick="alert('Registro de llamadas simuladas de voz y video.')" class="flex flex-col items-center gap-0.5 hover:text-slate-800 dark:hover:text-white transition">
+      <button onclick="alert(window.i18n ? window.i18n.t('whatsapp.alertCalls') : 'Registro de llamadas simuladas de voz y video.')" class="flex flex-col items-center gap-0.5 hover:text-slate-800 dark:hover:text-white transition">
         <i class="fa-solid fa-phone text-base"></i>
-        <span>Llamadas</span>
+        <span data-i18n="whatsapp.calls">Llamadas</span>
       </button>
     </nav>
 

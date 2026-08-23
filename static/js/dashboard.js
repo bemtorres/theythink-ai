@@ -12,12 +12,14 @@
   var rolesSection = document.getElementById("dash-seccion-roles");
   var usersSection = document.getElementById("dash-seccion-usuarios");
   var historySection = document.getElementById("dash-seccion-historial");
+  var configSection = document.getElementById("dash-seccion-config");
 
   var tabAgentsButton = document.getElementById("btn-tab-dash-agentes");
   var tabSourcesButton = document.getElementById("btn-tab-dash-fuentes");
   var tabRolesButton = document.getElementById("btn-tab-dash-roles");
   var tabUsersButton = document.getElementById("btn-tab-dash-usuarios");
   var tabHistoryButton = document.getElementById("btn-tab-dash-historial");
+  var tabConfigButton = document.getElementById("btn-tab-dash-config");
   var createActionButton = document.getElementById("btn-accion-crear");
 
   // Modal Agente
@@ -147,6 +149,7 @@
     if (rolesSection) rolesSection.classList.toggle("hidden", tab !== "roles");
     if (usersSection) usersSection.classList.toggle("hidden", tab !== "usuarios");
     historySection.classList.toggle("hidden", tab !== "historial");
+    if (configSection) configSection.classList.toggle("hidden", tab !== "config");
 
     var activeClass = "inline-flex items-center gap-2 rounded-xl bg-white/15 px-3.5 py-1.5 text-xs font-bold text-white shadow-sm transition";
     var inactiveClass = "inline-flex items-center gap-2 rounded-xl px-3.5 py-1.5 text-xs font-semibold text-zinc-400 transition hover:bg-white/5 hover:text-white";
@@ -156,6 +159,7 @@
     if (tabRolesButton) tabRolesButton.className = tab === "roles" ? activeClass : inactiveClass;
     if (tabUsersButton) tabUsersButton.className = tab === "usuarios" ? activeClass : inactiveClass;
     tabHistoryButton.className = tab === "historial" ? activeClass : inactiveClass;
+    if (tabConfigButton) tabConfigButton.className = tab === "config" ? activeClass : inactiveClass;
 
     if (tab === "agentes") {
       createActionButton.classList.remove("hidden");
@@ -970,4 +974,9 @@
       closeDeleteModal();
     }
   });
+
+  // Aplica la sección/módulo activo por defecto según la ruta (/admin/*)
+  if (window.DASHBOARD_INITIAL_TAB) {
+    switchDashboardTab(window.DASHBOARD_INITIAL_TAB);
+  }
 })();

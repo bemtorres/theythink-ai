@@ -453,7 +453,7 @@
               <a href="/agente/{{ ag.nombre }}"
                 class="flex-1 flex items-center justify-center gap-2 rounded-xl bg-[#1a73e8] hover:bg-[#174ea6] py-2 text-xs font-bold text-white shadow transition active:scale-95">
                 <i data-lucide="message-square" class="h-3.5 w-3.5"></i>
-                <span>Chatear</span>
+                <span data-i18n="landing.chat">Chatear</span>
               </a>
               <a href="/agente/{{ ag.nombre }}/whatsaap" title="WhatsApp Móvil"
                 class="p-2 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 transition active:scale-95">
@@ -506,7 +506,7 @@
       <div class="flex items-center gap-3">
         <button type="button" onclick="window.abrirModalTerminos()" class="text-[#5f6368] dark:text-[#c4c7c5] hover:text-[#1a73e8] dark:hover:text-[#8ab4f8] transition inline-flex items-center gap-1">
           <i class="fa-solid fa-shield-halved text-xs"></i>
-          <span>Términos y Licencia MIT</span>
+          <span data-i18n="landing.termsMit">Términos y Licencia MIT</span>
         </button>
         <span class="text-slate-300 dark:text-slate-700">·</span>
         {% if usuario_actual %}

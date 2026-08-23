@@ -1128,6 +1128,30 @@
     },
   };
 
+  // Fusionar diccionarios de traducción externos (archivos i18n.extra.*.js)
+  // cargados antes de este script. Permite extender idiomas sin tocar este archivo.
+  function deepMergeTranslations(base, extra) {
+    if (!extra || typeof extra !== "object") return base;
+    Object.keys(extra).forEach(function (lang) {
+      if (!base[lang]) base[lang] = {};
+      var langSrc = extra[lang];
+      if (!langSrc || typeof langSrc !== "object") return;
+      Object.keys(langSrc).forEach(function (group) {
+        if (!base[lang][group]) base[lang][group] = {};
+        var grpSrc = langSrc[group];
+        if (!grpSrc || typeof grpSrc !== "object") return;
+        Object.keys(grpSrc).forEach(function (key) {
+          base[lang][group][key] = grpSrc[key];
+        });
+      });
+    });
+    return base;
+  }
+
+  if (typeof window !== "undefined" && window.TRANSLATIONS_EXTRA) {
+    deepMergeTranslations(TRANSLATIONS, window.TRANSLATIONS_EXTRA);
+  }
+
   // Variable de estado para el idioma actual
   var currentLanguage = DEFAULT_LANGUAGE;
   var listeners = [];

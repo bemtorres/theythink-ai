@@ -31,7 +31,7 @@
       </div>
       
       <!-- Botón Colapsar Sidebar (en pantallas pequeñas o móviles) -->
-      <button onclick="toggleSidebarChat()" title="Ocultar barra lateral"
+      <button onclick="toggleSidebarChat()" title="Ocultar barra lateral" data-i18n-title="chat.hideSidebar"
               class="rounded-lg p-1.5 text-[#5f6368] dark:text-[#c4c7c5] hover:bg-black/5 dark:hover:bg-white/10 hover:text-black dark:hover:text-white transition">
         <i data-lucide="panel-left-close" class="h-4 w-4"></i>
       </button>
@@ -62,7 +62,7 @@
            class="group relative flex items-center justify-between rounded-xl border {{ 'border-[#1a73e8] bg-[#1a73e8]/10 font-bold text-[#1a73e8] dark:text-[#8ab4f8]' if ses.id == sesion_activa.id else 'border-transparent hover:bg-black/5 dark:hover:bg-white/5 text-[#202124] dark:text-[#e3e3e3]' }} p-2.5 transition">
         <button onclick="cambiarSesionActiva({{ ses.id }})" class="min-w-0 flex-1 text-left">
           <p class="truncate text-xs" title="{{ ses.titulo }}">{{ ses.titulo }}</p>
-          <p class="mt-0.5 text-[10px] text-[#5f6368] dark:text-[#c4c7c5] font-normal">{{ ses.total_mensajes }} msgs · {{ ses.actualizado_en[:10] if ses.actualizado_en else '' }}</p>
+          <p class="mt-0.5 text-[10px] text-[#5f6368] dark:text-[#c4c7c5] font-normal">{{ ses.total_mensajes }} <span data-i18n="chat.msgs">msgs</span> · {{ ses.actualizado_en[:10] if ses.actualizado_en else '' }}</p>
         </button>
         <div class="flex items-center gap-0.5 opacity-0 group-hover:opacity-100 transition">
           <button onclick="abrirModalRenombrarSesion({{ ses.id }}, '{{ ses.titulo }}')" title="Renombrar" data-i18n-title="chat.renameChat"
@@ -101,7 +101,7 @@
       
       <!-- Izquierda: Toggle Sidebar + Selector Rápido de Agente -->
       <div class="flex items-center gap-2.5">
-        <button id="btn-toggle-sidebar" onclick="toggleSidebarChat()" title="Mostrar/Ocultar barra lateral"
+        <button id="btn-toggle-sidebar" onclick="toggleSidebarChat()" title="Mostrar/Ocultar barra lateral" data-i18n-title="chat.toggleSidebar"
                 class="rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-[#1e1f20] p-2 text-[#5f6368] dark:text-[#c4c7c5] hover:bg-black/5 dark:hover:bg-white/10 hover:text-black dark:hover:text-white transition shadow-sm">
           <i data-lucide="panel-left" class="h-4 w-4"></i>
         </button>
@@ -128,7 +128,7 @@
             
             <!-- Cabecera del Dropdown -->
             <div class="flex items-center justify-between px-2.5 py-1.5 border-b border-black/5 dark:border-white/5 mb-1.5">
-              <span class="text-[10px] font-bold uppercase tracking-wider text-[#5f6368] dark:text-[#c4c7c5]">
+              <span class="text-[10px] font-bold uppercase tracking-wider text-[#5f6368] dark:text-[#c4c7c5]" data-i18n="chat.selectAgent">
                 Seleccionar Agente
               </span>
               <span class="text-[10px] bg-black/5 dark:bg-white/10 text-slate-600 dark:text-slate-300 px-2 py-0.2 rounded-full font-bold">
@@ -139,7 +139,7 @@
             <!-- Buscador Pequeño Integrado -->
             <div class="relative mb-2 px-1">
               <i data-lucide="search" class="absolute left-3.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-slate-400"></i>
-              <input type="text" id="input-buscar-agente-header" placeholder="Buscar por nombre o rol..."
+              <input type="text" id="input-buscar-agente-header" placeholder="Buscar por nombre o rol..." data-i18n-placeholder="chat.searchAgentPlaceholder"
                      oninput="filtrarAgentesHeader(this.value)"
                      class="w-full rounded-xl border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 py-1.5 pl-8 pr-3 text-xs text-[#202124] dark:text-white outline-none focus:border-[#1a73e8] focus:bg-white dark:focus:bg-[#131314] transition">
             </div>
@@ -172,7 +172,7 @@
               {% endfor %}
             </div>
 
-            <div id="no-agentes-header-msg" class="hidden p-4 text-center text-xs text-[#5f6368] dark:text-[#c4c7c5]">
+            <div id="no-agentes-header-msg" class="hidden p-4 text-center text-xs text-[#5f6368] dark:text-[#c4c7c5]" data-i18n="chat.noAgentsFound">
               No se encontraron agentes.
             </div>
 
@@ -185,7 +185,7 @@
                 <i class="fa-brands fa-telegram text-xs"></i> Telegram
               </a>
               <a href="/dashboard" class="text-[#1a73e8] dark:text-[#8ab4f8] hover:underline flex items-center gap-1 font-semibold">
-                <i data-lucide="layout-dashboard" class="h-3 w-3"></i> Dashboard
+                <i data-lucide="layout-dashboard" class="h-3 w-3"></i> <span data-i18n="common.dashboard">Dashboard</span>
               </a>
             </div>
 
@@ -279,20 +279,20 @@
           </span>
           <span class="flex items-center gap-1 font-medium">
             <i data-lucide="book-open" class="h-3 w-3 text-[#1e8e3e] dark:text-[#81c995]"></i>
-            <span>{{ agente.fuentes|length }} base(s)</span>
+                  <span>{{ agente.fuentes|length }} <span data-i18n="chat.basesLabel">base(s)</span></span>
           </span>
           <i data-lucide="sliders-horizontal" class="h-3 w-3 text-[#5f6368] dark:text-[#c4c7c5]"></i>
         </button>
 
         <!-- Botón Vista WhatsApp Móvil -->
-        <a href="/agente/{{ agente.nombre }}/whatsaap" title="Ver en estilo WhatsApp Móvil"
+        <a href="/agente/{{ agente.nombre }}/whatsaap" title="Ver en estilo WhatsApp Móvil" data-i18n-title="chat.viewWhatsAppMobile"
            class="inline-flex items-center gap-1.5 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 px-2.5 py-1.5 text-xs font-bold transition active:scale-95 shadow-sm">
           <i class="fa-brands fa-whatsapp text-sm text-emerald-500"></i>
           <span class="hidden xl:inline">WhatsApp</span>
         </a>
 
         <!-- Botón Vista Telegram Móvil -->
-        <a href="/agente/{{ agente.nombre }}/telegram" title="Ver en estilo Telegram Móvil"
+        <a href="/agente/{{ agente.nombre }}/telegram" title="Ver en estilo Telegram Móvil" data-i18n-title="chat.viewTelegramMobile"
            class="inline-flex items-center gap-1.5 rounded-xl bg-sky-500/10 hover:bg-sky-500/20 text-sky-600 dark:text-sky-400 border border-sky-500/20 px-2.5 py-1.5 text-xs font-bold transition active:scale-95 shadow-sm">
           <i class="fa-brands fa-telegram text-sm text-sky-500"></i>
           <span class="hidden xl:inline">Telegram</span>
@@ -333,7 +333,7 @@
           </button>
           <span>·</span>
           <button type="button" onclick="abrirModalGestionAgente()" class="hover:text-[#1e8e3e] dark:hover:text-[#81c995] transition inline-flex items-center gap-1">
-            <i data-lucide="layers" class="h-3 w-3"></i> <span>Bases ({{ agente.fuentes|length }})</span>
+            <i data-lucide="layers" class="h-3 w-3"></i>           <span><span data-i18n="chat.bases">Bases</span> ({{ agente.fuentes|length }})</span>
           </button>
         </div>
 
@@ -343,7 +343,7 @@
       <!-- Formulario de Mensaje -->
       <form id="form-mensaje" class="mx-auto flex max-w-3xl items-end gap-2 sm:gap-3">
         <div class="relative flex-1">
-          <textarea id="campo-mensaje" rows="1" placeholder="Escribe tu mensaje a {{ agente.nombre }}… (Shift+Enter para nueva línea)"
+          <textarea id="campo-mensaje" rows="1" placeholder="Escribe tu mensaje a {{ agente.nombre }}… (Shift+Enter para nueva línea)" data-i18n-placeholder="chat.typePlaceholder" data-i18n-params='{"name": "{{ agente.nombre }}"}'
                     class="max-h-44 w-full resize-none rounded-2xl border border-black/10 dark:border-white/10 bg-white dark:bg-[#1e1f20] px-4 py-3 sm:px-5 sm:py-3.5 pr-12 text-sm text-[#202124] dark:text-white shadow-sm outline-none transition placeholder:text-[#5f6368] dark:placeholder:text-[#c4c7c5] focus:border-[#1a73e8] focus:ring-4 focus:ring-[#1a73e8]/20"></textarea>
         </div>
         <button type="submit" id="boton-enviar"
@@ -380,7 +380,7 @@
           </div>
           <div>
             <h3 class="text-base font-bold text-[#202124] dark:text-white"><span data-i18n="chat.agentSettings">Ajustes del Agente</span>: {{ agente.nombre }}</h3>
-            <p class="text-xs text-[#5f6368] dark:text-[#c4c7c5]">Personalidad, Bases de Conocimiento, Rol y Memoria</p>
+            <p class="text-xs text-[#5f6368] dark:text-[#c4c7c5]" data-i18n="chat.drawerSubtitle">Personalidad, Bases de Conocimiento, Rol y Memoria</p>
           </div>
         </div>
         <button onclick="cerrarModalGestionAgente()" title="Cerrar panel (Esc)" data-i18n-title="common.close" class="rounded-xl p-2 text-[#5f6368] dark:text-[#c4c7c5] hover:bg-black/10 dark:hover:bg-white/10 hover:text-black dark:hover:text-white transition">
@@ -391,19 +391,19 @@
       <!-- Pestañas del Drawer -->
       <div class="flex border-b border-black/10 dark:border-white/10 bg-black/[0.02] dark:bg-white/[0.02] px-6 py-2.5 gap-2 text-xs overflow-x-auto shrink-0">
         <button onclick="cambiarTabModalGestion('perfil')" id="btn-tab-modal-perfil"
-                class="px-4 py-2 rounded-xl font-bold bg-black/10 dark:bg-white/15 text-[#202124] dark:text-white transition shrink-0">
+                class="px-4 py-2 rounded-xl font-bold bg-black/10 dark:bg-white/15 text-[#202124] dark:text-white transition shrink-0" data-i18n="chat.tabPersonality">
           Personalidad
         </button>
         <button onclick="cambiarTabModalGestion('fuentes')" id="btn-tab-modal-fuentes"
                 class="px-4 py-2 rounded-xl font-semibold text-[#5f6368] dark:text-[#c4c7c5] hover:text-black dark:hover:text-white transition shrink-0">
-          Bases ({{ agente.fuentes|length }})
+          <span data-i18n="chat.bases">Bases</span> ({{ agente.fuentes|length }})
         </button>
         <button onclick="cambiarTabModalGestion('rol')" id="btn-tab-modal-rol"
-                class="px-4 py-2 rounded-xl font-semibold text-[#5f6368] dark:text-[#c4c7c5] hover:text-black dark:hover:text-white transition shrink-0">
+                class="px-4 py-2 rounded-xl font-semibold text-[#5f6368] dark:text-[#c4c7c5] hover:text-black dark:hover:text-white transition shrink-0" data-i18n="chat.tabRole">
           Rol & Prompt
         </button>
         <button onclick="cambiarTabModalGestion('memoria')" id="btn-tab-modal-memoria"
-                class="px-4 py-2 rounded-xl font-semibold text-[#5f6368] dark:text-[#c4c7c5] hover:text-black dark:hover:text-white transition shrink-0">
+                class="px-4 py-2 rounded-xl font-semibold text-[#5f6368] dark:text-[#c4c7c5] hover:text-black dark:hover:text-white transition shrink-0" data-i18n="chat.tabMemory">
           Memoria
         </button>
       </div>
@@ -415,7 +415,7 @@
         <div id="tab-gestion-perfil" class="space-y-6">
           <!-- Foto / Avatar del Agente -->
           <div>
-            <label class="mb-2 block text-xs font-bold uppercase tracking-wider text-[#5f6368] dark:text-[#c4c7c5]">Foto / Avatar del Agente</label>
+            <label class="mb-2 block text-xs font-bold uppercase tracking-wider text-[#5f6368] dark:text-[#c4c7c5]" data-i18n="chat.photoAvatar">Foto / Avatar del Agente</label>
             <div class="flex items-center gap-4 rounded-2xl border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 p-4">
               <div id="chat-avatar-preview-wrapper" class="relative flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-tr from-[#1a73e8] to-[#a142f4] text-white font-bold text-base shadow-md">
                 <span id="chat-avatar-preview-initials" class="{{ 'hidden' if agente.avatar_url else '' }}">{{ agente.nombre[:2].upper() }}</span>
@@ -426,22 +426,22 @@
                 <div class="flex items-center gap-2">
                   <label class="cursor-pointer inline-flex items-center gap-1.5 rounded-xl bg-[#1a73e8] hover:bg-[#174ea6] px-3.5 py-2 text-xs font-bold text-white shadow-sm transition active:scale-95">
                     <i data-lucide="upload" class="h-3.5 w-3.5"></i>
-                    <span>Subir Foto</span>
+                    <span data-i18n="chat.uploadPhoto">Subir Foto</span>
                     <input type="file" id="chat-input-avatar-file" accept="image/*" class="hidden" onchange="subirAvatarArchivo(this, 'chat')">
                   </label>
                   <button type="button" onclick="limpiarAvatarSeleccionado('chat')" class="rounded-xl border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 px-3 py-2 text-xs text-[#5f6368] dark:text-[#c4c7c5] hover:text-[#d93025] dark:hover:text-[#f28b82] transition" data-i18n="common.delete">
                     Quitar
                   </button>
                 </div>
-                <input id="chat-campo-avatar-url-input" type="url" value="{{ agente.avatar_url or '' }}" placeholder="O pega una URL de imagen (https://…)" oninput="actualizarAvatarUrlInput(this.value, 'chat')"
+                 <input id="chat-campo-avatar-url-input" type="url" value="{{ agente.avatar_url or '' }}" placeholder="O pega una URL de imagen (https://…)" data-i18n-placeholder="chat.avatarUrlPlaceholder" oninput="actualizarAvatarUrlInput(this.value, 'chat')"
                        class="w-full rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-[#1e1f20] px-3.5 py-2 text-xs text-[#202124] dark:text-white outline-none focus:border-[#1a73e8]">
               </div>
             </div>
           </div>
 
           <div>
-            <label for="editar-perfil" class="mb-2 block text-xs font-bold uppercase tracking-wider text-[#5f6368] dark:text-[#c4c7c5]">Información y Personalidad</label>
-            <textarea id="editar-perfil" rows="10" placeholder="NOMBRE: Albert Einstein&#10;PROFESIÓN: Físico teórico..."
+            <label for="editar-perfil" class="mb-2 block text-xs font-bold uppercase tracking-wider text-[#5f6368] dark:text-[#c4c7c5]" data-i18n="chat.infoPersonality">Información y Personalidad</label>
+            <textarea id="editar-perfil" rows="10" placeholder="NOMBRE: Albert Einstein&#10;PROFESIÓN: Físico teórico..." data-i18n-placeholder="chat.profilePlaceholder"
                       class="w-full resize-y rounded-2xl border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 p-4 text-xs sm:text-sm text-[#202124] dark:text-white outline-none focus:border-[#1a73e8] leading-relaxed">{{ agente.perfil }}</textarea>
           </div>
         </div>
@@ -450,7 +450,7 @@
         <div id="tab-gestion-fuentes" class="hidden space-y-4">
           <div>
             <label class="block text-xs font-bold uppercase tracking-wider text-[#5f6368] dark:text-[#c4c7c5]" data-i18n="dashboard.tabSources">Bases de Conocimiento Asociadas</label>
-            <p class="text-xs text-[#5f6368] dark:text-[#c4c7c5] mt-0.5">Marca o desmarca los manuales temáticos que este agente puede consultar durante el diálogo.</p>
+            <p class="text-xs text-[#5f6368] dark:text-[#c4c7c5] mt-0.5" data-i18n="chat.sourcesHelp">Marca o desmarca los manuales temáticos que este agente puede consultar durante el diálogo.</p>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[55vh] overflow-y-auto rounded-2xl border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 p-4">
             {% for f in todas_las_fuentes %}
@@ -470,21 +470,21 @@
         <!-- Pestaña 3: Rol & System Prompt -->
         <div id="tab-gestion-rol" class="hidden space-y-5">
           <div>
-            <label for="editar-identidad" class="mb-2 block text-xs font-bold uppercase tracking-wider text-[#5f6368] dark:text-[#c4c7c5]">Rol del Agente</label>
+            <label for="editar-identidad" class="mb-2 block text-xs font-bold uppercase tracking-wider text-[#5f6368] dark:text-[#c4c7c5]" data-i18n="chat.agentRole">Rol del Agente</label>
             <select id="editar-identidad"
                     class="w-full rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-[#28292a] px-4 py-2.5 text-xs text-[#202124] dark:text-white outline-none focus:border-[#1a73e8]">
-              <option value="">Por defecto (Básico)</option>
+              <option value="" data-i18n="chat.defaultBasic">Por defecto (Básico)</option>
               {% for r in roles %}
               <option value="{{ r.clave }}" {{ 'selected' if agente.identidad_clave == r.clave }}>{{ r.nombre }} — {{ r.descripcion }}</option>
               {% endfor %}
-              <option value="personalizada" {{ 'selected' if agente.identidad.personalizada }}>Personalizada…</option>
+              <option value="personalizada" {{ 'selected' if agente.identidad.personalizada }} data-i18n="chat.customOption">Personalizada…</option>
             </select>
           </div>
 
           <div id="bloque-identidad-custom" class="{{ '' if agente.identidad.personalizada else 'hidden' }} space-y-2">
             <div class="flex items-center justify-between">
-              <label for="editar-identidad-custom" class="block text-xs font-bold uppercase tracking-wider text-[#5f6368] dark:text-[#c4c7c5]">System Prompt Personalizado</label>
-              <span class="text-[11px] text-[#b06000] dark:text-[#fdd663]">Variables: [____] y [información del documento]</span>
+              <label for="editar-identidad-custom" class="block text-xs font-bold uppercase tracking-wider text-[#5f6368] dark:text-[#c4c7c5]" data-i18n="chat.customSystemPrompt">System Prompt Personalizado</label>
+              <span class="text-[11px] text-[#b06000] dark:text-[#fdd663]" data-i18n="chat.variablesHint">Variables: [____] y [información del documento]</span>
             </div>
             <textarea id="editar-identidad-custom" rows="12"
                       class="w-full resize-y rounded-2xl border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 p-4 text-xs font-mono text-[#202124] dark:text-white outline-none focus:border-[#1a73e8] leading-relaxed">{{ agente.identidad.prompt if agente.identidad.personalizada else '' }}</textarea>
@@ -495,8 +495,8 @@
         <div id="tab-gestion-memoria" class="hidden space-y-4">
           <div class="flex items-center justify-between">
             <div>
-              <label class="block text-xs font-bold uppercase tracking-wider text-[#5f6368] dark:text-[#c4c7c5]">Hechos Aprendidos en Memoria (SQLite)</label>
-              <p class="text-xs text-[#5f6368] dark:text-[#c4c7c5] mt-0.5">Recuerdos y preferencias extraídos automáticamente de las conversaciones.</p>
+              <label class="block text-xs font-bold uppercase tracking-wider text-[#5f6368] dark:text-[#c4c7c5]" data-i18n="chat.learnedFacts">Hechos Aprendidos en Memoria (SQLite)</label>
+              <p class="text-xs text-[#5f6368] dark:text-[#c4c7c5] mt-0.5" data-i18n="chat.learnedFactsHelp">Recuerdos y preferencias extraídos automáticamente de las conversaciones.</p>
             </div>
             <button type="button" onclick="ejecutarLimpiarMemoria()" class="text-xs font-semibold text-[#d93025] dark:text-[#f28b82] hover:underline inline-flex items-center gap-1">
               <i data-lucide="trash-2" class="h-3.5 w-3.5"></i>

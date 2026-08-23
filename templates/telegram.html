@@ -43,6 +43,10 @@
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dompurify@3/dist/purify.min.js"></script>
 
+  <!-- Traducciones externas de Telegram (deben cargarse antes de i18n.js) -->
+  <script src="{{ url_for('static', filename='js/i18n.extra.telegram.js') }}?v=1"></script>
+  <script src="{{ url_for('static', filename='js/i18n.js') }}?v=2"></script>
+
   <style>
     /* Permite seleccionar y copiar texto libremente */
     .selectable-text {
@@ -120,28 +124,28 @@
   <!-- Toast Notificación de Copiado Telegram -->
   <div id="tg-toast" class="hidden fixed top-6 z-[99] bg-sky-600 text-white font-semibold px-4 py-2 rounded-full shadow-2xl flex items-center gap-2 text-xs transition-all duration-300 transform -translate-y-2 opacity-0 select-none">
     <i class="fa-solid fa-check-circle text-sm"></i>
-    <span id="tg-toast-text">¡Mensaje copiado al portapapeles!</span>
+    <span id="tg-toast-text" data-i18n="telegram.copiedToast">¡Mensaje copiado al portapapeles!</span>
   </div>
 
   <!-- Botones Superiores Flotantes de Navegación & Control de Modo -->
   <div class="fixed top-3 right-3 z-50 flex items-center gap-2 bg-slate-950/80 backdrop-blur-md px-3 py-1.5 rounded-full border border-slate-700/60 shadow-xl text-xs select-none">
     <!-- Switcher de Tema Claro/Oscuro -->
-    <button onclick="toggleTema()" title="Cambiar Tema Telegram" class="text-slate-300 hover:text-sky-400 p-1 transition">
+    <button onclick="toggleTema()" title="Cambiar Tema Telegram" data-i18n-title="telegram.changeThemeTitle" class="text-slate-300 hover:text-sky-400 p-1 transition">
       <i id="theme-icon" class="fa-solid fa-moon"></i>
     </button>
     <div class="h-3 w-px bg-slate-700"></div>
     <!-- Cambiar a WhatsApp -->
-    <a href="/agente/{{ agente.nombre }}/whatsaap" title="Abrir en estilo WhatsApp" class="flex items-center gap-1 text-emerald-400 hover:text-emerald-300 font-semibold transition px-1">
+    <a href="/agente/{{ agente.nombre }}/whatsaap" title="Abrir en estilo WhatsApp" data-i18n-title="telegram.openWhatsAppStyle" class="flex items-center gap-1 text-emerald-400 hover:text-emerald-300 font-semibold transition px-1">
       <i class="fa-brands fa-whatsapp"></i> <span class="hidden sm:inline">WhatsApp</span>
     </a>
     <div class="h-3 w-px bg-slate-700"></div>
     <!-- Cambiar a Vista Web Standard -->
-    <a href="/agente/{{ agente.nombre }}" title="Abrir vista web normal" class="text-slate-300 hover:text-white transition px-1">
-      <i class="fa-solid fa-desktop"></i> <span class="hidden sm:inline">Web</span>
+    <a href="/agente/{{ agente.nombre }}" title="Abrir vista web normal" data-i18n-title="telegram.openWebTitle" class="text-slate-300 hover:text-white transition px-1">
+      <i class="fa-solid fa-desktop"></i> <span class="hidden sm:inline" data-i18n="telegram.web">Web</span>
     </a>
     <div class="h-3 w-px bg-slate-700"></div>
     <!-- Toggle Marco Móvil / Pantalla Completa en Desktop -->
-    <button onclick="toggleMarco()" title="Alternar Marco Móvil / Pantalla Completa" class="text-slate-300 hover:text-sky-400 p-1 transition">
+    <button onclick="toggleMarco()" title="Alternar Marco Móvil / Pantalla Completa" data-i18n-title="telegram.toggleFrameTitle" class="text-slate-300 hover:text-sky-400 p-1 transition">
       <i id="frame-icon" class="fa-solid fa-mobile-screen"></i>
     </button>
   </div>
@@ -169,7 +173,7 @@
     <header class="bg-tg-headerLight dark:bg-tg-headerDark text-white px-3 py-2 flex items-center justify-between shadow-md shrink-0 z-30 transition-colors select-none">
       <div class="flex items-center gap-2.5 min-w-0 flex-1">
         <!-- Botón Volver -->
-        <a href="{{ volver_url or '/admin/telegram' }}" title="Volver a la lista de bots" class="p-1 text-white/90 hover:text-white active:scale-95 transition">
+        <a href="{{ volver_url or '/admin/telegram' }}" title="Volver a la lista de bots" data-i18n-title="telegram.backToList" class="p-1 text-white/90 hover:text-white active:scale-95 transition">
           <i class="fa-solid fa-arrow-left text-base"></i>
         </a>
 
@@ -190,19 +194,19 @@
             {{ agente.persona }}
             <span class="bg-white/20 text-[9px] px-1.5 py-0.2 rounded font-normal uppercase">bot</span>
           </h1>
-          <p id="tg-status-text" class="text-[11px] text-sky-200 dark:text-sky-400 truncate leading-tight">en línea</p>
+          <p id="tg-status-text" class="text-[11px] text-sky-200 dark:text-sky-400 truncate leading-tight" data-i18n="telegram.online">en línea</p>
         </div>
       </div>
 
       <!-- Iconos de Acción del Header -->
       <div class="flex items-center gap-3 text-white/90 pr-1">
-        <button onclick="copiarTodoElChat()" title="Copiar conversación completa" class="hover:text-white active:scale-90 transition p-1">
+        <button onclick="copiarTodoElChat()" title="Copiar conversación completa" data-i18n-title="telegram.copyChatTitle" class="hover:text-white active:scale-90 transition p-1">
           <i class="fa-regular fa-copy text-sm"></i>
         </button>
-        <button onclick="simularBuscar()" title="Buscar en mensajes" class="hover:text-white active:scale-90 transition p-1">
+        <button onclick="simularBuscar()" title="Buscar en mensajes" data-i18n-title="telegram.searchMessagesTitle" class="hover:text-white active:scale-90 transition p-1">
           <i class="fa-solid fa-magnifying-glass text-sm"></i>
         </button>
-        <button onclick="toggleMenuHeader()" title="Opciones" class="hover:text-white active:scale-90 transition p-1 relative">
+        <button onclick="toggleMenuHeader()" title="Opciones" data-i18n-title="telegram.optionsTitle" class="hover:text-white active:scale-90 transition p-1 relative">
           <i class="fa-solid fa-ellipsis-vertical text-sm"></i>
         </button>
       </div>
@@ -211,26 +215,26 @@
     <!-- Menú Desplegable de 3 Puntos Telegram -->
     <div id="tg-dropdown-menu" class="hidden absolute top-14 right-4 bg-white dark:bg-tg-headerDark text-slate-800 dark:text-slate-100 rounded-xl shadow-2xl py-2 w-52 border border-black/10 dark:border-white/10 z-50 text-xs anim-tg select-none">
       <button onclick="copiarTodoElChat(); toggleMenuHeader();" class="w-full text-left px-4 py-2 hover:bg-black/5 dark:hover:bg-white/5 flex items-center gap-2 text-sky-500 font-semibold">
-        <i class="fa-regular fa-copy w-4"></i> Copiar chat completo
+        <i class="fa-regular fa-copy w-4"></i> <span data-i18n="telegram.copyFullChat">Copiar chat completo</span>
       </button>
       <button onclick="abrirPerfilModal(); toggleMenuHeader();" class="w-full text-left px-4 py-2 hover:bg-black/5 dark:hover:bg-white/5 flex items-center gap-2">
-        <i class="fa-regular fa-id-badge text-sky-500 w-4"></i> Información del Bot
+        <i class="fa-regular fa-id-badge text-sky-500 w-4"></i> <span data-i18n="telegram.botInfo">Información del Bot</span>
       </button>
       <button onclick="enviarComando('/start'); toggleMenuHeader();" class="w-full text-left px-4 py-2 hover:bg-black/5 dark:hover:bg-white/5 flex items-center gap-2">
-        <i class="fa-solid fa-rotate-right text-emerald-500 w-4"></i> Reiniciar Bot (/start)
+        <i class="fa-solid fa-rotate-right text-emerald-500 w-4"></i> <span data-i18n="telegram.restartBot">Reiniciar Bot (/start)</span>
       </button>
       <button onclick="limpiarChatVisual(); toggleMenuHeader();" class="w-full text-left px-4 py-2 hover:bg-black/5 dark:hover:bg-white/5 flex items-center gap-2">
-        <i class="fa-regular fa-trash-can text-red-500 w-4"></i> Limpiar historial
+        <i class="fa-regular fa-trash-can text-red-500 w-4"></i> <span data-i18n="telegram.clearHistory">Limpiar historial</span>
       </button>
       <div class="h-px bg-black/10 dark:bg-white/10 my-1"></div>
       <a href="/admin/telegram" class="w-full text-left px-4 py-2 hover:bg-black/5 dark:hover:bg-white/5 flex items-center gap-2 text-sky-500 font-semibold">
-        <i class="fa-solid fa-robot w-4"></i> Todos los Bots
+        <i class="fa-solid fa-robot w-4"></i> <span data-i18n="telegram.allBots">Todos los Bots</span>
       </a>
       <a href="/agente/{{ agente.nombre }}/whatsaap" class="w-full text-left px-4 py-2 hover:bg-black/5 dark:hover:bg-white/5 flex items-center gap-2 text-emerald-500 font-semibold">
-        <i class="fa-brands fa-whatsapp w-4"></i> Abrir en WhatsApp
+        <i class="fa-brands fa-whatsapp w-4"></i> <span data-i18n="telegram.openWhatsApp">Abrir en WhatsApp</span>
       </a>
       <a href="/agente/{{ agente.nombre }}" class="w-full text-left px-4 py-2 hover:bg-black/5 dark:hover:bg-white/5 flex items-center gap-2 text-sky-500 font-semibold">
-        <i class="fa-solid fa-arrow-up-right-from-square w-4"></i> Versión Web Chat
+        <i class="fa-solid fa-arrow-up-right-from-square w-4"></i> <span data-i18n="telegram.webChatVersion">Versión Web Chat</span>
       </a>
     </div>
 
@@ -245,10 +249,10 @@
           <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-sky-500 to-indigo-500 text-white flex items-center justify-center mx-auto shadow font-bold text-sm">
             {{ agente.persona[:2].upper() }}
           </div>
-          <h3 class="font-bold text-slate-900 dark:text-white">¿Qué puede hacer este bot?</h3>
+          <h3 class="font-bold text-slate-900 dark:text-white" data-i18n="telegram.whatCanBotDo">¿Qué puede hacer este bot?</h3>
           <p class="text-[11.5px] text-slate-600 dark:text-slate-300 leading-relaxed">{{ agente.perfil[:140] }}...</p>
           <div class="pt-1">
-            <button onclick="enviarComando('/start')" class="bg-sky-500 hover:bg-sky-600 active:scale-95 text-white font-bold text-[11px] px-4 py-1.5 rounded-xl shadow transition">
+            <button onclick="enviarComando('/start')" data-i18n="telegram.start" class="bg-sky-500 hover:bg-sky-600 active:scale-95 text-white font-bold text-[11px] px-4 py-1.5 rounded-xl shadow transition">
               INICIAR (/start)
             </button>
           </div>
@@ -257,7 +261,7 @@
 
       <!-- Pastilla de Fecha Telegram -->
       <div class="flex justify-center my-2 select-none">
-        <span class="bg-black/30 dark:bg-black/40 text-white text-[10.5px] font-medium px-3 py-0.5 rounded-full shadow-sm">
+        <span class="bg-black/30 dark:bg-black/40 text-white text-[10.5px] font-medium px-3 py-0.5 rounded-full shadow-sm" data-i18n="telegram.today">
           Hoy
         </span>
       </div>
@@ -272,7 +276,7 @@
               <div class="relative max-w-[85%] bg-tg-bubbleOutLight dark:bg-tg-bubbleOutDark text-slate-900 dark:text-slate-100 rounded-2xl rounded-br-sm px-3.5 py-2 shadow-sm">
                 
                 <!-- Botón Flotante de Copiar Mensaje -->
-                <button onclick="copiarTextoMensaje(this)" title="Copiar texto" class="opacity-0 group-hover:opacity-100 focus:opacity-100 transition absolute -left-7 top-1 text-slate-400 hover:text-sky-400 p-1 text-xs">
+                <button onclick="copiarTextoMensaje(this)" title="Copiar texto" data-i18n-title="telegram.copyText" class="opacity-0 group-hover:opacity-100 focus:opacity-100 transition absolute -left-7 top-1 text-slate-400 hover:text-sky-400 p-1 text-xs">
                   <i class="fa-regular fa-copy"></i>
                 </button>
 
@@ -292,7 +296,7 @@
               <div class="relative max-w-[85%] bg-tg-bubbleInLight dark:bg-tg-bubbleInDark text-slate-900 dark:text-slate-100 rounded-2xl rounded-bl-sm px-3.5 py-2 shadow-sm">
                 
                 <!-- Botón Flotante de Copiar Mensaje -->
-                <button onclick="copiarTextoMensaje(this)" title="Copiar texto" class="opacity-0 group-hover:opacity-100 focus:opacity-100 transition absolute -right-7 top-1 text-slate-400 hover:text-sky-400 p-1 text-xs">
+                <button onclick="copiarTextoMensaje(this)" title="Copiar texto" data-i18n-title="telegram.copyText" class="opacity-0 group-hover:opacity-100 focus:opacity-100 transition absolute -right-7 top-1 text-slate-400 hover:text-sky-400 p-1 text-xs">
                   <i class="fa-regular fa-copy"></i>
                 </button>
 
@@ -312,7 +316,7 @@
             </div>
             <div class="relative max-w-[85%] bg-tg-bubbleInLight dark:bg-tg-bubbleInDark text-slate-900 dark:text-slate-100 rounded-2xl rounded-bl-sm px-3.5 py-2 shadow-sm">
               
-              <button onclick="copiarTextoMensaje(this)" title="Copiar texto" class="opacity-0 group-hover:opacity-100 focus:opacity-100 transition absolute -right-7 top-1 text-slate-400 hover:text-sky-400 p-1 text-xs">
+              <button onclick="copiarTextoMensaje(this)" title="Copiar texto" data-i18n-title="telegram.copyText" class="opacity-0 group-hover:opacity-100 focus:opacity-100 transition absolute -right-7 top-1 text-slate-400 hover:text-sky-400 p-1 text-xs">
                 <i class="fa-regular fa-copy"></i>
               </button>
 
@@ -336,24 +340,24 @@
           <span class="w-1.5 h-3 bg-sky-500 rounded-full tg-bar-1"></span>
           <span class="w-1.5 h-3 bg-sky-500 rounded-full tg-bar-2"></span>
           <span class="w-1.5 h-3 bg-sky-500 rounded-full tg-bar-3"></span>
-          <span class="text-[11.5px] text-slate-500 dark:text-slate-400 font-medium ml-1.5">escribiendo...</span>
+          <span class="text-[11.5px] text-slate-500 dark:text-slate-400 font-medium ml-1.5" data-i18n="telegram.typing">escribiendo...</span>
         </div>
       </div>
     </main>
 
     <!-- Bot Keyboard / Comandos Rápidos Telegram -->
     <div class="bg-white/80 dark:bg-tg-headerDark/80 backdrop-blur-md px-3 py-1.5 border-t border-black/5 dark:border-white/5 flex items-center gap-1.5 overflow-x-auto shrink-0 z-20 text-[11.5px] select-none">
-      <button onclick="enviarComando('/start')" class="shrink-0 bg-sky-500/10 dark:bg-sky-500/20 text-sky-600 dark:text-sky-300 hover:bg-sky-500 hover:text-white px-2.5 py-1 rounded-lg font-semibold transition active:scale-95">
+      <button onclick="enviarComando('/start')" data-i18n="telegram.cmdStart" class="shrink-0 bg-sky-500/10 dark:bg-sky-500/20 text-sky-600 dark:text-sky-300 hover:bg-sky-500 hover:text-white px-2.5 py-1 rounded-lg font-semibold transition active:scale-95">
         /start
       </button>
       <button onclick="enviarComando('¿Cuáles son tus bases de conocimiento?')" class="shrink-0 bg-slate-200 dark:bg-white/10 text-slate-700 dark:text-slate-200 hover:bg-sky-500 hover:text-white px-2.5 py-1 rounded-lg font-medium transition active:scale-95">
-        📚 /bases
+        <span>📚</span> <span data-i18n="telegram.bases">/bases</span>
       </button>
       <button onclick="enviarComando('Hazme un resumen de tu contenido.')" class="shrink-0 bg-slate-200 dark:bg-white/10 text-slate-700 dark:text-slate-200 hover:bg-sky-500 hover:text-white px-2.5 py-1 rounded-lg font-medium transition active:scale-95">
-        📝 /resumen
+        <span>📝</span> <span data-i18n="telegram.summary">/resumen</span>
       </button>
       <button onclick="enviarComando('¿Qué hechos recuerdas de mí en tu memoria?')" class="shrink-0 bg-slate-200 dark:bg-white/10 text-slate-700 dark:text-slate-200 hover:bg-sky-500 hover:text-white px-2.5 py-1 rounded-lg font-medium transition active:scale-95">
-        🧠 /memoria
+        <span>🧠</span> <span data-i18n="telegram.memory">/memoria</span>
       </button>
     </div>
 
@@ -363,24 +367,24 @@
     <footer class="bg-white dark:bg-tg-headerDark px-2 py-2 flex items-center gap-2 shrink-0 z-30 border-t border-black/5 dark:border-white/5 select-none">
       
       <!-- Botón Clip Adjunto -->
-      <button onclick="insertarComandoPrompt()" title="Adjuntar" class="p-2 text-slate-400 hover:text-sky-500 active:scale-90 transition">
+      <button onclick="insertarComandoPrompt()" title="Adjuntar" data-i18n-title="telegram.attach" class="p-2 text-slate-400 hover:text-sky-500 active:scale-90 transition">
         <i class="fa-solid fa-paperclip text-lg"></i>
       </button>
 
       <!-- Input de Mensaje -->
       <form id="tg-form" onsubmit="enviarMensaje(event)" class="flex-1 flex items-center">
-        <input id="tg-input" type="text" placeholder="Mensaje..." autocomplete="off"
+        <input id="tg-input" type="text" placeholder="Mensaje..." autocomplete="off" data-i18n-placeholder="telegram.messagePlaceholder"
                oninput="onInputChange(this.value)"
                class="w-full bg-transparent text-slate-900 dark:text-slate-100 placeholder-slate-400 text-[13.5px] px-2 py-1.5 outline-none">
       </form>
 
       <!-- Botón Emoji / Stickers -->
-      <button onclick="insertarEmoji('🚀')" title="Stickers / Emojis" class="p-2 text-slate-400 hover:text-sky-500 active:scale-90 transition">
+      <button onclick="insertarEmoji('🚀')" title="Stickers / Emojis" data-i18n-title="telegram.stickers" class="p-2 text-slate-400 hover:text-sky-500 active:scale-90 transition">
         <i class="fa-regular fa-face-smile text-lg"></i>
       </button>
 
       <!-- Botón Enviar Telegram -->
-      <button id="tg-btn-send" onclick="enviarMensajeClick()" title="Enviar"
+      <button id="tg-btn-send" onclick="enviarMensajeClick()" title="Enviar" data-i18n-title="telegram.send"
               class="w-9 h-9 rounded-full bg-tg-blue hover:bg-sky-600 text-white flex items-center justify-center shadow-md active:scale-90 transition">
         <i class="fa-solid fa-paper-plane text-xs ml-0.5"></i>
       </button>
@@ -398,7 +402,7 @@
        ============================================================ -->
   <div id="tg-modal-perfil" class="hidden fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
     <div class="bg-white dark:bg-tg-headerDark text-slate-900 dark:text-slate-100 rounded-3xl w-full max-w-sm max-h-[85vh] overflow-y-auto shadow-2xl border border-black/10 dark:border-white/10 p-5 anim-tg relative">
-      <button onclick="cerrarPerfilModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-white p-1">
+      <button onclick="cerrarPerfilModal()" title="Cerrar" data-i18n-title="common.close" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-white p-1">
         <i class="fa-solid fa-xmark text-lg"></i>
       </button>
 
@@ -415,26 +419,26 @@
       </div>
 
       <div class="py-3 border-b border-black/10 dark:border-white/10 space-y-1">
-        <h3 class="text-[11px] font-bold text-slate-400 uppercase tracking-wider select-none">Bio / Perfil</h3>
+        <h3 class="text-[11px] font-bold text-slate-400 uppercase tracking-wider select-none" data-i18n="telegram.bioProfile">Bio / Perfil</h3>
         <p class="text-xs text-slate-700 dark:text-slate-300 leading-relaxed whitespace-pre-line selectable-text">{{ agente.perfil }}</p>
       </div>
 
       <div class="py-3 border-b border-black/10 dark:border-white/10 space-y-1">
-        <h3 class="text-[11px] font-bold text-slate-400 uppercase tracking-wider select-none">Rol Activo</h3>
+        <h3 class="text-[11px] font-bold text-slate-400 uppercase tracking-wider select-none" data-i18n="telegram.activeRole">Rol Activo</h3>
         <span class="inline-block bg-sky-500/10 dark:bg-sky-500/20 text-sky-600 dark:text-sky-300 text-xs px-2.5 py-1 rounded-md font-semibold">
           {{ agente.identidad.nombre }}
         </span>
       </div>
 
       <div class="pt-3 space-y-2">
-        <h3 class="text-[11px] font-bold text-slate-400 uppercase tracking-wider select-none">Bases Conectadas</h3>
+        <h3 class="text-[11px] font-bold text-slate-400 uppercase tracking-wider select-none" data-i18n="telegram.connectedBases">Bases Conectadas</h3>
         <div class="flex flex-wrap gap-1.5">
           {% for f in agente.fuentes %}
           <span class="text-[11px] bg-slate-100 dark:bg-white/10 text-slate-700 dark:text-slate-300 px-2.5 py-0.5 rounded-full">
             📖 {{ f.nombre }}
           </span>
           {% else %}
-          <span class="text-xs text-slate-400 italic">Sin bases vinculadas.</span>
+          <span class="text-xs text-slate-400 italic" data-i18n="telegram.noBases">Sin bases vinculadas.</span>
           {% endfor %}
         </div>
       </div>
@@ -483,7 +487,7 @@
     function showToast(text) {
       const toast = document.getElementById("tg-toast");
       const toastText = document.getElementById("tg-toast-text");
-      toastText.textContent = text || "¡Mensaje copiado al portapapeles!";
+      toastText.textContent = text || window.i18n.t("telegram.copiedToast");
       toast.classList.remove("hidden");
       setTimeout(() => {
         toast.classList.remove("opacity-0", "-translate-y-2");
@@ -512,7 +516,7 @@
         icon.className = "fa-solid fa-check text-sky-400";
         setTimeout(() => { icon.className = "fa-regular fa-copy"; }, 2000);
       }
-      showToast("¡Mensaje copiado al portapapeles!");
+      showToast(window.i18n.t("telegram.copiedToast"));
     };
 
     // Copiar toda la conversación
@@ -528,13 +532,13 @@
       });
 
       if (messages.length === 0) {
-        showToast("No hay mensajes para copiar.");
+        showToast(window.i18n.t("telegram.noMessagesCopy"));
         return;
       }
 
       const fullTranscript = messages.join("\n\n");
       copiarAlPortapapeles(fullTranscript);
-      showToast("¡Conversación completa copiada!");
+      showToast(window.i18n.t("telegram.conversationCopied"));
     };
 
     function copiarAlPortapapeles(texto) {
@@ -596,9 +600,9 @@
     }
 
     function simularBuscar() {
-      const q = prompt("Buscar mensaje en este chat de Telegram:");
+      const q = prompt(window.i18n.t("telegram.searchPrompt"));
       if (q) {
-        alert(`Búsqueda simulada para: "${q}"`);
+        alert(window.i18n.t("telegram.searchSimulated", { q: q }));
       }
     }
 
@@ -618,7 +622,7 @@
     }
 
     function limpiarChatVisual() {
-      if (confirm("¿Deseas vaciar los mensajes visibles de este chat?")) {
+      if (confirm(window.i18n.t("telegram.clearConfirm"))) {
         messagesList.innerHTML = "";
       }
     }
@@ -639,7 +643,7 @@
       userBubble.innerHTML = `
         <div class="relative max-w-[85%] bg-tg-bubbleOutLight dark:bg-tg-bubbleOutDark text-slate-900 dark:text-slate-100 rounded-2xl rounded-br-sm px-3.5 py-2 shadow-sm">
           
-          <button onclick="copiarTextoMensaje(this)" title="Copiar texto" class="opacity-0 group-hover:opacity-100 focus:opacity-100 transition absolute -left-7 top-1 text-slate-400 hover:text-sky-400 p-1 text-xs">
+          <button onclick="copiarTextoMensaje(this)" title="Copiar texto" data-i18n-title="telegram.copyText" class="opacity-0 group-hover:opacity-100 focus:opacity-100 transition absolute -left-7 top-1 text-slate-400 hover:text-sky-400 p-1 text-xs">
             <i class="fa-regular fa-copy"></i>
           </button>
 
@@ -656,7 +660,7 @@
 
       // 2. Activar indicador escribiendo
       typingBubble.classList.remove("hidden");
-      statusText.textContent = "escribiendo...";
+      statusText.textContent = window.i18n.t("telegram.typing");
       scrollToBottom();
 
       // 3. Petición al servidor Flask
@@ -671,7 +675,7 @@
       })
       .then(data => {
         typingBubble.classList.add("hidden");
-        statusText.textContent = "en línea";
+        statusText.textContent = window.i18n.t("telegram.online");
 
         // Marcar doble check en mensaje saliente
         const lastCheck = userBubble.querySelector("i.fa-check");
@@ -692,7 +696,7 @@
           </div>
           <div class="relative max-w-[85%] bg-tg-bubbleInLight dark:bg-tg-bubbleInDark text-slate-900 dark:text-slate-100 rounded-2xl rounded-bl-sm px-3.5 py-2 shadow-sm">
             
-            <button onclick="copiarTextoMensaje(this)" title="Copiar texto" class="opacity-0 group-hover:opacity-100 focus:opacity-100 transition absolute -right-7 top-1 text-slate-400 hover:text-sky-400 p-1 text-xs">
+            <button onclick="copiarTextoMensaje(this)" title="Copiar texto" data-i18n-title="telegram.copyText" class="opacity-0 group-hover:opacity-100 focus:opacity-100 transition absolute -right-7 top-1 text-slate-400 hover:text-sky-400 p-1 text-xs">
               <i class="fa-regular fa-copy"></i>
             </button>
 
@@ -707,12 +711,12 @@
       })
       .catch(err => {
         typingBubble.classList.add("hidden");
-        statusText.textContent = "en línea";
+        statusText.textContent = window.i18n.t("telegram.online");
         const errBubble = document.createElement("div");
         errBubble.className = "flex justify-start anim-tg";
         errBubble.innerHTML = `
           <div class="relative max-w-[85%] bg-red-100 dark:bg-red-950/80 border border-red-300 dark:border-red-800 text-red-700 dark:text-red-300 rounded-2xl px-3.5 py-2 shadow-sm text-xs">
-            ⚠️ Ocurrió un problema al conectar con DeepSeek API. Verifica tu clave en .env.
+            ${window.i18n.t("telegram.apiError")}
           </div>
         `;
         messagesList.appendChild(errBubble);

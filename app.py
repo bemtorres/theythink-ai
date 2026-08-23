@@ -98,7 +98,7 @@ def require_login(f):
         if not session.get("usuario"):
             if request.path.startswith("/api/"):
                 return jsonify({"error": "No autorizado. Inicia sesión primero."}), 401
-            return redirect(url_for("login_view", next=request.path))
+            return redirect(url_for("pagina_login", next=request.path))
         return f(*args, **kwargs)
     return decorated_function
 
@@ -421,7 +421,7 @@ def login_action():
 def logout_action():
     """Cierra la sesión del usuario actual."""
     session.clear()
-    return redirect(url_for("home_view"))
+    return redirect(url_for("inicio"))
 
 
 # ----------------------------------------------------------------------
@@ -429,25 +429,68 @@ def logout_action():
 # ----------------------------------------------------------------------
 
 
+def _render_dashboard(default_tab="agentes"):
+    """Renderiza el panel administrativo mostrando la sección indicada por defecto.
+
+    Las secciones (agentes, fuentes, roles, usuarios, historial, config) se
+    exponen como módulos independientes vía las rutas /admin/*.
+    """
+    stats = obtener_estadisticas_dashboard()
+    # Enriquecer cada agente con persona (NOMBRE del perfil) e iniciales para el dashboard
+    for ag in stats.get("agentes", []):
+        try:
+            ag["persona"] = get_person_name(ag.get("nombre", ""), ag.get("perfil", "") or "")
+            ag["iniciales"] = get_initials(ag["persona"] or ag.get("nombre", ""))
+        except Exception:
+            ag["persona"] = ag.get("nombre", "")
+            ag["iniciales"] = get_initials(ag.get("nombre", ""))
+    return render_template(
+        "dashboard.html",
+        stats=stats,
+        fuentes=listar_fuentes(),
+        roles=listar_roles(),
+        usuarios=listar_usuarios(),
+        identidades=IDENTIDADES,
+        usuario_actual=session.get("usuario"),
+        tiene_api_key=has_api_key(),
+        default_tab=default_tab,
+    )
+
+
 @app.get("/dashboard", endpoint="pagina_dashboard")
 @app.get("/admin")
 @require_login
 def dashboard_view():
-    """Vista principal del Dashboard administrativo."""
-    stats = obtener_estadisticas_dashboard()
-    sources = listar_fuentes()
-    roles = listar_roles()
-    users = listar_usuarios()
-    return render_template(
-        "dashboard.html",
-        stats=stats,
-        fuentes=sources,
-        roles=roles,
-        usuarios=users,
-        identidades=IDENTIDADES,
-        usuario_actual=session.get("usuario"),
-        tiene_api_key=has_api_key(),
-    )
+    """Vista principal del Dashboard: muestra primero los agentes creados."""
+    return _render_dashboard("agentes")
+
+
+@app.get("/admin/knowledge", endpoint="admin_knowledge")
+@require_login
+def admin_knowledge_view():
+    """Módulo: Bases de Conocimiento del sistema."""
+    return _render_dashboard("fuentes")
+
+
+@app.get("/admin/identities", endpoint="admin_identities")
+@require_login
+def admin_identities_view():
+    """Módulo: Roles e Identidades del sistema."""
+    return _render_dashboard("roles")
+
+
+@app.get("/admin/users", endpoint="admin_users")
+@require_login
+def admin_users_view():
+    """Módulo: Gestión de usuarios del sistema."""
+    return _render_dashboard("usuarios")
+
+
+@app.get("/admin/config", endpoint="admin_config")
+@require_login
+def admin_config_view():
+    """Módulo: Configuración general del sistema."""
+    return _render_dashboard("config")
 
 
 @app.get("/api/dashboard/stats")
