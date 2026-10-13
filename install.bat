@@ -86,7 +86,7 @@ echo.
 
 :: 5. Inicializar / Poblar la base de datos
 echo [5/5] Inicializando base de datos SQLite y agentes iniciales...
-python seed.py
+python seed.py --force
 if %ERRORLEVEL% neq 0 (
     echo.
     echo [ADVERTENCIA] Hubo un aviso al ejecutar seed.py, pero la instalacion continuo.
