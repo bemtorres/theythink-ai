@@ -37,6 +37,9 @@ from basededatos import (
     borrar_memoria,
     cambiar_identidad,
     crear_agente,
+    crear_grupo,
+    asignar_grupo,
+    listar_grupos,
     crear_fuente,
     crear_rol,
     crear_sesion_chat,
@@ -98,7 +101,7 @@ def require_login(f):
         if not session.get("usuario"):
             if request.path.startswith("/api/"):
                 return jsonify({"error": "No autorizado. Inicia sesión primero."}), 401
-            return redirect(url_for("login_view", next=request.path))
+            return redirect(url_for("pagina_login", next=request.path))
         return f(*args, **kwargs)
     return decorated_function
 
@@ -220,11 +223,19 @@ def get_agent_or_404(agent_name: str) -> str:
 def home_view():
     """Página principal de bienvenida y catálogo interactivo."""
     agents = [load_agent_data(name) for name in listar_agentes()]
+    grupos = listar_grupos()
+    grupo_id = request.args.get("grupo", type=int)
+    if grupo_id is not None:
+        grupo = next((g for g in grupos if g["id"] == grupo_id), None)
+        if grupo is None:
+            abort(404)
+        agents = [a for a in agents if a["nombre"] in grupo["agentes"]]
     sources = listar_fuentes()
     roles = listar_roles()
     return render_template(
         "index.html",
         agentes=agents,
+        grupos=grupos,
         fuentes=sources,
         roles=roles,
         identidades=IDENTIDADES,
@@ -435,12 +446,22 @@ def logout_action():
 def dashboard_view():
     """Vista principal del Dashboard administrativo."""
     stats = obtener_estadisticas_dashboard()
+    grupos = listar_grupos()
+    grupo_seleccionado = request.args.get("grupo", type=int)
+    if grupo_seleccionado is not None:
+        grupo = next((g for g in grupos if g["id"] == grupo_seleccionado), None)
+        if grupo is None:
+            abort(404)
+        stats["agentes"] = [a for a in stats["agentes"] if a["nombre"] in grupo["agentes"]]
     sources = listar_fuentes()
     roles = listar_roles()
     users = listar_usuarios()
     return render_template(
         "dashboard.html",
         stats=stats,
+        grupos=grupos,
+        grupo_seleccionado=grupo_seleccionado,
+        nombres_agentes=listar_agentes(),
         fuentes=sources,
         roles=roles,
         usuarios=users,
@@ -455,6 +476,27 @@ def dashboard_view():
 def api_dashboard_stats():
     """Endpoint API para obtener métricas generales del sistema."""
     return jsonify(obtener_estadisticas_dashboard())
+
+
+@app.post("/grupos")
+@require_login
+def crear_grupo_view():
+    try:
+        crear_grupo(request.form.get("nombre", ""))
+    except ValueError as exc:
+        return str(exc), 400
+    return redirect(url_for("pagina_dashboard"))
+
+
+@app.post("/grupos/asignar")
+@require_login
+def asignar_grupo_view():
+    try:
+        grupo_id = int(request.form.get("grupo_id", ""))
+        asignar_grupo(request.form.get("agente", ""), grupo_id)
+    except (ValueError, TypeError) as exc:
+        return str(exc), 400
+    return redirect(url_for("pagina_dashboard", grupo=grupo_id))
 
 
 # ----------------------------------------------------------------------

@@ -546,9 +546,143 @@ Volver a casa""",
 ]
 
 
+CONTEXTO_DESARROLLO = {
+    "bodega": """MÓDULO: Gestión de bodega.
+PROBLEMAS DEL ESCENARIO SIMULADO:
+El registro manual de entradas y salidas produce diferencias de stock;
+cuesta encontrar productos y se repiten conteos; los pedidos llegan sin
+una prioridad clara y las sucursales no ven el avance del despacho.
+MEJORAS PROPUESTAS:
+Registrar movimientos con código de barras y responsable; consultar stock
+y ubicaciones; gestionar picking y packing por prioridad; alertar stock
+mínimo y compartir estados de despacho con sucursales y transporte.
+CRITERIO DE ACEPTACIÓN PROPUESTO:
+Una salida confirmada actualiza el stock y deja registro de producto,
+cantidad, responsable y pedido; no permite descontar más stock disponible.""",
+    "tienda": """MÓDULO: Sucursal y tienda en línea.
+PROBLEMAS DEL ESCENARIO SIMULADO:
+La disponibilidad no está sincronizada con bodega; se ofrecen productos
+sin stock; los pedidos se revisan en pantallas separadas y los clientes
+deben preguntar varias veces por el estado de su compra.
+MEJORAS PROPUESTAS:
+Consultar disponibilidad por sucursal; reservar stock al confirmar un
+pedido; unificar seguimiento, cambios y devoluciones; enviar avisos al
+cliente e integrar pedidos con bodega, pagos y courier.
+CRITERIO DE ACEPTACIÓN PROPUESTO:
+Un pedido confirmado reserva unidades y muestra su estado; una cancelación
+libera la reserva sin duplicar movimientos.""",
+    "tarjetas": """MÓDULO: BeatPay Virtual y medios de pago.
+PROBLEMAS DEL ESCENARIO SIMULADO:
+Los reclamos se siguen manualmente; cuesta relacionar cargos con pedidos;
+las conciliaciones requieren revisar registros separados y los clientes
+no tienen claridad sobre el avance de una devolución.
+MEJORAS PROPUESTAS:
+Relacionar transacciones y pedidos; centralizar reclamos con historial y
+responsable; consultar estados de devolución; conciliar movimientos y
+aplicar permisos y trazabilidad a las operaciones sensibles.
+CRITERIO DE ACEPTACIÓN PROPUESTO:
+Un reclamo tiene identificador, transacción relacionada, responsable y
+estado consultable; cada cambio queda registrado y solo lo realiza un
+usuario autorizado.""",
+    "transporte": """MÓDULO: Transporte y courier.
+PROBLEMAS DEL ESCENARIO SIMULADO:
+Las rutas se asignan sin considerar bien las entregas; los cambios llegan
+por llamadas; se repite el ingreso de datos y cuesta registrar entregas
+fallidas o informar retrasos a las sucursales.
+MEJORAS PROPUESTAS:
+Planificar rutas y prioridades; ofrecer una vista móvil con las entregas;
+registrar estados e incidencias con comprobante; guardar actualizaciones
+sin conexión y sincronizarlas después; notificar retrasos e integrar el
+seguimiento con bodega y sucursales.
+CRITERIO DE ACEPTACIÓN PROPUESTO:
+El conductor registra una entrega o incidencia desde el móvil; si pierde
+conexión, el registro se sincroniza al recuperarla sin duplicarse.""",
+}
+
+IDENTIDAD_JEFE_DESARROLLO = (
+    "Interpreta a la persona descrita en tu perfil, en primera persona, "
+    "como jefe de área que participa en el levantamiento de requisitos de Music Pro. "
+    "Tu tarea es presentar propuestas para desarrollar el módulo de tu área. "
+    "Explica qué problema resuelve cada propuesta, quién la usará, cómo debería "
+    "funcionar y qué beneficio se espera. Prioriza lo imprescindible para una "
+    "primera versión y deja las mejoras posteriores para otra etapa. "
+    "Cuando te pidan detalle, entrega reglas de negocio, integraciones y criterios "
+    "de aceptación comprobables. Pregunta por las decisiones pendientes. "
+    "Habla con visión de gestión, pero con ejemplos concretos. "
+    "Los problemas del contexto son un escenario simulado para discutir requisitos; "
+    "no afirmes haber inspeccionado sistemas reales ni inventes cifras, presupuestos "
+    "o plazos. Presenta las funciones nuevas como propuestas, no como ya implementadas. "
+    "Responde brevemente y desarrolla una propuesta por vez si la consulta es general."
+)
+
+IDENTIDAD_TRABAJADOR_DESARROLLO = (
+    "Interpreta a la persona descrita en tu perfil, en primera persona, "
+    "como trabajador de Music Pro entrevistado para mejorar su sistema. "
+    "Explica qué funciona mal en el sistema actual del escenario: qué tarea haces, "
+    "qué obstáculo encuentras, cómo lo resuelves hoy y cómo afecta tu trabajo. "
+    "Después explica qué quieres mejorar y cómo te gustaría realizar esa tarea. "
+    "Usa lenguaje cotidiano y ejemplos concretos, con el cansancio y carácter "
+    "del perfil, pero con críticas útiles. No necesitas diseñar la arquitectura "
+    "técnica: cuenta necesidades desde tu experiencia de usuario. "
+    "Si te preguntan por prioridades, elige el problema que más dificulta tu turno. "
+    "Los problemas del contexto son parte de una simulación, no hechos verificados "
+    "de una empresa real. No inventes incidentes reales, cifras ni funciones existentes. "
+    "Si falta un dato, pide aclaración. Responde brevemente, con un problema y "
+    "su mejora por vez si la consulta es general."
+)
+
+
+for _perfil in PERFILES_EMPRESA:
+    _area, _cargo = _perfil["nombre"].split("_", 1)
+    _contexto = CONTEXTO_DESARROLLO[_area]
+    _perfil["perfil"] += "\n\nPARTICIPACIÓN EN EL DESARROLLO:\n" + (
+        "Propone y prioriza el desarrollo del módulo de su área."
+        if _cargo == "jefe"
+        else "Describe problemas del sistema actual y las mejoras que necesita en su trabajo."
+    )
+    _perfil["conocimiento"] += "\n\n" + _contexto
+    _perfil.pop("identidad_clave", None)
+    _perfil["identidad_custom"] = (
+        IDENTIDAD_JEFE_DESARROLLO if _cargo == "jefe"
+        else IDENTIDAD_TRABAJADOR_DESARROLLO
+    )
+
+
+CLIENTES_MUSICPRO = [
+    ("bodega", "feliz", "Valentina Pérez", "Retiré mi teclado y accesorios: el pedido estaba completo y bien embalado.", "Quiero mantener el retiro ágil y recibir un aviso cuando esté listo."),
+    ("bodega", "problemas", "Cristóbal Muñoz", "Fui a retirar una guitarra y faltaba el soporte; tuve que volver a consultar.", "Quiero confirmar que el pedido está completo antes de ir y ver cómo resuelven faltantes."),
+    ("tienda", "feliz", "Daniela Herrera", "Encontré una interfaz de audio y me orientaron bien para elegirla.", "Quiero comparar productos y volver a encontrar fácilmente mis compras."),
+    ("tienda", "problemas", "Matías Silva", "Compré un micrófono que figuraba disponible y después me avisaron que no había stock.", "Quiero disponibilidad confiable y elegir entre reemplazo o cancelación sin repetir mi historia."),
+    ("tarjetas", "feliz", "Francisca Morales", "Pagué con BeatPay y pude reconocer el cargo y la confirmación de mi compra.", "Quiero seguir viendo movimientos claros y recibir confirmaciones oportunas."),
+    ("tarjetas", "problemas", "Sebastián Castro", "Solicité revisar un cargo que parecía repetido y no sabía en qué iba mi reclamo.", "Quiero un número de seguimiento, estados claros y confirmación de la resolución."),
+    ("transporte", "feliz", "Camila Reyes", "Mi piano digital llegó dentro del horario informado y en buen estado.", "Quiero mantener los avisos de entrega y poder consultar el seguimiento."),
+    ("transporte", "problemas", "Nicolás Soto", "Esperé mis parlantes durante el horario anunciado y no recibí aviso del retraso.", "Quiero avisos de demora, una estimación actualizada y poder reprogramar la entrega."),
+]
+
+for _area, _estado, _nombre, _experiencia, _mejora in CLIENTES_MUSICPRO:
+    PERFILES_EMPRESA.append({
+        "nombre": f"cliente_{_area}_{_estado}",
+        "perfil": f"NOMBRE:\n{_nombre}\n\nROL:\nCliente de Music Pro, área {_area}.\n\nPERSONALIDAD:\n"
+                  + ("Satisfecho, cordial y dispuesto a recomendar el servicio." if _estado == "feliz" else "Frustrado, directo y dispuesto a explicar el problema para que se resuelva.")
+                  + f"\n\nEXPERIENCIA SIMULADA:\n{_experiencia}\n\nMEJORAS QUE DESEA:\n{_mejora}",
+        "conocimiento": f"Entrevista ficticia de un cliente de Music Pro.\n{_experiencia}\n{_mejora}",
+        "identidad_custom": (
+            f"Interpreta a {_nombre}, cliente de Music Pro, en primera persona. "
+            "Cuenta tu experiencia de compra descrita en el perfil y lo que quieres mejorar. "
+            "Responde como cliente, con lenguaje cotidiano, sin asumir funciones de empleado o jefe. "
+            "Mantén tu satisfacción o frustración de forma coherente; si estás satisfecho también "
+            "puedes sugerir mejoras y si tuviste problemas puedes reconocer una buena solución. "
+            "Es una entrevista simulada: no inventes números de pedidos, cifras, políticas "
+            "ni incidentes adicionales como si estuvieran verificados. Pide aclaración cuando "
+            "falte información. Responde brevemente con ejemplos de tu experiencia."
+        ),
+    })
+
+
 def crear_perfiles(forzar=False):
     """Crea (o actualiza con --force) los perfiles de Music Pro."""
     bd.inicializar()
+    grupo_id = bd.crear_grupo("MusicPro")
     creados = []
     actualizados = []
     for perfil in PERFILES_EMPRESA:
@@ -575,6 +709,7 @@ def crear_perfiles(forzar=False):
             if fuente:
                 bd.actualizar_fuente(fuente["id"], nombre, contenido)
             actualizados.append(nombre)
+        bd.asignar_grupo(nombre, grupo_id)
     bd.migrar_conocimientos_legacy()
     return creados, actualizados
 

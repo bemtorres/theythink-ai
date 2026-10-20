@@ -103,6 +103,15 @@ CREATE TABLE IF NOT EXISTS roles (
 );
 
 CREATE INDEX IF NOT EXISTS idx_roles_clave ON roles(clave);
+CREATE TABLE IF NOT EXISTS grupos (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nombre TEXT NOT NULL UNIQUE
+);
+CREATE TABLE IF NOT EXISTS agente_grupos (
+    agente_id INTEGER NOT NULL REFERENCES agentes(id) ON DELETE CASCADE,
+    grupo_id INTEGER NOT NULL REFERENCES grupos(id) ON DELETE CASCADE,
+    PRIMARY KEY (agente_id, grupo_id)
+);
 """
 
 
@@ -734,6 +743,35 @@ def listar_agentes():
             "SELECT nombre FROM agentes ORDER BY nombre"
         ).fetchall()
     return [fila["nombre"] for fila in filas]
+
+
+def crear_grupo(nombre):
+    nombre = nombre.strip()
+    if not nombre or len(nombre) > 80:
+        raise ValueError("El grupo debe tener entre 1 y 80 caracteres.")
+    with _conexion() as conexion:
+        conexion.execute("INSERT OR IGNORE INTO grupos(nombre) VALUES (?)", (nombre,))
+        return conexion.execute("SELECT id FROM grupos WHERE nombre = ?", (nombre,)).fetchone()["id"]
+
+
+def asignar_grupo(nombre_agente, grupo_id):
+    with _conexion() as conexion:
+        agente = conexion.execute("SELECT id FROM agentes WHERE nombre = ?", (nombre_agente,)).fetchone()
+        grupo = conexion.execute("SELECT id FROM grupos WHERE id = ?", (grupo_id,)).fetchone()
+        if not agente or not grupo:
+            raise ValueError("Agente o grupo inexistente.")
+        conexion.execute("INSERT OR IGNORE INTO agente_grupos VALUES (?, ?)", (agente["id"], grupo_id))
+
+
+def listar_grupos():
+    with _conexion() as conexion:
+        grupos = [dict(g) for g in conexion.execute("SELECT * FROM grupos ORDER BY nombre")]
+        for grupo in grupos:
+            grupo["agentes"] = [r["nombre"] for r in conexion.execute(
+                "SELECT a.nombre FROM agentes a JOIN agente_grupos ag ON ag.agente_id = a.id WHERE ag.grupo_id = ? ORDER BY a.nombre",
+                (grupo["id"],),
+            )]
+    return grupos
 
 
 def existe_agente(nombre):

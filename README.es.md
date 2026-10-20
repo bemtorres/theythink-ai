@@ -1,5 +1,7 @@
 # THEYTHINK AI: Arquitectura Cognitiva Modular de Agentes con Memoria Activa Persistente, Recuperación de Conocimiento Desacoplada y Simulación Multicanal
 
+Consulta la [guía para crear nuevas personalidades](README.personalidades.md), con ejemplos de perfiles y seeders de Music Pro.
+
 <p align="center">
   <img src="theythinkai_logo.png" alt="THEYTHINK AI Logo" width="160" style="border-radius: 24px;" />
 </p>

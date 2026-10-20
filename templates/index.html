@@ -422,6 +422,12 @@
       </div>
 
       <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="flex flex-wrap gap-2 p-3">
+          <a href="{{ url_for('inicio') }}" class="rounded-xl border px-3 py-2 text-xs">Todos los grupos</a>
+          {% for grupo in grupos %}
+          <a href="{{ url_for('inicio', grupo=grupo.id) }}" class="rounded-xl border px-3 py-2 text-xs">{{ grupo.nombre }} ({{ grupo.agentes|length }})</a>
+          {% endfor %}
+        </div>
         {% for ag in agentes %}
         <div class="heroui-card p-5 flex flex-col justify-between">
           <div>

@@ -279,6 +279,31 @@
          Sección 1: Gestión de Agentes
          ============================================================ -->
     <section id="dash-seccion-agentes" class="mt-6">
+      <div class="heroui-card p-6 mb-6 space-y-4">
+        <h2 class="font-bold text-lg">Grupos de agentes</h2>
+        <p class="text-sm">Organiza las personalidades por empresa o proyecto. Selecciona un grupo para ver sus agentes.</p>
+        <div class="flex flex-wrap gap-3">
+          <a href="{{ url_for('pagina_dashboard') }}" class="heroui-chip">Todos</a>
+          {% for grupo in grupos %}
+          <a href="{{ url_for('pagina_dashboard', grupo=grupo.id) }}" class="heroui-chip {{ 'heroui-chip-primary' if grupo_seleccionado == grupo.id else '' }}">{{ grupo.nombre }} ({{ grupo.agentes|length }})</a>
+          {% endfor %}
+        </div>
+        <form method="post" action="{{ url_for('crear_grupo_view') }}" class="flex flex-wrap gap-3">
+          <input name="nombre" required maxlength="80" placeholder="Nombre del nuevo grupo" aria-label="Nombre del nuevo grupo" class="rounded-xl border p-2 bg-transparent">
+          <button class="heroui-chip heroui-chip-primary" type="submit">Crear grupo</button>
+        </form>
+        {% if grupos and nombres_agentes %}
+        <form method="post" action="{{ url_for('asignar_grupo_view') }}" class="flex flex-wrap gap-3">
+          <select name="agente" aria-label="Agente para asignar" class="rounded-xl border p-2 bg-white text-black">
+            {% for nombre in nombres_agentes %}<option value="{{ nombre }}">{{ nombre }}</option>{% endfor %}
+          </select>
+          <select name="grupo_id" aria-label="Grupo de destino" class="rounded-xl border p-2 bg-white text-black">
+            {% for grupo in grupos %}<option value="{{ grupo.id }}" {{ 'selected' if grupo_seleccionado == grupo.id else '' }}>{{ grupo.nombre }}</option>{% endfor %}
+          </select>
+          <button class="heroui-chip heroui-chip-primary" type="submit">Añadir al grupo</button>
+        </form>
+        {% endif %}
+      </div>
       <div class="heroui-card overflow-hidden">
         <div class="overflow-x-auto">
           <table class="w-full text-left text-sm text-[#202124] dark:text-[#e3e3e3]">

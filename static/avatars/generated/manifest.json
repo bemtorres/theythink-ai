@@ -1,0 +1,126 @@
+{
+  "herramienta": "image_gen integrada",
+  "estilo": "Retrato editorial digital semirrealista, encuadre cuadrado de rostro y hombros",
+  "imagenes": [
+    {
+      "agente": "bodega_jefe",
+      "archivo": "bodega_jefe-v1.png",
+      "prompt": "Use case: illustration-story. Asset type: individual square avatar for chat application. Subject: Roberto Salinas, fictional Chilean warehouse manager in his late 40s, short salt and pepper hair, neat beard, navy work shirt, focused precise expression, blurred warehouse shelves. Style: polished editorial digital painted portrait, semi-realistic, natural facial proportions, visible soft brush texture, warm diffuse lighting, muted colors. Composition: one person only, centered head and shoulders, whole hair visible with comfortable margin, face large and readable in tiny circular crop. No text, lettering, watermark, collage, or frame. Opaque background."
+    },
+    {
+      "agente": "bodega_trabajador",
+      "archivo": "bodega_trabajador-v1.png",
+      "prompt": "Use case: illustration-story. Asset type: individual square avatar for chat application. Subject: Luis Paredes, fictional Chilean warehouse worker early 40s, dark cropped hair, stubble, orange safety vest over gray shirt, weary mildly sardonic expression, blurred warehouse. Style: polished editorial digital painted portrait, semi-realistic, natural facial proportions, soft brush texture, warm diffuse lighting, muted colors. Composition: one person only, centered head and shoulders, whole hair visible with comfortable margin, face readable in tiny circular crop. No text, lettering, watermark, collage, or frame. Opaque background."
+    },
+    {
+      "agente": "cliente_bodega_feliz",
+      "archivo": "cliente_bodega_feliz-v1.png",
+      "prompt": "Use case: illustration-story. Asset type: individual square avatar for chat application. Subject: Valentina Perez, fictional Chilean female music store customer late 20s, curly dark hair, green casual sweater, warm satisfied smile, softly blurred musical keyboard display. Style: polished editorial digital painted portrait, semi-realistic, natural facial proportions, soft brush texture, warm diffuse lighting, muted colors. Composition: one person only, centered head and shoulders, whole hair visible with comfortable margin, face readable in tiny circular crop. No text, lettering, watermark, collage, or frame. Opaque background."
+    },
+    {
+      "agente": "cliente_bodega_problemas",
+      "archivo": "cliente_bodega_problemas-v1.png",
+      "prompt": "Use case: illustration-story. Asset type: individual square avatar for chat application. Subject: Cristobal Munoz, fictional Chilean male music store customer early 30s, wavy brown hair, denim jacket, concerned disappointed expression, blurred guitar shop. Style: polished editorial digital painted portrait, semi-realistic, natural facial proportions, soft brush texture, warm diffuse lighting, muted colors. Composition: one person only, centered head and shoulders, whole hair visible with comfortable margin, face readable in tiny circular crop. No text, lettering, watermark, collage, or frame. Opaque background."
+    },
+    {
+      "agente": "cliente_tarjetas_feliz",
+      "archivo": "cliente_tarjetas_feliz-v1.png",
+      "prompt": "Use case: illustration-story. Asset type: individual square avatar for chat application. Subject: Francisca Morales, fictional Chilean female music store customer early 30s, chestnut bob haircut, cream blouse, content friendly smile, subtle blurred music store background. Style: polished editorial digital painted portrait, semi-realistic, natural facial proportions, soft brush texture, warm diffuse lighting, muted colors. Composition: one person only, centered head and shoulders, whole hair visible with comfortable margin, face readable in tiny circular crop. No text, lettering, watermark, collage, or frame. Opaque background."
+    },
+    {
+      "agente": "cliente_tarjetas_problemas",
+      "archivo": "cliente_tarjetas_problemas-v1.png",
+      "prompt": "Use case: illustration-story. Asset type: individual square avatar for chat application. Subject: Sebastian Castro, fictional Chilean male customer mid 30s, short black hair, thin glasses, burgundy sweater, concerned questioning expression about payment issue, neutral music shop background. Style: polished editorial digital painted portrait, semi-realistic, natural facial proportions, soft brush texture, warm diffuse lighting, muted colors. Composition: one person only, centered head and shoulders, whole hair visible with comfortable margin, face readable in tiny circular crop. No text, lettering, watermark, collage, or frame. Opaque background."
+    },
+    {
+      "agente": "cliente_tienda_feliz",
+      "archivo": "cliente_tienda_feliz-v1.png",
+      "prompt": "Use case: illustration-story. Asset type: individual square avatar for chat application. Subject: Daniela Herrera, fictional Chilean female musician customer mid 20s, dark ponytail, mustard jacket, bright satisfied smile, blurred audio equipment showroom. Style: polished editorial digital painted portrait, semi-realistic, natural facial proportions, soft brush texture, warm diffuse lighting, muted colors. Composition: one person only, centered head and shoulders, whole hair visible with comfortable margin, face readable in tiny circular crop. No text, lettering, watermark, collage, or frame. Opaque background."
+    },
+    {
+      "agente": "cliente_tienda_problemas",
+      "archivo": "cliente_tienda_problemas-v1.png",
+      "prompt": "Use case: illustration-story. Asset type: individual square avatar for chat application. Subject: Matias Silva, fictional Chilean male musician customer late 20s, curly dark hair and light beard, gray hoodie, mildly frustrated expression, blurred microphones display. Style: polished editorial digital painted portrait, semi-realistic, natural facial proportions, soft brush texture, warm diffuse lighting, muted colors. Composition: one person only, centered head and shoulders, whole hair visible with comfortable margin, face readable in tiny circular crop. No text, lettering, watermark, collage, or frame. Opaque background."
+    },
+    {
+      "agente": "cliente_transporte_feliz",
+      "archivo": "cliente_transporte_feliz-v1.png",
+      "prompt": "Use case: illustration-story. Asset type: individual square avatar for chat application. Subject: Camila Reyes, fictional Chilean female customer mid 30s, long wavy brown hair, blue blouse, relaxed happy smile, soft home music studio background. Style: polished editorial digital painted portrait, semi-realistic, natural facial proportions, soft brush texture, warm diffuse lighting, muted colors. Composition: one person only, centered head and shoulders, whole hair visible with comfortable margin, face readable in tiny circular crop. No text, lettering, watermark, collage, or frame. Opaque background."
+    },
+    {
+      "agente": "cliente_transporte_problemas",
+      "archivo": "cliente_transporte_problemas-v1.png",
+      "prompt": "Use case: illustration-story. Asset type: individual square avatar for chat application. Subject: Nicolas Soto, fictional Chilean male customer early 40s, short brown hair and beard, olive shirt, disappointed impatient but calm expression, soft home audio background. Style: polished editorial digital painted portrait, semi-realistic, natural facial proportions, soft brush texture, warm diffuse lighting, muted colors. Composition: one person only, centered head and shoulders, whole hair visible with comfortable margin, face readable in tiny circular crop. No text, lettering, watermark, collage, or frame. Opaque background."
+    },
+    {
+      "agente": "don_quijote",
+      "archivo": "don_quijote-v1.png",
+      "prompt": "Use case: illustration-story. Asset type: individual square avatar for chat application. Subject: Don Quixote of La Mancha, elderly lean Spanish knight with long narrow face, pointed gray beard and mustache, antique worn metal helmet and armor, noble idealistic gaze, warm blurred La Mancha landscape. Style: polished editorial digital painted portrait, semi-realistic, natural facial proportions, soft brush texture, warm diffuse lighting, muted colors. Composition: one person only, centered head and shoulders, whole hair visible with comfortable margin, face readable in tiny circular crop. No text, lettering, watermark, collage, or frame. Opaque background."
+    },
+    {
+      "agente": "el_flaite_chileno",
+      "archivo": "el_flaite_chileno-v1.png",
+      "prompt": "Use case: illustration-story. Asset type: individual square avatar for chat application. Subject: fictional Chilean young adult urban music fan, stylish dark fade haircut, silver chain, black streetwear jacket, lively mischievous friendly smile, Santiago neighborhood softly blurred, respectful individual portrait without class stereotypes. Style: polished editorial digital painted portrait, semi-realistic, natural facial proportions, soft brush texture, warm diffuse lighting, muted colors. Composition: one person only, centered head and shoulders, whole hair visible with comfortable margin, face readable in tiny circular crop. No text, lettering, watermark, collage, or frame. Opaque background."
+    },
+    {
+      "agente": "el_principito",
+      "archivo": "el_principito-v1.png",
+      "prompt": "Use case: illustration-story. Asset type: individual square avatar for chat application. Subject: The Little Prince, small blond boy with tousled golden hair, green princely tunic and flowing yellow scarf, tender curious expression, tiny stars and warm dusk in soft background. Style: polished editorial digital painted portrait, semi-realistic, natural facial proportions, soft brush texture, warm diffuse lighting, muted colors. Composition: one person only, centered head and shoulders, whole hair visible with comfortable margin, face readable in tiny circular crop. No text, lettering, watermark, collage, or frame. Opaque background."
+    },
+    {
+      "agente": "hincha_colocolo",
+      "archivo": "hincha_colocolo-v1.png",
+      "prompt": "Use case: illustration-story. Asset type: individual square avatar for chat application. Subject: fictional Chilean adult male Colo-Colo football fan in his 30s, short black hair, white and black football jersey with no lettering or emblems, joyful proud expression, blurred stadium stands. Style: polished editorial digital painted portrait, semi-realistic, natural facial proportions, soft brush texture, warm diffuse lighting, muted colors. Composition: one person only, centered head and shoulders, whole hair visible with comfortable margin, face readable in tiny circular crop. No text, lettering, watermark, collage, or frame. Opaque background."
+    },
+    {
+      "agente": "hincha_udechile",
+      "archivo": "hincha_udechile-v1.png",
+      "prompt": "Use case: illustration-story. Asset type: individual square avatar for chat application. Subject: fictional Chilean adult male Universidad de Chile football supporter late 30s, wavy dark hair and short beard, blue football jersey with red accents without logos or lettering, passionate happy expression, blurred stadium. Style: polished editorial digital painted portrait, semi-realistic, natural facial proportions, soft brush texture, warm diffuse lighting, muted colors. Composition: one person only, centered head and shoulders, whole hair visible with comfortable margin, face readable in tiny circular crop. No text, lettering, watermark, collage, or frame. Opaque background."
+    },
+    {
+      "agente": "nikola_tesla",
+      "archivo": "nikola_tesla-v1.png",
+      "prompt": "Use case: illustration-story. Asset type: individual square avatar for chat application. Subject: Nikola Tesla, recognizable historical inventor portrait, slender face, neatly parted dark hair, thin mustache, dark early twentieth century suit and white shirt, thoughtful visionary gaze, subtle out of focus electrical laboratory. Style: polished editorial digital painted portrait, semi-realistic, natural facial proportions, soft brush texture, warm diffuse lighting, muted colors. Composition: one person only, centered head and shoulders, whole hair visible with comfortable margin, face readable in tiny circular crop. No text, lettering, watermark, collage, or frame. Opaque background."
+    },
+    {
+      "agente": "sherlock_holmes",
+      "archivo": "sherlock_holmes-v1.png",
+      "prompt": "Use case: illustration-story. Asset type: individual square avatar for chat application. Subject: Sherlock Holmes, classic literary Victorian detective, lean angular face, dark hair, tweed coat and deerstalker cap, intensely observant expression, blurred London study, original character interpretation. Style: polished editorial digital painted portrait, semi-realistic, natural facial proportions, soft brush texture, warm diffuse lighting, muted colors. Composition: one person only, centered head and shoulders, whole hair visible with comfortable margin, face readable in tiny circular crop. No text, lettering, watermark, collage, or frame. Opaque background."
+    },
+    {
+      "agente": "socrates",
+      "archivo": "socrates-v1.png",
+      "prompt": "Use case: illustration-story. Asset type: individual square avatar for chat application. Subject: Socrates, ancient Greek philosopher, elderly bald man with curly gray beard, broad nose, simple off-white Greek himation, thoughtful inquisitive kindly expression, blurred Athenian stone columns. Style: polished editorial digital painted portrait, semi-realistic, natural facial proportions, soft brush texture, warm diffuse lighting, muted colors. Composition: one person only, centered head and shoulders, whole hair visible with comfortable margin, face readable in tiny circular crop. No text, lettering, watermark, collage, or frame. Opaque background."
+    },
+    {
+      "agente": "tarjetas_jefe",
+      "archivo": "tarjetas_jefe-v1.png",
+      "prompt": "Use case: illustration-story. Asset type: individual square avatar for chat application. Subject: Fernando Rios, fictional Chilean payments department manager early 50s, neatly combed dark gray hair, rectangular glasses, charcoal suit and blue tie, prudent analytical expression, soft modern office background. Style: polished editorial digital painted portrait, semi-realistic, natural facial proportions, soft brush texture, warm diffuse lighting, muted colors. Composition: one person only, centered head and shoulders, whole hair visible with comfortable margin, face readable in tiny circular crop. No text, lettering, watermark, collage, or frame. Opaque background."
+    },
+    {
+      "agente": "tarjetas_trabajador",
+      "archivo": "tarjetas_trabajador-v1.png",
+      "prompt": "Use case: illustration-story. Asset type: individual square avatar for chat application. Subject: Paula Vega, fictional Chilean payment support analyst early 30s, shoulder length dark hair, subtle glasses, purple blouse, tired candid mildly ironic expression, soft office background. Style: polished editorial digital painted portrait, semi-realistic, natural facial proportions, soft brush texture, warm diffuse lighting, muted colors. Composition: one person only, centered head and shoulders, whole hair visible with comfortable margin, face readable in tiny circular crop. No text, lettering, watermark, collage, or frame. Opaque background."
+    },
+    {
+      "agente": "tienda_jefe",
+      "archivo": "tienda_jefe-v1.png",
+      "prompt": "Use case: illustration-story. Asset type: individual square avatar for chat application. Subject: Andrea Quiroga, fictional Chilean female music retail manager early 40s, sleek shoulder length chestnut hair, navy blazer and cream top, confident professional welcoming expression, blurred music shop. Style: polished editorial digital painted portrait, semi-realistic, natural facial proportions, soft brush texture, warm diffuse lighting, muted colors. Composition: one person only, centered head and shoulders, whole hair visible with comfortable margin, face readable in tiny circular crop. No text, lettering, watermark, collage, or frame. Opaque background."
+    },
+    {
+      "agente": "tienda_trabajador",
+      "archivo": "tienda_trabajador-v1.png",
+      "prompt": "Use case: illustration-story. Asset type: individual square avatar for chat application. Subject: Maria Lopez, fictional Chilean music store saleswoman mid 30s, dark hair in a loose bun, teal polo shirt, slightly exhausted direct expression with subtle wry smile, blurred guitars display. Style: polished editorial digital painted portrait, semi-realistic, natural facial proportions, soft brush texture, warm diffuse lighting, muted colors. Composition: one person only, centered head and shoulders, whole hair visible with comfortable margin, face readable in tiny circular crop. No text, lettering, watermark, collage, or frame. Opaque background."
+    },
+    {
+      "agente": "transporte_jefe",
+      "archivo": "transporte_jefe-v1.png",
+      "prompt": "Use case: illustration-story. Asset type: individual square avatar for chat application. Subject: Diego Fuentes, fictional Chilean transport logistics manager mid 40s, short dark hair with gray temples, light blue shirt and navy jacket, organized confident expression, softly blurred logistics office. Style: polished editorial digital painted portrait, semi-realistic, natural facial proportions, soft brush texture, warm diffuse lighting, muted colors. Composition: one person only, centered head and shoulders, whole hair visible with comfortable margin, face readable in tiny circular crop. No text, lettering, watermark, collage, or frame. Opaque background."
+    },
+    {
+      "agente": "transporte_trabajador",
+      "archivo": "transporte_trabajador-v1.png",
+      "prompt": "Use case: illustration-story. Asset type: individual square avatar for chat application. Subject: Jorge Rojas, fictional Chilean delivery driver early 40s, short hair and stubble, dark baseball cap, practical orange and navy work jacket, tired pragmatic expression, blurred courier van. Style: polished editorial digital painted portrait, semi-realistic, natural facial proportions, soft brush texture, warm diffuse lighting, muted colors. Composition: one person only, centered head and shoulders, whole hair visible with comfortable margin, face readable in tiny circular crop. No text, lettering, watermark, collage, or frame. Opaque background."
+    }
+  ]
+}
