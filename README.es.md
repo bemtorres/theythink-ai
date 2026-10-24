@@ -2,6 +2,11 @@
 
 Consulta la [guía para crear nuevas personalidades](README.personalidades.md), con ejemplos de perfiles y seeders de Music Pro.
 
+El inicio incluye el explorador de personajes con búsqueda, grupos, favoritos y
+perfiles con preguntas sugeridas. El chat comparte la nueva apariencia y conserva
+sesiones y memoria. Consulta el [sistema visual](design.md) y la
+[guía de la experiencia integrada](docs/experiencia-integrada.md).
+
 <p align="center">
   <img src="theythinkai_logo.png" alt="THEYTHINK AI Logo" width="160" style="border-radius: 24px;" />
 </p>

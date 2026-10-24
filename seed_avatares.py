@@ -14,7 +14,8 @@ def main():
     raiz = Path(__file__).resolve().parent
     carpeta = raiz / "static" / "avatars" / "generated"
     manifiesto = json.loads((carpeta / "manifest.json").read_text(encoding="utf-8"))
-    bd.BASE_DATOS = str(raiz / "agentes.db")
+    configurada = Path(bd.BASE_DATOS)
+    bd.BASE_DATOS = str(configurada if configurada.is_absolute() else raiz / configurada)
     bd.inicializar()
     actualizados = 0
     for imagen in manifiesto["imagenes"]:

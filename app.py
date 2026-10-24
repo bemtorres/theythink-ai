@@ -74,6 +74,8 @@ from basededatos import (
     verificar_usuario,
 )
 from identidades import IDENTIDADES
+from catalogo import presentar_agentes
+from basededatos import listar_catalogo_agentes
 
 load_dotenv()
 
@@ -222,22 +224,18 @@ def get_agent_or_404(agent_name: str) -> str:
 @app.get("/", endpoint="inicio")
 def home_view():
     """Página principal de bienvenida y catálogo interactivo."""
-    agents = [load_agent_data(name) for name in listar_agentes()]
     grupos = listar_grupos()
+    agents = presentar_agentes(listar_catalogo_agentes(), grupos)
     grupo_id = request.args.get("grupo", type=int)
     if grupo_id is not None:
         grupo = next((g for g in grupos if g["id"] == grupo_id), None)
         if grupo is None:
             abort(404)
-        agents = [a for a in agents if a["nombre"] in grupo["agentes"]]
-    sources = listar_fuentes()
-    roles = listar_roles()
     return render_template(
         "index.html",
         agentes=agents,
         grupos=grupos,
-        fuentes=sources,
-        roles=roles,
+        grupo_inicial=grupo_id,
         identidades=IDENTIDADES,
         tiene_api_key=has_api_key(),
         usuario_actual=session.get("usuario"),
@@ -250,13 +248,21 @@ def chat_view(nombre):
     """Página del chat interactivo con el agente seleccionado."""
     get_agent_or_404(nombre)
     agent_data = load_agent_data(nombre)
+    grupos = listar_grupos()
+    catalogo = presentar_agentes(listar_catalogo_agentes(), grupos)
+    presentacion = next(a for a in catalogo if a["id"] == nombre)
     active_session = obtener_o_crear_sesion_activa(nombre)
     roles = listar_roles()
     all_agents = listar_agentes()
-    all_agents_info = [load_agent_data(name) for name in all_agents]
+    all_agents_info = [
+        {"nombre": a["id"], "persona": a["name"], "avatar_url": a["avatar"],
+         "iniciales": get_initials(a["name"]), "identidad": {"nombre": a["role"]}}
+        for a in catalogo
+    ]
     return render_template(
         "chat.html",
         agente=agent_data,
+        presentacion=presentacion,
         sesion_activa=active_session,
         sesiones=listar_sesiones_agente(nombre),
         roles=roles,
@@ -401,7 +407,7 @@ def admin_telegram_chat_view(nombre):
 def login_view():
     """Página de inicio de sesión."""
     if session.get("usuario"):
-        next_url = request.args.get("next") or url_for("dashboard_view")
+        next_url = request.args.get("next") or url_for("pagina_dashboard")
         return redirect(next_url)
     return render_template("login.html", next=request.args.get("next", ""))
 
@@ -412,7 +418,7 @@ def login_action():
     payload = request.get_json(silent=True) or request.form
     username = (payload.get("usuario") or "").strip()
     password = (payload.get("password") or "").strip()
-    next_url = request.args.get("next") or (payload.get("next") if isinstance(payload, dict) else "") or url_for("dashboard_view")
+    next_url = request.args.get("next") or (payload.get("next") if isinstance(payload, dict) else "") or url_for("pagina_dashboard")
 
     user_result = verificar_usuario(username, password)
     if not user_result:

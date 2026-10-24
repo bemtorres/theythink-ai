@@ -1,0 +1,249 @@
+{
+  "el_principito": {
+    "role": "Explorador de estrellas",
+    "category": "personajes",
+    "description": "Una mirada curiosa para volver a encontrar lo esencial en las cosas pequeñas.",
+    "starters": [
+      "¿Qué es lo que más te interesa del mundo?",
+      "¿Qué pregunta debería hacerme hoy?",
+      "Cuéntame algo desde tu perspectiva."
+    ],
+    "display_name": "El Principito"
+  },
+  "tienda_jefe": {
+    "role": "Jefatura · Sucursal y tienda",
+    "category": "equipo",
+    "description": "Una mirada comercial para conectar la experiencia del cliente con los próximos módulos.",
+    "starters": [
+      "¿Qué desarrollarías primero en tu módulo?",
+      "¿Qué problema resolvería esa mejora?",
+      "¿Cómo comprobarías que funciona?"
+    ]
+  },
+  "sherlock_holmes": {
+    "role": "Detective consultor",
+    "category": "personajes",
+    "description": "Observa los detalles que pasan inadvertidos. Pon a prueba tu capacidad de deducción.",
+    "starters": [
+      "¿Qué es lo que más te interesa del mundo?",
+      "¿Qué pregunta debería hacerme hoy?",
+      "Cuéntame algo desde tu perspectiva."
+    ]
+  },
+  "cliente_bodega_feliz": {
+    "role": "Cliente · Bodega",
+    "category": "clientes",
+    "description": "Retiré mi teclado y accesorios: el pedido estaba completo y bien embalado.",
+    "starters": [
+      "¿Cómo fue tu experiencia con MusicPro?",
+      "¿Qué te gustaría mejorar del servicio?",
+      "¿Qué te haría volver a comprar?"
+    ]
+  },
+  "socrates": {
+    "role": "Filosofía y preguntas",
+    "category": "personajes",
+    "description": "Una buena pregunta puede cambiar tu respuesta. Examina tus ideas con el filósofo de Atenas.",
+    "starters": [
+      "¿Qué es lo que más te interesa del mundo?",
+      "¿Qué pregunta debería hacerme hoy?",
+      "Cuéntame algo desde tu perspectiva."
+    ],
+    "display_name": "Sócrates"
+  },
+  "bodega_trabajador": {
+    "role": "Operaciones · Bodega",
+    "category": "equipo",
+    "description": "Conoce cada rincón de la bodega. Te contará qué falla entre un conteo y el siguiente.",
+    "starters": [
+      "¿Qué es lo más difícil de tu turno?",
+      "¿Qué falla en el sistema actual?",
+      "¿Cómo te gustaría hacer esa tarea?"
+    ]
+  },
+  "nikola_tesla": {
+    "role": "Inventor e ingeniero",
+    "category": "personajes",
+    "description": "Invención, electricidad y las preguntas de una mente que imaginó otro futuro.",
+    "starters": [
+      "¿Qué es lo que más te interesa del mundo?",
+      "¿Qué pregunta debería hacerme hoy?",
+      "Cuéntame algo desde tu perspectiva."
+    ],
+    "display_name": "Nikola Tesla"
+  },
+  "cliente_tienda_problemas": {
+    "role": "Cliente · Sucursal y tienda",
+    "category": "clientes",
+    "description": "Compré un micrófono que figuraba disponible y después me avisaron que no había stock.",
+    "starters": [
+      "¿Cómo fue tu experiencia con MusicPro?",
+      "¿Qué te gustaría mejorar del servicio?",
+      "¿Qué te haría volver a comprar?"
+    ]
+  },
+  "cliente_transporte_feliz": {
+    "role": "Cliente · Courier y transporte",
+    "category": "clientes",
+    "description": "Mi piano digital llegó dentro del horario informado y en buen estado.",
+    "starters": [
+      "¿Cómo fue tu experiencia con MusicPro?",
+      "¿Qué te gustaría mejorar del servicio?",
+      "¿Qué te haría volver a comprar?"
+    ]
+  },
+  "cliente_bodega_problemas": {
+    "role": "Cliente · Bodega",
+    "category": "clientes",
+    "description": "Fui a retirar una guitarra y faltaba el soporte; tuve que volver a consultar.",
+    "starters": [
+      "¿Cómo fue tu experiencia con MusicPro?",
+      "¿Qué te gustaría mejorar del servicio?",
+      "¿Qué te haría volver a comprar?"
+    ]
+  },
+  "cliente_tienda_feliz": {
+    "role": "Cliente · Sucursal y tienda",
+    "category": "clientes",
+    "description": "Encontré una interfaz de audio y me orientaron bien para elegirla.",
+    "starters": [
+      "¿Cómo fue tu experiencia con MusicPro?",
+      "¿Qué te gustaría mejorar del servicio?",
+      "¿Qué te haría volver a comprar?"
+    ]
+  },
+  "transporte_jefe": {
+    "role": "Jefatura · Courier y transporte",
+    "category": "equipo",
+    "description": "Piensa en rutas, entregas y en cómo conectar el courier con el resto de MusicPro.",
+    "starters": [
+      "¿Qué desarrollarías primero en tu módulo?",
+      "¿Qué problema resolvería esa mejora?",
+      "¿Cómo comprobarías que funciona?"
+    ]
+  },
+  "don_quijote": {
+    "role": "Caballero andante",
+    "category": "personajes",
+    "description": "Ideales, aventuras y una conversación con un caballero que se niega a dejar de soñar.",
+    "starters": [
+      "¿Qué es lo que más te interesa del mundo?",
+      "¿Qué pregunta debería hacerme hoy?",
+      "Cuéntame algo desde tu perspectiva."
+    ],
+    "display_name": "Don Quijote"
+  },
+  "hincha_colocolo": {
+    "role": "Fútbol · Colo-Colo",
+    "category": "personajes",
+    "description": "Historias del Monumental, memoria alba y pasión por el fútbol chileno.",
+    "starters": [
+      "¿Qué es lo que más te interesa del mundo?",
+      "¿Qué pregunta debería hacerme hoy?",
+      "Cuéntame algo desde tu perspectiva."
+    ],
+    "display_name": "El Albo Adicto"
+  },
+  "hincha_udechile": {
+    "role": "Fútbol · Universidad de Chile",
+    "category": "personajes",
+    "description": "La mística azul, recuerdos de tribuna y una pasión que acompaña en las buenas y en las malas.",
+    "starters": [
+      "¿Qué es lo que más te interesa del mundo?",
+      "¿Qué pregunta debería hacerme hoy?",
+      "Cuéntame algo desde tu perspectiva."
+    ],
+    "display_name": "El Bullanguero"
+  },
+  "el_flaite_chileno": {
+    "role": "Música y cultura urbana",
+    "category": "personajes",
+    "description": "Humor, música urbana y una conversación directa con un personaje de Santiago.",
+    "starters": [
+      "¿Qué es lo que más te interesa del mundo?",
+      "¿Qué pregunta debería hacerme hoy?",
+      "Cuéntame algo desde tu perspectiva."
+    ],
+    "display_name": "El Jordan"
+  },
+  "tarjetas_jefe": {
+    "role": "Jefatura · BeatPay Virtual",
+    "category": "equipo",
+    "description": "Habla de pagos claros, trazabilidad y prioridades para desarrollar BeatPay Virtual.",
+    "starters": [
+      "¿Qué desarrollarías primero en tu módulo?",
+      "¿Qué problema resolvería esa mejora?",
+      "¿Cómo comprobarías que funciona?"
+    ]
+  },
+  "cliente_tarjetas_feliz": {
+    "role": "Cliente · BeatPay Virtual",
+    "category": "clientes",
+    "description": "Pagué con BeatPay y pude reconocer el cargo y la confirmación de mi compra.",
+    "starters": [
+      "¿Cómo fue tu experiencia con MusicPro?",
+      "¿Qué te gustaría mejorar del servicio?",
+      "¿Qué te haría volver a comprar?"
+    ]
+  },
+  "transporte_trabajador": {
+    "role": "Operaciones · Courier y transporte",
+    "category": "equipo",
+    "description": "Diez años al volante y pocas ganas de llamadas innecesarias. Tiene mejoras que proponer.",
+    "starters": [
+      "¿Qué es lo más difícil de tu turno?",
+      "¿Qué falla en el sistema actual?",
+      "¿Cómo te gustaría hacer esa tarea?"
+    ]
+  },
+  "tienda_trabajador": {
+    "role": "Operaciones · Sucursal y tienda",
+    "category": "equipo",
+    "description": "Entre pedidos, reposición y clientes difíciles, sabe qué necesita cambiar en la tienda.",
+    "starters": [
+      "¿Qué es lo más difícil de tu turno?",
+      "¿Qué falla en el sistema actual?",
+      "¿Cómo te gustaría hacer esa tarea?"
+    ]
+  },
+  "cliente_transporte_problemas": {
+    "role": "Cliente · Courier y transporte",
+    "category": "clientes",
+    "description": "Esperé mis parlantes durante el horario anunciado y no recibí aviso del retraso.",
+    "starters": [
+      "¿Cómo fue tu experiencia con MusicPro?",
+      "¿Qué te gustaría mejorar del servicio?",
+      "¿Qué te haría volver a comprar?"
+    ]
+  },
+  "tarjetas_trabajador": {
+    "role": "Operaciones · BeatPay Virtual",
+    "category": "equipo",
+    "description": "Reclamos, bloqueos y devoluciones: conoce el lado cotidiano de los medios de pago.",
+    "starters": [
+      "¿Qué es lo más difícil de tu turno?",
+      "¿Qué falla en el sistema actual?",
+      "¿Cómo te gustaría hacer esa tarea?"
+    ]
+  },
+  "bodega_jefe": {
+    "role": "Jefatura · Bodega",
+    "category": "equipo",
+    "description": "Convierte los problemas de inventario en propuestas concretas para una bodega más ordenada.",
+    "starters": [
+      "¿Qué desarrollarías primero en tu módulo?",
+      "¿Qué problema resolvería esa mejora?",
+      "¿Cómo comprobarías que funciona?"
+    ]
+  },
+  "cliente_tarjetas_problemas": {
+    "role": "Cliente · BeatPay Virtual",
+    "category": "clientes",
+    "description": "Solicité revisar un cargo que parecía repetido y no sabía en qué iba mi reclamo.",
+    "starters": [
+      "¿Cómo fue tu experiencia con MusicPro?",
+      "¿Qué te gustaría mejorar del servicio?",
+      "¿Qué te haría volver a comprar?"
+    ]
+  }
+}

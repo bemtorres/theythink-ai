@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Explorar · THEYTHINK AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="explorar.css">
+</head>
+<body>
+<a class="skip" href="#main">Ir al catálogo</a>
+<aside class="sidebar">
+  <a class="brand" href="explorar.html"><img src="/static/img/theythinkai_logo.png" alt=""><span>theythink<span class="brand-dot">.</span></span></a>
+  <span class="eyebrow">TU ESPACIO DE CONVERSACIÓN</span>
+  <nav aria-label="Navegación principal">
+    <button class="nav-item active" data-view="all" aria-pressed="true"><span aria-hidden="true">◈</span> Explorar</button>
+    <button class="nav-item" data-view="favorites" aria-pressed="false"><span aria-hidden="true">♡</span> Mis favoritos <span id="fav-count" class="nav-count">0</span></button>
+    <a class="nav-item" href="/dashboard"><span aria-hidden="true">＋</span> Crear personaje</a>
+  </nav>
+  <span class="eyebrow collection-label">COLECCIONES</span>
+  <button class="collection" id="musicpro"><span class="collection-icon">M</span><span><strong>MusicPro</strong><small>Equipo y clientes</small></span><span class="nav-count">16</span></button>
+  <div class="side-bottom"><p>Una conversación.<br>Otra forma de pensar.</p><a href="/dashboard">Administrar espacio <span aria-hidden="true">↗</span></a><span class="preview-note">Vista previa de diseño</span></div>
+</aside>
+<main id="main">
+  <header class="topbar"><span class="mobile-brand">theythink.</span><span class="breadcrumb">Tu espacio <span>/</span> Explorar</span><div class="top-actions"><button id="theme" aria-label="Cambiar tema">◐</button><a href="/login">Mi cuenta <span aria-hidden="true">↗</span></a></div></header>
+  <section class="intro"><div><p class="eyebrow">PERSONAS, IDEAS Y OTRAS PERSPECTIVAS</p><h1>¿Con quién quieres<br>conversar hoy?</h1><p>Descubre una voz diferente. Haz una pregunta. Sigue la conversación.</p></div><div class="portrait-stack" aria-hidden="true"><img src="/static/avatars/generated/sherlock_holmes-v1.png" alt=""><img src="/static/avatars/generated/el_principito-v1.png" alt=""><img src="/static/avatars/generated/tienda_jefe-v1.png" alt=""></div></section>
+  <section class="discovery" aria-label="Buscar personajes"><div class="search-box"><span aria-hidden="true">⌕</span><input id="search" type="search" aria-label="Buscar personajes" placeholder="Busca un personaje, una idea o un tema…" autocomplete="off"><kbd>/</kbd></div><div class="filter-row" aria-label="Categorías"><button data-category="all" class="chip selected" aria-pressed="true">Para descubrir</button><button data-category="personajes" class="chip" aria-pressed="false">Personajes</button><button data-category="equipo" class="chip" aria-pressed="false">Equipo MusicPro</button><button data-category="clientes" class="chip" aria-pressed="false">Clientes</button></div></section>
+  <section class="spotlight" id="spotlight"><div class="spotlight-icon">M</div><div><p class="eyebrow">DENTRO DE MUSICPRO</p><h2>Un equipo. Muchas perspectivas.</h2><p>Escucha propuestas, descubre problemas y conoce a sus clientes.</p></div><button id="explore-music">Explorar colección <span aria-hidden="true">↗</span></button></section>
+  <section class="catalog"><div class="section-heading"><div><h2 id="results-title">Encuentra tu próxima conversación</h2><p id="results-subtitle">Personajes con una historia y una forma propia de ver las cosas.</p></div><span id="result-count" role="status" aria-live="polite"></span></div><div id="cards" class="cards"></div><div id="empty" hidden><h3>No encontramos personajes</h3><p>Prueba otro nombre o cambia los filtros.</p><button id="reset">Restablecer búsqueda</button></div></section>
+  <footer>THEYTHINK AI <span>Personajes de IA · Las experiencias de clientes son simuladas.</span></footer>
+</main>
+<dialog id="detail" aria-labelledby="detail-name"><button id="close-detail" class="close-detail" aria-label="Cerrar perfil">×</button><div id="detail-content"></div></dialog>
+<script src="agentes.js"></script><script src="explorar.js"></script>
+</body>
+</html>

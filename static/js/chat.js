@@ -27,6 +27,8 @@
   // Identificadores del contexto actual
   var agentName = document.body.dataset.agente;
   var activeSessionId = parseInt(document.body.dataset.sesionId, 10) || null;
+  var presentationElement = document.getElementById('character-presentation');
+  var characterInfo = presentationElement ? JSON.parse(presentationElement.textContent) : {name: agentName};
 
   // Notificaciones flotantes (Toast)
   var toastElement = document.getElementById("toast");
@@ -95,7 +97,8 @@
   /** Aplica una sugerencia de prompt rápido al campo de mensaje */
   function useSuggestion(text) {
     messageInput.value = text;
-    messageForm.requestSubmit();
+    messageInput.focus();
+    messageInput.dispatchEvent(new Event("input"));
   }
 
   /** Copia texto al portapapeles y muestra indicador */
@@ -152,37 +155,23 @@
 
   /** Renderiza la pantalla inicial de bienvenida con sugerencias de preguntas */
   function renderWelcomeScreen() {
-    messagesContainer.innerHTML =
-      '<div class="mx-auto max-w-2xl py-10 text-center animate-fade-in">' +
-      '<div class="relative mx-auto flex h-16 w-16 items-center justify-center mb-4">' +
-      '  <div class="absolute inset-0 rounded-2xl bg-gradient-to-tr from-[#1a73e8] via-[#a142f4] to-[#ea4335] opacity-30 blur-md"></div>' +
-      '  <img src="/static/img/theythinkai_logo.png" alt="THEYTHINK AI" class="relative h-16 w-16 rounded-2xl object-cover shadow-xl border border-black/10 dark:border-white/10">' +
-      '</div>' +
-      '  <h3 class="text-xl font-bold text-[#202124] dark:text-white">¡Hola! Soy ' + agentName + '</h3>' +
-      '  <p class="text-xs text-[#5f6368] dark:text-[#c4c7c5] mt-1 max-w-md mx-auto">Pregúntame cualquier duda sobre mis bases de conocimiento o pídemelo en tu estilo preferido.</p>' +
-      '  <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-left max-w-xl mx-auto">' +
-      '    <button onclick="window.usarSugerencia(\'¿Qué conocimientos o documentos tienes disponibles?\')" class="rounded-2xl border border-black/10 dark:border-white/10 bg-white dark:bg-[#1e1f20] hover:border-[#1a73e8] dark:hover:border-[#8ab4f8] p-3.5 text-xs text-[#202124] dark:text-[#e3e3e3] shadow-sm transition hover:scale-[1.02] active:scale-95 text-left">' +
-      '      <p class="font-bold flex items-center gap-1.5"><i data-lucide="book-open" class="h-3.5 w-3.5 text-[#1e8e3e] dark:text-[#81c995]"></i> Bases Temáticas</p>' +
-      '      <p class="text-[11px] text-[#5f6368] dark:text-[#c4c7c5] mt-1">¿Qué conocimientos tienes disponibles?</p>' +
-      '    </button>' +
-      '    <button onclick="window.usarSugerencia(\'Resume los puntos clave de la información que conoces.\')" class="rounded-2xl border border-black/10 dark:border-white/10 bg-white dark:bg-[#1e1f20] hover:border-[#1a73e8] dark:hover:border-[#8ab4f8] p-3.5 text-xs text-[#202124] dark:text-[#e3e3e3] shadow-sm transition hover:scale-[1.02] active:scale-95 text-left">' +
-      '      <p class="font-bold flex items-center gap-1.5"><i data-lucide="file-text" class="h-3.5 w-3.5 text-[#1a73e8] dark:text-[#8ab4f8]"></i> Resumen Rápido</p>' +
-      '      <p class="text-[11px] text-[#5f6368] dark:text-[#c4c7c5] mt-1">Resume los puntos clave de tus bases.</p>' +
-      '    </button>' +
-      '    <button onclick="window.usarSugerencia(\'Explícame cómo funciona tu memoria en nuestras conversaciones.\')" class="rounded-2xl border border-black/10 dark:border-white/10 bg-white dark:bg-[#1e1f20] hover:border-[#1a73e8] dark:hover:border-[#8ab4f8] p-3.5 text-xs text-[#202124] dark:text-[#e3e3e3] shadow-sm transition hover:scale-[1.02] active:scale-95 text-left">' +
-      '      <p class="font-bold flex items-center gap-1.5"><i data-lucide="database" class="h-3.5 w-3.5 text-[#f9ab00] dark:text-[#fdd663]"></i> Memoria Viva</p>' +
-      '      <p class="text-[11px] text-[#5f6368] dark:text-[#c4c7c5] mt-1">¿Cómo funciona tu memoria activa?</p>' +
-      '    </button>' +
-      '    <button onclick="window.usarSugerencia(\'Proponme una idea o desafío para resolver juntos hoy.\')" class="rounded-2xl border border-black/10 dark:border-white/10 bg-white dark:bg-[#1e1f20] hover:border-[#1a73e8] dark:hover:border-[#8ab4f8] p-3.5 text-xs text-[#202124] dark:text-[#e3e3e3] shadow-sm transition hover:scale-[1.02] active:scale-95 text-left">' +
-      '      <p class="font-bold flex items-center gap-1.5"><i data-lucide="lightbulb" class="h-3.5 w-3.5 text-[#d93025] dark:text-[#f28b82]"></i> Pregunta Creativa</p>' +
-      '      <p class="text-[11px] text-[#5f6368] dark:text-[#c4c7c5] mt-1">Proponme un desafío para empezar.</p>' +
-      '    </button>' +
-      '  </div>' +
-      '</div>';
-    if (window.lucide) lucide.createIcons();
+    var dataElement = document.getElementById('character-presentation');
+    var person = dataElement ? JSON.parse(dataElement.textContent) : {name: agentName, starters: []};
+    messagesContainer.replaceChildren();
+    var welcome = document.createElement('div'); welcome.className = 'chat-welcome';
+    var image = document.createElement('img'); image.src = person.avatar || '/static/img/theythinkai_logo.png'; image.alt = person.name;
+    var title = document.createElement('h3'); title.textContent = person.name;
+    var role = document.createElement('p'); role.className = 'welcome-role'; role.textContent = person.role || '';
+    var description = document.createElement('p'); description.textContent = person.description || '';
+    var starters = document.createElement('div'); starters.className = 'welcome-starters';
+    (person.starters || []).forEach(function (prompt) {
+      var button = document.createElement('button'); button.type = 'button'; button.textContent = prompt;
+      button.addEventListener('click', function () { useSuggestion(prompt); }); starters.appendChild(button);
+    });
+    welcome.append(image, title, role, description, starters); messagesContainer.appendChild(welcome);
   }
 
-  /** Renderiza el contenido Markdown de una respuesta del agente */
+  /** Convierte Markdown a HTML sanitizado. */
   function marcar(texto) {
     if (window.marked && window.DOMPurify) {
       return DOMPurify.sanitize(marked.parse(texto, { breaks: true, gfm: true }));
@@ -215,18 +204,22 @@
 
     var copyLabel = getI18nText("chat.copyCode", null, "Copiar");
 
-    if (isUser) {
-      footer.innerHTML = '<span class="ml-auto">Tú ' + (time ? '· ' + time : '') + '</span>';
-    } else {
-      var safeText = encodeURIComponent(text);
-      footer.innerHTML =
-        '<span>' + agentName + (time ? ' · ' + time : '') + '</span>' +
-        '<button onclick="window.copiarTexto(decodeURIComponent(\'' + safeText + '\'), this)" class="inline-flex items-center gap-1 text-[11px] text-[#5f6368] dark:text-[#c4c7c5] hover:text-[#1a73e8] dark:hover:text-[#8ab4f8] transition">' +
-        '  <i data-lucide="copy" class="h-3 w-3"></i>' +
-        '  <span>' + copyLabel + '</span>' +
-        '</button>';
+    var author = document.createElement('span');
+    author.textContent = (isUser ? 'Tú' : characterInfo.name) + (time ? ' · ' + time : '');
+    if (isUser) author.className = 'ml-auto';
+    footer.appendChild(author);
+    if (!isUser) {
+      var copyButton = document.createElement('button');
+      copyButton.type = 'button';
+      copyButton.className = 'inline-flex items-center gap-1 text-[11px]';
+      copyButton.textContent = copyLabel;
+      copyButton.addEventListener('click', function () { copyToClipboard(text, copyButton); });
+      footer.appendChild(copyButton);
     }
 
+    row.classList.add("message-row");
+    box.classList.add("message-box");
+    bubble.classList.add(isUser ? "message-user" : "message-assistant");
     box.appendChild(bubble);
     box.appendChild(footer);
     row.appendChild(box);
@@ -713,6 +706,11 @@
   window.abrirModalLimpiarMemoria = openClearMemoryModal;
   window.cerrarModalLimpiarMemoria = closeClearMemoryModal;
   window.ejecutarLimpiarMemoria = executeClearMemory;
+
+  var mobileSidebar = window.matchMedia("(max-width: 767px)");
+  function syncSidebar() { if (sidebarElement) sidebarElement.classList.toggle("hidden", mobileSidebar.matches); }
+  syncSidebar();
+  mobileSidebar.addEventListener("change", syncSidebar);
 
   // Carga inicial de mensajes
   if (activeSessionId) {

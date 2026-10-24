@@ -29,7 +29,7 @@ HISTORIAL_RECIENTE = 10
 SIN_MEMORIA = "NO_MEMORIA"
 
 # Archivo de la base de datos (se crea automáticamente al usarla).
-BASE_DATOS = "agentes.db"
+BASE_DATOS = "agentes2016.db"
 
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS usuarios (
@@ -581,7 +581,7 @@ def sembrar_personajes_literarios_e_historicos():
                 nombre=nombre,
                 perfil=p["perfil"],
                 identidad_clave=p["identidad_clave"],
-                avatar_url=p.get("avatar_url", ""),
+                avatar_url=avatar_local(nombre) or p.get("avatar_url", ""),
                 fuentes_ids=[fuente_id] if fuente_id else [],
             )
 
@@ -774,6 +774,14 @@ def listar_grupos():
     return grupos
 
 
+def listar_catalogo_agentes():
+    """Consulta ligera de los campos públicos necesarios para descubrir agentes."""
+    with _conexion() as conexion:
+        return [dict(fila) for fila in conexion.execute(
+            "SELECT nombre, perfil, avatar_url FROM agentes ORDER BY nombre"
+        )]
+
+
 def existe_agente(nombre):
     """True si el agente existe en la base de datos."""
     with _conexion() as conexion:
@@ -781,6 +789,15 @@ def existe_agente(nombre):
             "SELECT 1 FROM agentes WHERE nombre = ?", (nombre,)
         ).fetchone()
     return fila is not None
+
+
+def avatar_local(nombre):
+    """Avatar generado incluido en el proyecto, si existe para este identificador."""
+    if nombre != os.path.basename(nombre) or "/" in nombre or "\\" in nombre:
+        return ""
+    archivo = nombre + "-v1.png"
+    ruta = os.path.join(os.path.dirname(__file__), "static", "avatars", "generated", archivo)
+    return "/static/avatars/generated/" + archivo if os.path.isfile(ruta) else ""
 
 
 def crear_agente(
@@ -794,6 +811,7 @@ def crear_agente(
     fuentes_ids=None,
 ):
     """Crea un agente nuevo en la base de datos y asocia sus fuentes si se pasan."""
+    avatar_url = avatar_url.strip() or avatar_local(nombre)
     with _conexion() as conexion:
         cursor = conexion.execute(
             """INSERT INTO agentes

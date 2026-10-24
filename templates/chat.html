@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
-{% block titulo %}{{ agente.nombre }} · THEYTHINK AI Chat{% endblock %}
+{% block titulo %}{{ presentacion.name }} · THEYTHINK AI{% endblock %}
 
 {% block body_atributos %}data-agente="{{ agente.nombre }}" data-sesion-id="{{ sesion_activa.id }}"{% endblock %}
 
 {% block contenido %}
-<div class="flex h-screen overflow-hidden bg-[#f8f9fa] dark:bg-[#131314] text-[#202124] dark:text-[#e3e3e3] selection:bg-[#1a73e8]/30 selection:text-white transition-colors duration-200">
+<div class="conversation-shell flex h-screen overflow-hidden bg-[#f8f9fa] dark:bg-[#131314] text-[#202124] dark:text-[#e3e3e3] selection:bg-[#1a73e8]/30 selection:text-white transition-colors duration-200">
 
   <!-- ============================================================
        Sidebar Colapsable: Historial de Conversaciones
@@ -25,8 +25,8 @@
         </div>
         {% endif %}
         <div class="min-w-0">
-          <h2 class="text-xs font-bold leading-tight truncate text-[#202124] dark:text-white">{{ agente.nombre }}</h2>
-          <p class="text-[10px] text-[#5f6368] dark:text-[#c4c7c5] truncate">{{ agente.persona }}</p>
+          <h2 class="text-xs font-bold leading-tight truncate text-[#202124] dark:text-white">{{ presentacion.name }}</h2>
+          <p class="text-[10px] text-[#5f6368] dark:text-[#c4c7c5] truncate">{{ presentacion.role }}</p>
         </div>
       </div>
       
@@ -319,7 +319,7 @@
     <div id="mensajes" class="min-h-0 flex-1 space-y-4 overflow-y-auto px-4 py-6 sm:px-6 lg:px-12"></div>
 
     <!-- Barra Inferior de Entrada (Floating Pill Google Material) -->
-    <div class="border-t border-black/10 dark:border-white/10 bg-white/80 dark:bg-[#131314]/80 px-4 py-3 sm:px-6 lg:px-12 backdrop-blur-xl transition-colors duration-200 z-20">
+    <div class="chat-composer border-t border-black/10 dark:border-white/10 bg-white/80 dark:bg-[#131314]/80 px-4 py-3 sm:px-6 lg:px-12 backdrop-blur-xl transition-colors duration-200 z-20">
       
       <!-- Atajos Rápidos arriba del input -->
       <div class="mx-auto max-w-3xl mb-2 flex items-center justify-between text-[11px] text-[#5f6368] dark:text-[#c4c7c5]">
@@ -343,7 +343,7 @@
       <!-- Formulario de Mensaje -->
       <form id="form-mensaje" class="mx-auto flex max-w-3xl items-end gap-2 sm:gap-3">
         <div class="relative flex-1">
-          <textarea id="campo-mensaje" rows="1" placeholder="Escribe tu mensaje a {{ agente.nombre }}… (Shift+Enter para nueva línea)"
+          <textarea id="campo-mensaje" rows="1" aria-label="Mensaje para {{ presentacion.name }}" placeholder="Conversa con {{ presentacion.name }}…"
                     class="max-h-44 w-full resize-none rounded-2xl border border-black/10 dark:border-white/10 bg-white dark:bg-[#1e1f20] px-4 py-3 sm:px-5 sm:py-3.5 pr-12 text-sm text-[#202124] dark:text-white shadow-sm outline-none transition placeholder:text-[#5f6368] dark:placeholder:text-[#c4c7c5] focus:border-[#1a73e8] focus:ring-4 focus:ring-[#1a73e8]/20"></textarea>
         </div>
         <button type="submit" id="boton-enviar"
@@ -353,7 +353,7 @@
       </form>
 
       <p class="mt-1.5 text-center text-[10px] text-[#5f6368] dark:text-[#c4c7c5]">
-        {{ agente.identidad.nombre }} · <span data-i18n="chat.continuousMemoryFooter">Memoria Continua respaldada en SQLite</span>
+        Personaje de IA · Las respuestas pueden contener errores.
       </p>
     </div>
 
@@ -569,5 +569,6 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="{{ url_for('static', filename='js/chat.js') }}?v=4"></script>
+<script id="character-presentation" type="application/json">{{ presentacion|tojson }}</script>
+<script src="{{ url_for('static', filename='js/chat.js') }}?v=5"></script>
 {% endblock %}

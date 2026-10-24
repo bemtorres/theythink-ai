@@ -1,0 +1,11 @@
+{
+  "scope": "proposal-preview",
+  "framework": "Flask + Jinja + Tailwind CDN + vanilla JavaScript",
+  "font_stack": {"existing": "Google Sans, Inter, system UI", "evidence": "templates/base.html:37", "proposal": "Inter, system UI"},
+  "palette": {"existing": "Google blue and multicolor accents", "evidence": "static/css/app.css:8", "proposal": "neutral surfaces and existing blue accent"},
+  "motion": "CSS transitions, no animation framework",
+  "assets": "24 generated portraits in static/avatars/generated",
+  "production_files_modified_in_this_redesign": [],
+  "reference": "https://character.ai/",
+  "reference_limit": "No readable page content; reference is conceptual rather than a measured extraction"
+}
