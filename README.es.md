@@ -18,7 +18,7 @@ sesiones y memoria. Consulta el [sistema visual](design.md) y la
 
 <p align="center">
   <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat&logo=python&logoColor=white" alt="Versión de Python" /></a>
-  <a href="https://flask.palletsprojects.com/"><img src="https://img.shields.io/badge/Framework-Flask-000000?style=flat&logo=flask&logoColor=white" alt="Flask" /></a>
+  <a href="https://www.djangoproject.com/"><img src="https://img.shields.io/badge/Framework-Django-0C4B33?style=flat&logo=django&logoColor=white" alt="Django" /></a>
   <a href="https://www.sqlite.org/"><img src="https://img.shields.io/badge/Base_de_Datos-SQLite3-003B57?style=flat&logo=sqlite&logoColor=white" alt="SQLite" /></a>
   <a href="https://platform.deepseek.com/"><img src="https://img.shields.io/badge/LLM-DeepSeek_Chat-4D6BFE?style=flat" alt="DeepSeek AI" /></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/Licencia-MIT-green?style=flat" alt="Licencia: MIT" /></a>
@@ -64,7 +64,7 @@ Los Modelos de Lenguaje Masivos (LLMs) operan fundamentalmente como transformado
                                       | HTTP / REST API
  +------------------------------------v------------------------------------+
  |                    CONTROLADOR PRINCIPAL DEL SISTEMA                    |
- |                       (Flask / Autenticación)                           |
+ |                       (Django / Autenticación)                          |
  +------------------+-----------------------------------+------------------+
                     |                                   |
  +------------------v------------------+ +--------------v------------------+
@@ -243,13 +243,15 @@ pip install -r requirements.txt
 # 3. Configurar variables de entorno
 cp .env.example .env           # Ingresa tu DEEPSEEK_API_KEY en .env
 
-# 4. Poblar datos iniciales y personajes canónicos
-python seed.py
+# 4. Aplicar migraciones y poblar datos iniciales
+python manage.py migrate
+python manage.py seed
 
-# 5. Iniciar servidor Flask
-python app.py
+# 5. Iniciar servidor Django
+python manage.py runserver 127.0.0.1:8000
 ```
-Abre en tu navegador: **[http://localhost:5000](http://localhost:5000)**. Credenciales por defecto: `admin` / `admin123`.
+Abre en tu navegador: **[http://localhost:8000](http://localhost:8000)**. Credenciales por defecto: `admin` / `admin123`.
+Panel de Administración Django: **[http://localhost:8000/django-admin/](http://localhost:8000/django-admin/)**.
 
 ---
 

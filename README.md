@@ -11,7 +11,7 @@
 
 <p align="center">
   <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat&logo=python&logoColor=white" alt="Python Version" /></a>
-  <a href="https://flask.palletsprojects.com/"><img src="https://img.shields.io/badge/Framework-Flask-000000?style=flat&logo=flask&logoColor=white" alt="Flask" /></a>
+  <a href="https://www.djangoproject.com/"><img src="https://img.shields.io/badge/Framework-Django-0C4B33?style=flat&logo=django&logoColor=white" alt="Django" /></a>
   <a href="https://www.sqlite.org/"><img src="https://img.shields.io/badge/Database-SQLite3-003B57?style=flat&logo=sqlite&logoColor=white" alt="SQLite" /></a>
   <a href="https://platform.deepseek.com/"><img src="https://img.shields.io/badge/LLM-DeepSeek_Chat-4D6BFE?style=flat" alt="DeepSeek AI" /></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-green?style=flat" alt="License: MIT" /></a>
@@ -57,7 +57,7 @@ Conversational Large Language Models (LLMs) fundamentally operate as stateless a
                                       | HTTP / REST API
  +------------------------------------v------------------------------------+
  |                     CORE APPLICATION CONTROLLER                         |
- |                       (Flask / Authentication)                          |
+ |                       (Django / Authentication)                         |
  +------------------+-----------------------------------+------------------+
                     |                                   |
  +------------------v------------------+ +--------------v------------------+
@@ -236,13 +236,15 @@ pip install -r requirements.txt
 # 3. Configure environment credentials
 cp .env.example .env           # Provide your DEEPSEEK_API_KEY in .env
 
-# 4. Seed database with canonical agents and roles
-python seed.py
+# 4. Apply migrations and seed canonical agents
+python manage.py migrate
+python manage.py seed
 
-# 5. Launch application server
-python app.py
+# 5. Launch application server (Django)
+python manage.py runserver 127.0.0.1:8000
 ```
-Open **[http://localhost:5000](http://localhost:5000)** in your browser. Default credentials: `admin` / `admin123`.
+Open **[http://localhost:8000](http://localhost:8000)** in your browser. Default credentials: `admin` / `admin123`.
+Django Admin Panel available at **[http://localhost:8000/django-admin/](http://localhost:8000/django-admin/)**.
 
 ---
 

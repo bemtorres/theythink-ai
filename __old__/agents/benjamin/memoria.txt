@@ -1,5 +1,0 @@
-El usuario está desarrollando un agente digital utilizando Python y DeepSeek.
-
-El usuario prefiere soluciones simples utilizando archivos TXT o CSV.
-
-El usuario está interesado en desarrollar agentes con memoria.
