@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-27",
+  "scope": "index.html",
+  "original": {
+    "fonts": "Google Sans / Inter / JetBrains Mono",
+    "palette": "Google blue and multicolor accents, light and dark modes",
+    "motion": "CSS hover scales and floating effects",
+    "framework": "Vanilla HTML with Tailwind CDN and inline JS"
+  },
+  "chosen": {
+    "audience": "Docentes y estudiantes",
+    "purpose": "Aprender haciendo preguntas y entrevistas a personas simuladas por IA",
+    "theme": "Cobalt",
+    "macrostructure": "Narrative Workflow",
+    "nav": "N1b",
+    "footer": "Ft1",
+    "fonts": "Space Grotesk / Inter / JetBrains Mono",
+    "motion": "State feedback only; no decorative animation"
+  },
+  "verification": {
+    "visual": "Blocked: integrated browser rejects local file URLs. No browser workaround attempted.",
+    "functional": "Isolated JavaScript DOM tests; static HTML/assets/catalogue checks."
+  }
+}

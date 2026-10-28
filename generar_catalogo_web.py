@@ -65,7 +65,6 @@ def construir_catalogo():
             "categoria": categoria, "proyecto": proyecto["area"] if proyecto else None,
             "iniciales": "".join(p[0] for p in nombre.split()[:2]),
             "avatar_url": persona["avatar_url"].lstrip("/"),
-            "avatar_color": "from-[#1a73e8] to-[#34a853]" if proyecto else "from-[#1a73e8] to-[#a142f4]",
             "rol_nombre": rol, "bases": bases, "perfil": persona["perfil"],
             "resumen": profesion, "estilo": persona.get("identidad_custom") or campos.get("FORMA DE COMUNICARSE", "Según su perfil."),
             "memorias": [], "saludo": saludo,

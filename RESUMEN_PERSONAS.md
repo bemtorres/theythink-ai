@@ -87,3 +87,7 @@ Los clientes narran experiencias distintas, lo que valoran, los problemas que vi
 ## Imágenes de todas las personas
 
 Las 31 personas del catálogo tienen un avatar individual local en `static/img/personas/`: 20 de Music Pro y 11 de ejemplos y personajes. El catálogo asigna su `avatar_url` y el seeder lo incluye automáticamente en la instalación inicial. No se descargan imágenes externas al instalar. Consulta la [galería completa](static/img/personas/README.md) y la [galería Music Pro](static/img/personas/music_pro/README.md). Los prompts y la herramienta utilizada están registrados junto a las imágenes en `prompts.json`.
+
+## Página informativa para docentes
+
+`index.html` explica cómo preparar actividades de preguntas y entrevistas con personas simuladas por IA. Su catálogo se exporta desde `personas.py` con `generar_catalogo_web.py`; el JavaScript generado ya está incluido y los estudiantes no necesitan generarlo. La demo pública usa respuestas preparadas; el chat abierto con DeepSeek se utiliza en la aplicación instalada. Los retratos publicados son WebP de 512 píxeles. Los PNG originales se conservan localmente en `imagenes_originales/`, excluida de Git y fuera de la carpeta pública.

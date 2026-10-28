@@ -8,7 +8,6 @@ window.CATALOGO_PERSONAS = [
     "proyecto": null,
     "iniciales": "B",
     "avatar_url": "static/img/personas/catalogo/benjamin.webp",
-    "avatar_color": "from-[#1a73e8] to-[#a142f4]",
     "rol_nombre": "Personaje",
     "bases": [
       "Tecnología y Desarrollo Web"
@@ -34,7 +33,6 @@ window.CATALOGO_PERSONAS = [
     "proyecto": null,
     "iniciales": "EM",
     "avatar_url": "static/img/personas/catalogo/elon_musk.webp",
-    "avatar_color": "from-[#1a73e8] to-[#a142f4]",
     "rol_nombre": "Personaje",
     "bases": [
       "Exploración Espacial y Tesla"
@@ -60,7 +58,6 @@ window.CATALOGO_PERSONAS = [
     "proyecto": null,
     "iniciales": "AE",
     "avatar_url": "static/img/personas/catalogo/albert_einstein.webp",
-    "avatar_color": "from-[#1a73e8] to-[#a142f4]",
     "rol_nombre": "Personaje",
     "bases": [
       "Física y Teoría de la Relatividad"
@@ -86,7 +83,6 @@ window.CATALOGO_PERSONAS = [
     "proyecto": null,
     "iniciales": "EP",
     "avatar_url": "static/img/personas/catalogo/el_principito.webp",
-    "avatar_color": "from-[#1a73e8] to-[#a142f4]",
     "rol_nombre": "Personaje",
     "bases": [
       "El Principito - Relato y Filosofía"
@@ -112,7 +108,6 @@ window.CATALOGO_PERSONAS = [
     "proyecto": null,
     "iniciales": "SH",
     "avatar_url": "static/img/personas/catalogo/sherlock_holmes.webp",
-    "avatar_color": "from-[#1a73e8] to-[#a142f4]",
     "rol_nombre": "Personaje",
     "bases": [
       "Sherlock Holmes - Canon y Método Deductivo"
@@ -138,7 +133,6 @@ window.CATALOGO_PERSONAS = [
     "proyecto": null,
     "iniciales": "DQ",
     "avatar_url": "static/img/personas/catalogo/don_quijote.webp",
-    "avatar_color": "from-[#1a73e8] to-[#a142f4]",
     "rol_nombre": "Personaje",
     "bases": [
       "Don Quijote de la Mancha - Aventuras y Sabiduría"
@@ -164,7 +158,6 @@ window.CATALOGO_PERSONAS = [
     "proyecto": null,
     "iniciales": "Sd",
     "avatar_url": "static/img/personas/catalogo/socrates.webp",
-    "avatar_color": "from-[#1a73e8] to-[#a142f4]",
     "rol_nombre": "Personaje",
     "bases": [
       "Sócrates - Filosofía Mayéutica y Diálogos Atenienses"
@@ -190,7 +183,6 @@ window.CATALOGO_PERSONAS = [
     "proyecto": null,
     "iniciales": "NT",
     "avatar_url": "static/img/personas/catalogo/nikola_tesla.webp",
-    "avatar_color": "from-[#1a73e8] to-[#a142f4]",
     "rol_nombre": "Personaje",
     "bases": [
       "Nikola Tesla - Invenciones y Energía Universal"
@@ -216,7 +208,6 @@ window.CATALOGO_PERSONAS = [
     "proyecto": null,
     "iniciales": "EA",
     "avatar_url": "static/img/personas/catalogo/hincha_colocolo.webp",
-    "avatar_color": "from-[#1a73e8] to-[#a142f4]",
     "rol_nombre": "Personaje",
     "bases": [
       "Colo-Colo - Historia del Eterno Campeón"
@@ -242,7 +233,6 @@ window.CATALOGO_PERSONAS = [
     "proyecto": null,
     "iniciales": "EB",
     "avatar_url": "static/img/personas/catalogo/hincha_udechile.webp",
-    "avatar_color": "from-[#1a73e8] to-[#a142f4]",
     "rol_nombre": "Personaje",
     "bases": [
       "Universidad de Chile - Mística del Romántico Viajero"
@@ -268,7 +258,6 @@ window.CATALOGO_PERSONAS = [
     "proyecto": null,
     "iniciales": "EJ",
     "avatar_url": "static/img/personas/catalogo/el_flaite_chileno.webp",
-    "avatar_color": "from-[#1a73e8] to-[#a142f4]",
     "rol_nombre": "Personaje",
     "bases": [
       "Cultura Urbana y Coa Chileno"
@@ -294,7 +283,6 @@ window.CATALOGO_PERSONAS = [
     "proyecto": "tienda",
     "iniciales": "AQ",
     "avatar_url": "static/img/personas/music_pro/tienda_jefe.webp",
-    "avatar_color": "from-[#1a73e8] to-[#34a853]",
     "rol_nombre": "Jefe",
     "bases": [
       "Tienda en línea",
@@ -327,7 +315,6 @@ window.CATALOGO_PERSONAS = [
     "proyecto": "tienda",
     "iniciales": "ML",
     "avatar_url": "static/img/personas/music_pro/tienda_trabajador.webp",
-    "avatar_color": "from-[#1a73e8] to-[#34a853]",
     "rol_nombre": "Trabajador agotado",
     "bases": [
       "Tienda en línea",
@@ -359,7 +346,6 @@ window.CATALOGO_PERSONAS = [
     "proyecto": "sucursal",
     "iniciales": "DF",
     "avatar_url": "static/img/personas/music_pro/sucursal_jefe.webp",
-    "avatar_color": "from-[#1a73e8] to-[#34a853]",
     "rol_nombre": "Jefe",
     "bases": [
       "Sucursal física",
@@ -392,7 +378,6 @@ window.CATALOGO_PERSONAS = [
     "proyecto": "sucursal",
     "iniciales": "JR",
     "avatar_url": "static/img/personas/music_pro/sucursal_trabajador.webp",
-    "avatar_color": "from-[#1a73e8] to-[#34a853]",
     "rol_nombre": "Trabajador agotado",
     "bases": [
       "Sucursal física",
@@ -424,7 +409,6 @@ window.CATALOGO_PERSONAS = [
     "proyecto": "bodega",
     "iniciales": "RS",
     "avatar_url": "static/img/personas/music_pro/bodega_jefe.webp",
-    "avatar_color": "from-[#1a73e8] to-[#34a853]",
     "rol_nombre": "Jefe",
     "bases": [
       "Gestión de bodega",
@@ -457,7 +441,6 @@ window.CATALOGO_PERSONAS = [
     "proyecto": "bodega",
     "iniciales": "LP",
     "avatar_url": "static/img/personas/music_pro/bodega_trabajador.webp",
-    "avatar_color": "from-[#1a73e8] to-[#34a853]",
     "rol_nombre": "Trabajador agotado",
     "bases": [
       "Gestión de bodega",
@@ -489,7 +472,6 @@ window.CATALOGO_PERSONAS = [
     "proyecto": "tarjetas",
     "iniciales": "FR",
     "avatar_url": "static/img/personas/music_pro/tarjetas_jefe.webp",
-    "avatar_color": "from-[#1a73e8] to-[#34a853]",
     "rol_nombre": "Jefe",
     "bases": [
       "Pagos y BeatPay",
@@ -522,7 +504,6 @@ window.CATALOGO_PERSONAS = [
     "proyecto": "tarjetas",
     "iniciales": "PV",
     "avatar_url": "static/img/personas/music_pro/tarjetas_trabajador.webp",
-    "avatar_color": "from-[#1a73e8] to-[#34a853]",
     "rol_nombre": "Trabajador agotado",
     "bases": [
       "Pagos y BeatPay",
@@ -554,7 +535,6 @@ window.CATALOGO_PERSONAS = [
     "proyecto": "tienda",
     "iniciales": "CT",
     "avatar_url": "static/img/personas/music_pro/tienda_cliente_1.webp",
-    "avatar_color": "from-[#1a73e8] to-[#34a853]",
     "rol_nombre": "Cliente",
     "bases": [
       "Tienda en línea",
@@ -586,7 +566,6 @@ window.CATALOGO_PERSONAS = [
     "proyecto": "tienda",
     "iniciales": "SH",
     "avatar_url": "static/img/personas/music_pro/tienda_cliente_2.webp",
-    "avatar_color": "from-[#1a73e8] to-[#34a853]",
     "rol_nombre": "Cliente",
     "bases": [
       "Tienda en línea",
@@ -618,7 +597,6 @@ window.CATALOGO_PERSONAS = [
     "proyecto": "sucursal",
     "iniciales": "VS",
     "avatar_url": "static/img/personas/music_pro/sucursal_cliente_1.webp",
-    "avatar_color": "from-[#1a73e8] to-[#34a853]",
     "rol_nombre": "Cliente",
     "bases": [
       "Sucursal física",
@@ -650,7 +628,6 @@ window.CATALOGO_PERSONAS = [
     "proyecto": "sucursal",
     "iniciales": "AM",
     "avatar_url": "static/img/personas/music_pro/sucursal_cliente_2.webp",
-    "avatar_color": "from-[#1a73e8] to-[#34a853]",
     "rol_nombre": "Cliente",
     "bases": [
       "Sucursal física",
@@ -682,7 +659,6 @@ window.CATALOGO_PERSONAS = [
     "proyecto": "bodega",
     "iniciales": "PL",
     "avatar_url": "static/img/personas/music_pro/bodega_cliente_1.webp",
-    "avatar_color": "from-[#1a73e8] to-[#34a853]",
     "rol_nombre": "Cliente",
     "bases": [
       "Gestión de bodega",
@@ -714,7 +690,6 @@ window.CATALOGO_PERSONAS = [
     "proyecto": "bodega",
     "iniciales": "RC",
     "avatar_url": "static/img/personas/music_pro/bodega_cliente_2.webp",
-    "avatar_color": "from-[#1a73e8] to-[#34a853]",
     "rol_nombre": "Cliente",
     "bases": [
       "Gestión de bodega",
@@ -746,7 +721,6 @@ window.CATALOGO_PERSONAS = [
     "proyecto": "tarjetas",
     "iniciales": "DF",
     "avatar_url": "static/img/personas/music_pro/tarjetas_cliente_1.webp",
-    "avatar_color": "from-[#1a73e8] to-[#34a853]",
     "rol_nombre": "Cliente",
     "bases": [
       "Pagos y BeatPay",
@@ -778,7 +752,6 @@ window.CATALOGO_PERSONAS = [
     "proyecto": "tarjetas",
     "iniciales": "FA",
     "avatar_url": "static/img/personas/music_pro/tarjetas_cliente_2.webp",
-    "avatar_color": "from-[#1a73e8] to-[#34a853]",
     "rol_nombre": "Cliente",
     "bases": [
       "Pagos y BeatPay",
@@ -810,7 +783,6 @@ window.CATALOGO_PERSONAS = [
     "proyecto": "tienda",
     "iniciales": "JM",
     "avatar_url": "static/img/personas/music_pro/tienda_trabajador_contento.webp",
-    "avatar_color": "from-[#1a73e8] to-[#34a853]",
     "rol_nombre": "Trabajador entusiasta",
     "bases": [
       "Tienda en línea",
@@ -842,7 +814,6 @@ window.CATALOGO_PERSONAS = [
     "proyecto": "sucursal",
     "iniciales": "TA",
     "avatar_url": "static/img/personas/music_pro/sucursal_trabajador_contento.webp",
-    "avatar_color": "from-[#1a73e8] to-[#34a853]",
     "rol_nombre": "Trabajador entusiasta",
     "bases": [
       "Sucursal física",
@@ -874,7 +845,6 @@ window.CATALOGO_PERSONAS = [
     "proyecto": "bodega",
     "iniciales": "CE",
     "avatar_url": "static/img/personas/music_pro/bodega_trabajador_contento.webp",
-    "avatar_color": "from-[#1a73e8] to-[#34a853]",
     "rol_nombre": "Trabajador entusiasta",
     "bases": [
       "Gestión de bodega",
@@ -906,7 +876,6 @@ window.CATALOGO_PERSONAS = [
     "proyecto": "tarjetas",
     "iniciales": "NV",
     "avatar_url": "static/img/personas/music_pro/tarjetas_trabajador_contento.webp",
-    "avatar_color": "from-[#1a73e8] to-[#34a853]",
     "rol_nombre": "Trabajador entusiasta",
     "bases": [
       "Pagos y BeatPay",
