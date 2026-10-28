@@ -18,3 +18,6 @@ agentes.db
 .DS_Store
 .idea/
 .vscode/
+
+# Retratos originales; la web publica solo versiones WebP optimizadas
+/imagenes_originales/

@@ -794,10 +794,10 @@ Física, filosofía, violín, paz.""",
 
 # Avatares locales incluidos en el repositorio y en la carga inicial.
 for persona in [*AGENTES_EJEMPLO, *PERSONAJES_CANONICOS]:
-    persona['avatar_url'] = f"/static/img/personas/catalogo/{persona['nombre']}.png"
+    persona['avatar_url'] = f"/static/img/personas/catalogo/{persona['nombre']}.webp"
 
 for persona in PERFILES_EMPRESA:
-    persona['avatar_url'] = f"/static/img/personas/music_pro/{persona['nombre']}.png"
+    persona['avatar_url'] = f"/static/img/personas/music_pro/{persona['nombre']}.webp"
 
 PERSONAS = [
     *[dict(p, categoria="Ejemplos") for p in AGENTES_EJEMPLO],
