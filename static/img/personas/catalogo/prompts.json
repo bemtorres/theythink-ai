@@ -1,0 +1,60 @@
+{
+  "tool": "Built-in image_gen.imagegen",
+  "portraits": [
+    {
+      "id": "benjamin",
+      "file": "benjamin.png",
+      "prompt": "Use case: photorealistic-natural. Asset: square individual avatar in a conversational character app. Subject: Fictional Benjamin, adult Chilean software developer and AI teacher, early thirties, short brown hair and subtle glasses, casual shirt, patient welcoming expression, blurred programming desk. This is an invented character, not a portrait of any particular private person.. One person only, head and shoulders, centered composition with room for circular crop, softly lit clear expressive face, polished detailed rendering, natural balanced color. No labels, no text, no logos, no watermark."
+    },
+    {
+      "id": "elon_musk",
+      "file": "elon_musk.png",
+      "prompt": "Use case: photorealistic-natural. Asset: square individual avatar in a conversational character app. Subject: Recognizable Elon Musk, adult technology entrepreneur, contemporary dark jacket, neutral thoughtful expression, softly blurred space technology workshop. Clearly an AI-generated editorial character portrait, not a real news photograph.. One person only, head and shoulders, centered composition with room for circular crop, softly lit clear expressive face, polished detailed rendering, natural balanced color. No labels, no text, no logos, no watermark."
+    },
+    {
+      "id": "albert_einstein",
+      "file": "albert_einstein.png",
+      "prompt": "Use case: photorealistic-natural. Asset: square individual avatar in a conversational character app. Subject: Recognizable Albert Einstein in later life, iconic unruly white hair and mustache, warm curious expression, simple wool sweater, softly blurred physics study. AI-generated historical interpretation.. One person only, head and shoulders, centered composition with room for circular crop, softly lit clear expressive face, polished detailed rendering, natural balanced color. No labels, no text, no logos, no watermark."
+    },
+    {
+      "id": "el_principito",
+      "file": "el_principito.png",
+      "prompt": "Use case: illustration-story. Asset: square individual avatar in a conversational character app. Subject: The Little Prince fictional literary character: young child prince with golden hair, green coat and golden scarf, thoughtful gentle expression, tiny stars and a rose softly suggested in a dreamlike backdrop. Tasteful hand-painted watercolor illustration with paper texture, original interpretation rather than copying a book illustration.. One person only, head and shoulders, centered composition with room for circular crop, softly lit clear expressive face, polished detailed rendering, natural balanced color. No labels, no text, no logos, no watermark."
+    },
+    {
+      "id": "sherlock_holmes",
+      "file": "sherlock_holmes.png",
+      "prompt": "Use case: photorealistic-natural. Asset: square individual avatar in a conversational character app. Subject: Sherlock Holmes, fictional Victorian detective, sharp thoughtful face, dark hair, tweed coat and waistcoat, soft blurred Victorian study, cinematic realistic character portrait, original interpretation not resembling any screen actor.. One person only, head and shoulders, centered composition with room for circular crop, softly lit clear expressive face, polished detailed rendering, natural balanced color. No labels, no text, no logos, no watermark."
+    },
+    {
+      "id": "don_quijote",
+      "file": "don_quijote.png",
+      "prompt": "Use case: photorealistic-natural. Asset: square individual avatar in a conversational character app. Subject: Don Quixote, fictional elderly Spanish knight, lean face, pointed gray beard, worn simple armor, contemplative noble expression, softly blurred La Mancha landscape, realistic painterly historical portrait, original character interpretation.. One person only, head and shoulders, centered composition with room for circular crop, softly lit clear expressive face, polished detailed rendering, natural balanced color. No labels, no text, no logos, no watermark."
+    },
+    {
+      "id": "socrates",
+      "file": "socrates.png",
+      "prompt": "Use case: photorealistic-natural. Asset: square individual avatar in a conversational character app. Subject: Socrates of ancient Athens, elderly philosopher, bald crown, curly gray beard, weathered face, simple ancient Greek draped robe, curious kindly expression, softly blurred classical stone courtyard, realistic painted historical interpretation, not a real photograph.. One person only, head and shoulders, centered composition with room for circular crop, softly lit clear expressive face, polished detailed rendering, natural balanced color. No labels, no text, no logos, no watermark."
+    },
+    {
+      "id": "nikola_tesla",
+      "file": "nikola_tesla.png",
+      "prompt": "Use case: photorealistic-natural. Asset: square individual avatar in a conversational character app. Subject: Recognizable Nikola Tesla, historical inventor, slim face and neatly parted dark hair, thin mustache, period dark three piece suit, thoughtful expression, softly blurred early electrical laboratory, realistic historical color portrait interpretation.. One person only, head and shoulders, centered composition with room for circular crop, softly lit clear expressive face, polished detailed rendering, natural balanced color. No labels, no text, no logos, no watermark."
+    },
+    {
+      "id": "hincha_colocolo",
+      "file": "hincha_colocolo.png",
+      "prompt": "Use case: photorealistic-natural. Asset: square individual avatar in a conversational character app. Subject: Fictional adult Chilean Colo-Colo football fan, man in his thirties, short black hair, white football jersey with black trim and no text or logos, warm enthusiastic smile, softly blurred daylight football stadium. Respectful natural character portrait.. One person only, head and shoulders, centered composition with room for circular crop, softly lit clear expressive face, polished detailed rendering, natural balanced color. No labels, no text, no logos, no watermark."
+    },
+    {
+      "id": "hincha_udechile",
+      "file": "hincha_udechile.png",
+      "prompt": "Use case: photorealistic-natural. Asset: square individual avatar in a conversational character app. Subject: Fictional adult Chilean Universidad de Chile football fan, man in his thirties, wavy brown hair, plain deep blue football jersey with red trim and no text or logos, happy passionate smile, softly blurred daylight football stadium. Distinct face from the other fan.. One person only, head and shoulders, centered composition with room for circular crop, softly lit clear expressive face, polished detailed rendering, natural balanced color. No labels, no text, no logos, no watermark."
+    },
+    {
+      "id": "el_flaite_chileno",
+      "file": "el_flaite_chileno.png",
+      "prompt": "Use case: photorealistic-natural. Asset: square individual avatar in a conversational character app. Subject: Fictional adult Chilean urban music enthusiast known as El Jordan or El Bryan, man in his twenties, neat fade haircut, casual streetwear and small silver chain, lively friendly confident expression, softly blurred Santiago neighborhood street in daylight. Respectful human portrait, no criminal imagery or class caricature.. One person only, head and shoulders, centered composition with room for circular crop, softly lit clear expressive face, polished detailed rendering, natural balanced color. No labels, no text, no logos, no watermark."
+    }
+  ]
+}

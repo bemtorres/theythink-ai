@@ -1,0 +1,106 @@
+{
+  "tool": "Built-in image_gen.imagegen",
+  "style": "photorealistic-natural",
+  "portraits": [
+    {
+      "id": "tienda_jefe",
+      "file": "tienda_jefe.png",
+      "prompt": "Square photorealistic editorial avatar of fictional Andrea Quiroga, Chilean ecommerce director, 42, smart casual dark blazer, welcoming expression, softly blurred music office, natural daylight, centered head and shoulders, no text or logos."
+    },
+    {
+      "id": "tienda_trabajador",
+      "file": "tienda_trabajador.png",
+      "prompt": "Use case: photorealistic-natural. Asset: square avatar for a fictional Chilean Music Pro stakeholder. Subject: Maria Lopez, woman 34, dark wavy shoulder-length hair, online order customer support specialist at a music retailer, casual blouse and headset around neck, slightly tired but competent expression, blurred order desk background. One fictional adult person only, editorial professional photography, realistic Chilean appearance without caricature, natural skin texture, soft daylight, head and shoulders centered with room for circular crop. Same consistent visual series: shallow depth of field, natural color, clear expressive face. No text, no logos, no watermark."
+    },
+    {
+      "id": "sucursal_jefe",
+      "file": "sucursal_jefe.png",
+      "prompt": "Use case: photorealistic-natural. Asset: square avatar for a fictional Chilean Music Pro stakeholder. Subject: Diego Fuentes, man 46, short salt and pepper hair, branch operations manager, charcoal blazer open collar, assured thoughtful expression, blurred musical instrument shop. One fictional adult person only, editorial professional photography, realistic Chilean appearance without caricature, natural skin texture, soft daylight, head and shoulders centered with room for circular crop. Same consistent visual series: shallow depth of field, natural color, clear expressive face. No text, no logos, no watermark."
+    },
+    {
+      "id": "sucursal_trabajador",
+      "file": "sucursal_trabajador.png",
+      "prompt": "Use case: photorealistic-natural. Asset: square avatar for a fictional Chilean Music Pro stakeholder. Subject: Jorge Rojas, man 39, short black hair and light stubble, shop cashier and customer service specialist, plain polo shirt, weary yet approachable expression, blurred music shop checkout. One fictional adult person only, editorial professional photography, realistic Chilean appearance without caricature, natural skin texture, soft daylight, head and shoulders centered with room for circular crop. Same consistent visual series: shallow depth of field, natural color, clear expressive face. No text, no logos, no watermark."
+    },
+    {
+      "id": "bodega_jefe",
+      "file": "bodega_jefe.png",
+      "prompt": "Use case: photorealistic-natural. Asset: square avatar for a fictional Chilean Music Pro stakeholder. Subject: Roberto Salinas, man 52, short gray hair, neat beard, warehouse and inventory manager, smart work shirt, composed experienced expression, blurred organized warehouse. One fictional adult person only, editorial professional photography, realistic Chilean appearance without caricature, natural skin texture, soft daylight, head and shoulders centered with room for circular crop. Same consistent visual series: shallow depth of field, natural color, clear expressive face. No text, no logos, no watermark."
+    },
+    {
+      "id": "bodega_trabajador",
+      "file": "bodega_trabajador.png",
+      "prompt": "Use case: photorealistic-natural. Asset: square avatar for a fictional Chilean Music Pro stakeholder. Subject: Luis Paredes, man 36, short dark hair, sturdy build, senior warehouse operator, plain work shirt and high visibility vest, tired and serious but kind expression, blurred shelves of packaged instruments. One fictional adult person only, editorial professional photography, realistic Chilean appearance without caricature, natural skin texture, soft daylight, head and shoulders centered with room for circular crop. Same consistent visual series: shallow depth of field, natural color, clear expressive face. No text, no logos, no watermark."
+    },
+    {
+      "id": "tarjetas_jefe",
+      "file": "tarjetas_jefe.png",
+      "prompt": "Use case: photorealistic-natural. Asset: square avatar for a fictional Chilean Music Pro stakeholder. Subject: Fernando Rios, man 49, dark hair graying at temples, subtle glasses, payments director, navy business jacket, precise calm expression, blurred modern finance office. One fictional adult person only, editorial professional photography, realistic Chilean appearance without caricature, natural skin texture, soft daylight, head and shoulders centered with room for circular crop. Same consistent visual series: shallow depth of field, natural color, clear expressive face. No text, no logos, no watermark."
+    },
+    {
+      "id": "tarjetas_trabajador",
+      "file": "tarjetas_trabajador.png",
+      "prompt": "Use case: photorealistic-natural. Asset: square avatar for a fictional Chilean Music Pro stakeholder. Subject: Paula Vega, woman 32, straight dark bob hair, payments operations analyst, plain cardigan, tired thoughtful expression, blurred office workstation. One fictional adult person only, editorial professional photography, realistic Chilean appearance without caricature, natural skin texture, soft daylight, head and shoulders centered with room for circular crop. Same consistent visual series: shallow depth of field, natural color, clear expressive face. No text, no logos, no watermark."
+    },
+    {
+      "id": "tienda_cliente_1",
+      "file": "tienda_cliente_1.png",
+      "prompt": "Use case: photorealistic-natural. Asset: square avatar for a fictional Chilean Music Pro stakeholder. Subject: Camila Torres, woman 26, curly dark hair, enthusiastic guitarist and music shop customer, casual denim jacket, genuine warm smile, blurred guitar studio background. One fictional adult person only, editorial professional photography, realistic Chilean appearance without caricature, natural skin texture, soft daylight, head and shoulders centered with room for circular crop. Same consistent visual series: shallow depth of field, natural color, clear expressive face. No text, no logos, no watermark."
+    },
+    {
+      "id": "tienda_cliente_2",
+      "file": "tienda_cliente_2.png",
+      "prompt": "Use case: photorealistic-natural. Asset: square avatar for a fictional Chilean Music Pro stakeholder. Subject: Sebastian Herrera, man 35, short brown hair, light beard, music producer and audio equipment customer, casual dark t-shirt, friendly curious expression, blurred recording studio. One fictional adult person only, editorial professional photography, realistic Chilean appearance without caricature, natural skin texture, soft daylight, head and shoulders centered with room for circular crop. Same consistent visual series: shallow depth of field, natural color, clear expressive face. No text, no logos, no watermark."
+    },
+    {
+      "id": "sucursal_cliente_1",
+      "file": "sucursal_cliente_1.png",
+      "prompt": "Use case: photorealistic-natural. Asset: square avatar for a fictional Chilean Music Pro stakeholder. Subject: Valentina Soto, adult woman 22, long dark hair tied back, violin student and loyal instrument store customer, casual sweater, hopeful friendly smile, blurred violin practice room. One fictional adult person only, editorial professional photography, realistic Chilean appearance without caricature, natural skin texture, soft daylight, head and shoulders centered with room for circular crop. Same consistent visual series: shallow depth of field, natural color, clear expressive face. No text, no logos, no watermark."
+    },
+    {
+      "id": "sucursal_cliente_2",
+      "file": "sucursal_cliente_2.png",
+      "prompt": "Use case: photorealistic-natural. Asset: square avatar for a fictional Chilean Music Pro stakeholder. Subject: Andres Molina, man 30, medium length wavy dark hair, drummer and local music shop customer, simple casual shirt, relaxed positive expression, blurred drum rehearsal room. One fictional adult person only, editorial professional photography, realistic Chilean appearance without caricature, natural skin texture, soft daylight, head and shoulders centered with room for circular crop. Same consistent visual series: shallow depth of field, natural color, clear expressive face. No text, no logos, no watermark."
+    },
+    {
+      "id": "bodega_cliente_1",
+      "file": "bodega_cliente_1.png",
+      "prompt": "Use case: photorealistic-natural. Asset: square avatar for a fictional Chilean Music Pro stakeholder. Subject: Patricia Leiva, woman 48, short curly brown hair with some gray, music academy director and bulk instrument customer, smart casual jacket, warm confident smile, blurred music classroom. One fictional adult person only, editorial professional photography, realistic Chilean appearance without caricature, natural skin texture, soft daylight, head and shoulders centered with room for circular crop. Same consistent visual series: shallow depth of field, natural color, clear expressive face. No text, no logos, no watermark."
+    },
+    {
+      "id": "bodega_cliente_2",
+      "file": "bodega_cliente_2.png",
+      "prompt": "Use case: photorealistic-natural. Asset: square avatar for a fictional Chilean Music Pro stakeholder. Subject: Rodrigo Campos, man 43, short black hair and trimmed beard, rehearsal studio owner and amplifier customer, casual work shirt, enthusiastic grounded expression, blurred amplifier rehearsal space. One fictional adult person only, editorial professional photography, realistic Chilean appearance without caricature, natural skin texture, soft daylight, head and shoulders centered with room for circular crop. Same consistent visual series: shallow depth of field, natural color, clear expressive face. No text, no logos, no watermark."
+    },
+    {
+      "id": "tarjetas_cliente_1",
+      "file": "tarjetas_cliente_1.png",
+      "prompt": "Use case: photorealistic-natural. Asset: square avatar for a fictional Chilean Music Pro stakeholder. Subject: Daniela Fuentes, woman 28, dark shoulder-length hair, concert enthusiast and digital payment customer, casual colorful jacket, joyful natural smile, blurred music venue foyer in daylight. One fictional adult person only, editorial professional photography, realistic Chilean appearance without caricature, natural skin texture, soft daylight, head and shoulders centered with room for circular crop. Same consistent visual series: shallow depth of field, natural color, clear expressive face. No text, no logos, no watermark."
+    },
+    {
+      "id": "tarjetas_cliente_2",
+      "file": "tarjetas_cliente_2.png",
+      "prompt": "Use case: photorealistic-natural. Asset: square avatar for a fictional Chilean Music Pro stakeholder. Subject: Felipe Araya, man 33, close cropped dark hair, DJ and music equipment customer, casual overshirt, welcoming upbeat expression, blurred DJ home studio. One fictional adult person only, editorial professional photography, realistic Chilean appearance without caricature, natural skin texture, soft daylight, head and shoulders centered with room for circular crop. Same consistent visual series: shallow depth of field, natural color, clear expressive face. No text, no logos, no watermark."
+    },
+    {
+      "id": "tienda_trabajador_contento",
+      "file": "tienda_trabajador_contento.png",
+      "prompt": "Use case: photorealistic-natural. Asset: square avatar for a fictional Chilean Music Pro stakeholder. Subject: Javiera Munoz, woman 29, wavy chestnut hair, digital catalog and content specialist, casual mustard shirt, visibly happy engaged smile, blurred music product photography desk. One fictional adult person only, editorial professional photography, realistic Chilean appearance without caricature, natural skin texture, soft daylight, head and shoulders centered with room for circular crop. Same consistent visual series: shallow depth of field, natural color, clear expressive face. No text, no logos, no watermark."
+    },
+    {
+      "id": "sucursal_trabajador_contento",
+      "file": "sucursal_trabajador_contento.png",
+      "prompt": "Use case: photorealistic-natural. Asset: square avatar for a fictional Chilean Music Pro stakeholder. Subject: Tomas Aguilera, man 31, dark curls and round glasses, instrument advisor and demonstration coordinator, casual green overshirt, happy welcoming expression, blurred keyboard display area. One fictional adult person only, editorial professional photography, realistic Chilean appearance without caricature, natural skin texture, soft daylight, head and shoulders centered with room for circular crop. Same consistent visual series: shallow depth of field, natural color, clear expressive face. No text, no logos, no watermark."
+    },
+    {
+      "id": "bodega_trabajador_contento",
+      "file": "bodega_trabajador_contento.png",
+      "prompt": "Use case: photorealistic-natural. Asset: square avatar for a fictional Chilean Music Pro stakeholder. Subject: Carolina Espinoza, woman 35, dark hair neatly tied back, receiving and quality inspector, plain work shirt and high visibility vest, happy confident smile, blurred instrument receiving inspection station. One fictional adult person only, editorial professional photography, realistic Chilean appearance without caricature, natural skin texture, soft daylight, head and shoulders centered with room for circular crop. Same consistent visual series: shallow depth of field, natural color, clear expressive face. No text, no logos, no watermark."
+    },
+    {
+      "id": "tarjetas_trabajador_contento",
+      "file": "tarjetas_trabajador_contento.png",
+      "prompt": "Use case: photorealistic-natural. Asset: square avatar for a fictional Chilean Music Pro stakeholder. Subject: Nicolas Vera, man 29, short dark hair, payment integrations and monitoring specialist, smart casual blue shirt, happy collaborative smile, blurred modern technical office. One fictional adult person only, editorial professional photography, realistic Chilean appearance without caricature, natural skin texture, soft daylight, head and shoulders centered with room for circular crop. Same consistent visual series: shallow depth of field, natural color, clear expressive face. No text, no logos, no watermark."
+    }
+  ]
+}

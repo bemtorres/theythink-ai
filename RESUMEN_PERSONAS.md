@@ -84,6 +84,6 @@ Los clientes narran experiencias distintas, lo que valoran, los problemas que vi
 | Gestión de bodega | Carolina Espinoza | Inspectora de Recepción y Control de Calidad |
 | Pagos y BeatPay | Nicolás Vera | Especialista de Integraciones y Monitoreo de Pagos |
 
-## Imágenes de Music Pro
+## Imágenes de todas las personas
 
-Cada uno de los 20 perfiles de Music Pro tiene un retrato individual local en `static/img/personas/music_pro/`. El catálogo asigna su `avatar_url` y el seeder lo incluye automáticamente en la instalación inicial. Consulta la [galería de retratos](static/img/personas/music_pro/README.md).
+Las 31 personas del catálogo tienen un avatar individual local en `static/img/personas/`: 20 de Music Pro y 11 de ejemplos y personajes. El catálogo asigna su `avatar_url` y el seeder lo incluye automáticamente en la instalación inicial. No se descargan imágenes externas al instalar. Consulta la [galería completa](static/img/personas/README.md) y la [galería Music Pro](static/img/personas/music_pro/README.md). Los prompts y la herramienta utilizada están registrados junto a las imágenes en `prompts.json`.

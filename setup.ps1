@@ -8,7 +8,7 @@ function Invoke-PythonStep {
 }
 
 try {
-    Write-Host '[1/5] Buscando Python 3.10 o superior...'
+    Write-Host '[1/6] Buscando Python 3.10 o superior...'
     $python = $null
     $candidates = @((Join-Path $PSScriptRoot 'venv\Scripts\python.exe'))
     foreach ($name in @('python.exe', 'py.exe')) {
@@ -42,17 +42,34 @@ try {
         if (-not (Test-Path -LiteralPath $python)) { throw 'No se encontro Python despues de instalarlo.' }
     }
 
-    Write-Host '[2/5] Preparando el entorno virtual...'
+    Write-Host '[2/6] Preparando el entorno virtual...'
     $venvPython = Join-Path $PSScriptRoot 'venv\Scripts\python.exe'
     if ($python -ne $venvPython) {
         Invoke-PythonStep -Executable $python -Arguments @('-m', 'venv', 'venv')
     }
-    Write-Host '[3/5] Instalando dependencias...'
+    Write-Host '[3/6] Instalando dependencias...'
     Invoke-PythonStep -Executable $venvPython -Arguments @('-m', 'pip', 'install', '--upgrade', 'pip')
     Invoke-PythonStep -Executable $venvPython -Arguments @('-m', 'pip', 'install', '-r', 'requirements.txt')
-    Write-Host '[4/5] Configurando la credencial de DeepSeek...'
+    Write-Host '[4/6] Verificando personas e imagenes incluidas en el proyecto...'
+    $catalogCheck = @'
+from pathlib import Path
+from personas import PERSONAS, PERFILES_EMPRESA
+
+faltantes = [
+    p['nombre'] for p in PERSONAS
+    if not p.get('avatar_url', '').startswith('/static/')
+    or not Path(p['avatar_url'].lstrip('/')).is_file()
+]
+if faltantes:
+    raise FileNotFoundError('Faltan avatares locales: ' + ', '.join(faltantes)
+                            + '. Descarga o copia el proyecto completo, incluida static/img/personas/.')
+print(f'Catalogo verificado: {len(PERSONAS)} personas con imagen; '
+      f'{len(PERFILES_EMPRESA)} perfiles de Music Pro.')
+'@
+    Invoke-PythonStep -Executable $venvPython -Arguments @('-c', $catalogCheck)
+    Write-Host '[5/6] Configurando la credencial de DeepSeek...'
     Invoke-PythonStep -Executable $venvPython -Arguments @('configurar.py')
-    Write-Host '[5/5] Preparando la base de datos...'
+    Write-Host '[6/6] Cargando personas, conocimientos, conversaciones y avatares...'
     Invoke-PythonStep -Executable $venvPython -Arguments @('seed.py')
     Write-Host 'Instalacion completada. Abriendo THEYTHINK AI...'
 } catch {

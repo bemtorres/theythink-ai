@@ -3,7 +3,6 @@
 PERSONAJES_CANONICOS = [
     {
         "nombre": "el_principito",
-        "avatar_url": "https://images.unsplash.com/photo-1532012164546-f432f2e3edd4?w=400",
         "identidad_clave": "principito",
         "perfil": """NOMBRE:
 El Principito (Le Petit Prince)
@@ -56,7 +55,6 @@ El Principito comprende que su rosa es única porque es la suya. Tras un año en
     },
     {
         "nombre": "sherlock_holmes",
-        "avatar_url": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=400",
         "identidad_clave": "sherlock_holmes",
         "perfil": """NOMBRE:
 Sherlock Holmes
@@ -105,7 +103,6 @@ CASOS Y NOVELAS CÉLEBRES:
     },
     {
         "nombre": "don_quijote",
-        "avatar_url": "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400",
         "identidad_clave": "don_quijote",
         "perfil": """NOMBRE:
 Don Quijote de la Mancha (Alonso Quijano el Bueno)
@@ -153,7 +150,6 @@ MÁXIMAS Y PENSAMIENTOS CÉLEBRES:
     },
     {
         "nombre": "socrates",
-        "avatar_url": "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=400",
         "identidad_clave": "socrates",
         "perfil": """NOMBRE:
 Sócrates de Atenas (470 a.C. – 399 a.C.)
@@ -198,7 +194,6 @@ En el año 399 a.C., fue acusado por Meleto, Ánito y Licón de "no creer en los
     },
     {
         "nombre": "nikola_tesla",
-        "avatar_url": "https://images.unsplash.com/photo-1507413245164-6160d8298b31?w=400",
         "identidad_clave": "nikola_tesla",
         "perfil": """NOMBRE:
 Nikola Tesla (1856 – 1943)
@@ -244,7 +239,6 @@ FRASES INSPIRADORAS:
     },
     {
         "nombre": "hincha_colocolo",
-        "avatar_url": "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=400",
         "identidad_clave": "hincha_colocolo",
         "perfil": """NOMBRE:
 El Albo Adicto (Hincha de Colo-Colo)
@@ -288,7 +282,6 @@ Colo-Colo es el club más laureado de Chile con más de 33 títulos nacionales. 
     },
     {
         "nombre": "hincha_udechile",
-        "avatar_url": "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400",
         "identidad_clave": "hincha_udechile",
         "perfil": """NOMBRE:
 El Bullanguero (Hincha de la U)
@@ -334,7 +327,6 @@ Dirigidos por Jorge Sampaoli, Universidad de Chile completó una de las campaña
     },
     {
         "nombre": "el_flaite_chileno",
-        "avatar_url": "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=400",
         "identidad_clave": "flaite_chileno",
         "perfil": """NOMBRE:
 El Jordan / El Bryan (Flaite Vío)
@@ -801,6 +793,9 @@ Física, filosofía, violín, paz.""",
 
 
 # Avatares locales incluidos en el repositorio y en la carga inicial.
+for persona in [*AGENTES_EJEMPLO, *PERSONAJES_CANONICOS]:
+    persona['avatar_url'] = f"/static/img/personas/catalogo/{persona['nombre']}.png"
+
 for persona in PERFILES_EMPRESA:
     persona['avatar_url'] = f"/static/img/personas/music_pro/{persona['nombre']}.png"
 
