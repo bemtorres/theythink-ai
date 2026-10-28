@@ -251,3 +251,8 @@ Abre en tu navegador: **[http://localhost:5000](http://localhost:5000)**. Creden
 Este proyecto se distribuye bajo la **[Licencia MIT](LICENSE)**.
 
 > **Descargo de Responsabilidad de la IA:** Las respuestas generadas por los agentes son producidas de forma automatizada por modelos de lenguaje (API de DeepSeek). El equipo desarrollador y la iniciativa THEYTHINK no asumen responsabilidad por la veracidad o exactitud de las respuestas generadas. Se advierte expresamente **no ingresar datos personales reales sensibles, contraseñas o secretos comerciales** en las conversaciones ni en las bases de conocimiento.
+
+
+### Catálogo y seeder de personas
+
+Consulta [RESUMEN_PERSONAS.md](RESUMEN_PERSONAS.md) para ver las 31 personas y los comandos de carga. Las definiciones están centralizadas en `personas.py` y la carga en `seed.py`.

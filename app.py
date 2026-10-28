@@ -87,8 +87,10 @@ VISIBLE_HISTORY_LIMIT = 60
 # Perfil inicial por defecto para agentes creados sin descripción
 INITIAL_PROFILE_TEMPLATE = "NOMBRE:\nAgente\n\nDESCRIPCIÓN:\nAgente inteligente de asistencia."
 
-# Inicialización de tablas y personajes canónicos
-inicializar()
+# Inicialización de tablas y carga de personas faltantes desde el seeder único
+from seed import sembrar_personas
+
+sembrar_personas()
 
 
 def require_login(f):

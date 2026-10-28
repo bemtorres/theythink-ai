@@ -1,134 +1,13 @@
-"""Poblador de la base de datos (seeder).
+"""Seeder único. Catálogo: personas.py.
 
-Llena `agentes.db` con agentes y conversaciones de ejemplo para que la
-versión web funcione desde el primer momento.
-
-Fuentes de datos, en orden:
-
-1. Si existe la carpeta `agents/` (la de la versión de consola), se
-   importan esos agentes (perfil, conocimiento, memoria, identidad y el
-   historial de `conversacion.csv`).
-2. Si no existen carpetas, se crean tres agentes de ejemplo
-   (`benjamin`, `elon_musk` y `albert_einstein`).
-3. A cada agente que no tenga conversaciones se le agrega una
-   conversación de ejemplo.
-
-Ejecución:
-
-    python seed.py            # importa solo lo que falta
-    python seed.py --force    # vacía la base y vuelve a importar todo
+python seed.py          agrega personas faltantes sin sobrescribir existentes
+python seed.py --update actualiza perfiles conservando chats y memoria
+python seed.py --force  elimina datos de agentes y carga todo desde cero
 """
 
-import csv
-import os
-import sys
-
 import basededatos as bd
-from empresa import crear_perfiles
+from personas import PERSONAS, BASES_CONOCIMIENTO_EJEMPLO
 
-
-PERFIL_INICIAL = """NOMBRE:
-Benjamin
-
-PROFESION:
-Desarrollador de software e investigador de IA.
-
-EXPERIENCIA:
-Desarrollo web, modelos de lenguaje y automatizacion.
-
-PERSONALIDAD:
-Didactico, paciente y directo.
-
-FORMA DE COMUNICARSE:
-Clara, estructurada y con ejemplos practicos.
-
-INTERESES:
-Inteligencia artificial, arquitectura de software, filosofia."""
-
-# ----------------------------------------------------------------------
-# Agentes de ejemplo (se usan si no hay carpetas en agents/).
-# ----------------------------------------------------------------------
-
-BASES_CONOCIMIENTO_EJEMPLO = [
-    {
-        "nombre": "Tecnología y Desarrollo Web",
-        "contenido": """Python: lenguaje de programación usado en scripting, automatización y desarrollo web.
-Django: framework web de Python que sigue el patrón MTV (Modelo-Template-Vista) e incluye un ORM.
-Laravel: framework web de PHP con Eloquent ORM y el sistema de plantillas Blade.
-Angular: framework frontend de TypeScript para construir aplicaciones de una sola página (SPA).
-MySQL: sistema de gestión de bases de datos relacionales; se consulta con SQL.
-Apache: servidor web HTTP muy utilizado para alojar aplicaciones y sitios.""",
-    },
-    {
-        "nombre": "Exploración Espacial y Tesla",
-        "contenido": """SpaceX: empresa dedicada a la exploración espacial y a reducir el costo de los viajes al espacio.
-Tesla, Inc.: fabricante de vehículos eléctricos y de sistemas de energía renovable.
-Neuralink: empresa que desarrolla interfaces cerebro-computadora.
-The Boring Company: dedicada a la construcción de túneles para el transporte.
-Starlink: constelación de satélites para llevar internet de alta velocidad a todo el mundo.
-xAI: empresa enfocada en comprender el universo con inteligencia artificial.""",
-    },
-    {
-        "nombre": "Física y Teoría de la Relatividad",
-        "contenido": """Teoría de la Relatividad Especial (1905): la velocidad de la luz es constante y el tiempo y el espacio son relativos.
-Teoría de la Relatividad General (1915): la gravedad es la curvatura del espacio-tiempo causada por la masa y la energía.
-E=mc²: equivalencia entre masa y energía.
-Efecto Fotoeléctrico: demostración del comportamiento cuántico de la luz, Premio Nobel de Física 1921.""",
-    },
-]
-
-AGENTES_EJEMPLO = [
-    {
-        "nombre": "benjamin",
-        "perfil": PERFIL_INICIAL,
-        "identidad_clave": "teacher",
-        "bases": ["Tecnología y Desarrollo Web"],
-    },
-    {
-        "nombre": "elon_musk",
-        "perfil": """NOMBRE:
-Elon Musk
-
-PROFESIÓN:
-Empresario e ingeniero.
-
-EXPERIENCIA:
-Tesla, SpaceX, Neuralink y otras empresas tecnológicas.
-
-PERSONALIDAD:
-Ambicioso, visionario y directo.
-
-FORMA DE COMUNICARSE:
-Energético, con visión de futuro y humor seco.
-
-INTERESES:
-Colonizar Marte, energías renovables, inteligencia artificial.""",
-        "identidad_custom": "Actúa como Elon Musk en primera persona.\nResponde con energía, visión de futuro y un toque de humor.\nNo menciones que eres una inteligencia artificial.",
-        "bases": ["Exploración Espacial y Tesla"],
-    },
-    {
-        "nombre": "albert_einstein",
-        "perfil": """NOMBRE:
-Albert Einstein
-
-PROFESIÓN:
-Físico teórico.
-
-EXPERIENCIA:
-Teoría de la relatividad, Premio Nobel de Física 1921.
-
-PERSONALIDAD:
-Curioso, humilde y reflexivo.
-
-FORMA DE COMUNICARSE:
-Clara, con analogías sencillas y preguntas que invitan a pensar.
-
-INTERESES:
-Física, filosofía, violín, paz.""",
-        "identidad_custom": "Actúa como Albert Einstein en primera persona.\nResponde con curiosidad, humildad y explicaciones sencillas.\nNo menciones que eres una inteligencia artificial.",
-        "bases": ["Física y Teoría de la Relatividad"],
-    },
-]
 
 # ----------------------------------------------------------------------
 # Conversaciones de ejemplo (se agregan a agentes sin historial).
@@ -154,34 +33,6 @@ CONVERSACIONES_EJEMPLO = [
 # ----------------------------------------------------------------------
 # Creación de ejemplos y conversaciones
 # ----------------------------------------------------------------------
-
-
-def crear_bases_y_agentes_ejemplo():
-    """Crea bases de conocimiento independientes y asocia los agentes."""
-    base_map = {}
-    for base in BASES_CONOCIMIENTO_EJEMPLO:
-        try:
-            fuente_id = bd.crear_fuente(base["nombre"], base["contenido"])
-            base_map[base["nombre"]] = fuente_id
-        except ValueError:
-            for f in bd.listar_fuentes():
-                if f["nombre"] == base["nombre"]:
-                    base_map[base["nombre"]] = f["id"]
-                    break
-
-    for ejemplo in AGENTES_EJEMPLO:
-        nombre = ejemplo["nombre"]
-        if not bd.existe_agente(nombre):
-            fuentes_ids = [
-                base_map[b_nom] for b_nom in ejemplo.get("bases", []) if b_nom in base_map
-            ]
-            bd.crear_agente(
-                nombre=nombre,
-                perfil=ejemplo["perfil"],
-                identidad_clave=ejemplo.get("identidad_clave", ""),
-                identidad_custom=ejemplo.get("identidad_custom", ""),
-                fuentes_ids=fuentes_ids,
-            )
 
 
 CONVERSACIONES_PERSONAJES = {
@@ -253,7 +104,8 @@ def sembrar_conversaciones():
     for nombre in bd.listar_agentes():
         if bd.obtener_historial(nombre, cantidad=1):
             continue
-        mensajes = CONVERSACIONES_PERSONAJES.get(nombre, CONVERSACIONES_EJEMPLO)
+        persona = next((p for p in PERSONAS if p['nombre'] == nombre), {})
+        mensajes = persona.get('conversacion_ejemplo') or CONVERSACIONES_PERSONAJES.get(nombre, CONVERSACIONES_EJEMPLO)
         for rol, mensaje in mensajes:
             bd.guardar_mensaje(nombre, rol, mensaje)
         sembrados.append(nombre)
@@ -265,48 +117,68 @@ def sembrar_conversaciones():
 # ----------------------------------------------------------------------
 
 
-def main():
-    forzar = "--force" in sys.argv
-
+def sembrar_personas(personas=None, actualizar=False):
+    """Carga faltantes; actualizar=True restaura perfiles sin borrar chats."""
     bd.inicializar()
+    creados, actualizados = [], []
+    bases = {b["nombre"]: b["contenido"] for b in BASES_CONOCIMIENTO_EJEMPLO}
+    for persona in PERSONAS if personas is None else personas:
+        nombre = persona["nombre"]
+        existe = bd.existe_agente(nombre)
+        if existe and not actualizar:
+            continue
+        fuentes = {}
+        for base in persona.get("bases", []):
+            fuentes[base] = bases[base]
+        if persona.get("fuente_nombre"):
+            fuentes[persona["fuente_nombre"]] = persona["fuente_contenido"]
+        if persona.get("conocimiento"):
+            fuentes["Music Pro - " + nombre.split("_")[0]] = persona["conocimiento"]
+        ids = []
+        for titulo, contenido in fuentes.items():
+            fuente = bd.obtener_fuente_por_nombre(titulo)
+            if fuente:
+                fuente_id = fuente["id"]
+                if actualizar:
+                    bd.actualizar_fuente(fuente_id, titulo, contenido)
+            else:
+                fuente_id = bd.crear_fuente(titulo, contenido)
+            ids.append(fuente_id)
+        if not existe:
+            bd.crear_agente(
+                nombre=nombre, perfil=persona["perfil"],
+                identidad_clave=persona.get("identidad_clave", ""),
+                identidad_custom=persona.get("identidad_custom", ""),
+                avatar_url=persona.get("avatar_url", ""), fuentes_ids=ids,
+            )
+            creados.append(nombre)
+        else:
+            bd.actualizar_perfil(nombre, persona["perfil"])
+            bd.cambiar_identidad(nombre, clave=persona.get("identidad_clave", ""),
+                                custom=persona.get("identidad_custom", ""))
+            bd.actualizar_avatar(nombre, persona.get("avatar_url", ""))
+            bd.actualizar_conocimiento(nombre, "")
+            bd.establecer_fuentes_agente(nombre, ids)
+            actualizados.append(nombre)
+    return creados, actualizados
 
-    if forzar:
+
+def main():
+    import argparse
+    parser = argparse.ArgumentParser(description="Seeder único de personas y conversaciones.")
+    parser.add_argument("--force", action="store_true",
+                        help="Vacía agentes, fuentes y chats antes de cargar el catálogo completo.")
+    parser.add_argument("--update", action="store_true",
+                        help="Actualiza perfiles del catálogo conservando conversaciones y memoria.")
+    args = parser.parse_args()
+    bd.inicializar()
+    if args.force:
         bd.vaciar()
-        print("Base de datos vaciada (--force).")
-
-    existentes = bd.listar_agentes()
-    if existentes and not forzar:
-        print(f"La base de datos ya tiene {len(existentes)} agente(s).")
-        print("Usa 'python seed.py --force' para vaciarla y volver a sembrar.")
-        print(f"Archivo: {bd.BASE_DATOS}")
-        return
-
-    crear_bases_y_agentes_ejemplo()
-    print("Bases de conocimiento y agentes base creados:")
-    for nombre in bd.listar_agentes():
-        print(f"  - {nombre}")
-
-    bd.migrar_conocimientos_legacy()
-
-    creados, actualizados = crear_perfiles(forzar=forzar)
-    if creados:
-        print(f"Perfiles de empresa creados ({len(creados)}):")
-        for nombre in creados:
-            print(f"  - {nombre}")
-    if actualizados:
-        print(f"Perfiles de empresa actualizados ({len(actualizados)}):")
-        for nombre in actualizados:
-            print(f"  - {nombre}")
-
+    creados, actualizados = sembrar_personas(actualizar=args.update)
     sembrados = sembrar_conversaciones()
-    if sembrados:
-        print("Conversaciones de ejemplo agregadas a:")
-        for nombre in sembrados:
-            print(f"  - {nombre}")
-
-    print(f"\nBase de datos lista: {bd.BASE_DATOS} "
-          f"({len(bd.listar_agentes())} agente(s)).")
-    print("Ejecuta 'python app.py' y abre http://127.0.0.1:5000/")
+    print(f"Personas creadas: {len(creados)}; actualizadas: {len(actualizados)}.")
+    print(f"Conversaciones de ejemplo agregadas: {len(sembrados)}.")
+    print(f"Base de datos lista: {bd.BASE_DATOS} ({len(bd.listar_agentes())} personas).")
 
 
 if __name__ == "__main__":
